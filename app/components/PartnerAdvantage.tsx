@@ -1,0 +1,80 @@
+'use client';
+import React from 'react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+
+const PartnerAdvantage: React.FC = () => {
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Header Section - Split Layout */}
+        <div className="flex flex-col lg:flex-row gap-10 mb-16 lg:items-start">
+          
+          {/* Label Column */}
+          <div className="lg:w-1/4 pt-4">
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-[#8b5cf6]"></div> {/* Purple dot */}
+              <span className="text-xs font-bold tracking-widest text-gray-900 uppercase">BENEFITS OF WORKING WITH US</span>
+            </div>
+          </div>
+
+          {/* Heading Column */}
+          <div className="lg:w-3/4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.1]">
+              Experience the advantage of <br className="hidden lg:block" />
+              Partnering With Prudent Resources
+            </h2>
+          </div>
+        </div>
+
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            {/* Left Content Box - Lavender Background */}
+            <div className="bg-[#EFEDFA] rounded-xl p-8 md:p-12 flex flex-col justify-center">
+                <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-6">
+                    <span className="text-gray-500">No one-size-fits-all here.</span>{" "}
+                    <span className="text-gray-900">We build a hiring solution that actually fits your goals and your culture</span>
+                </h3>
+
+                <p className="text-gray-600 text-lg leading-relaxed mb-10">
+                    We take the time to understand your staffing goals, adapting our recruitment process to meet your specific requirements and help you achieve:
+                </p>
+
+                <div className="space-y-4 mb-12">
+                    {[
+                        "Faster, High-Quality Hiring",
+                        "Reduced Staffing Costs",
+                        "Access to Vetted Talent"
+                    ].map((item, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                            <CheckCircle2 className="w-6 h-6 text-gray-900 shrink-0" strokeWidth={1.5} />
+                            <span className="text-gray-900 font-semibold text-lg">{item}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <div>
+                    <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all shadow-sm shadow-teal-900/10">
+                        Request Staffing Service <ArrowRight size={18} />
+                    </button>
+                </div>
+            </div>
+
+            {/* Right Image Box */}
+            <div className="h-full min-h-[500px] lg:min-h-0 rounded-xl overflow-hidden">
+                <img 
+                    src="/image6.png" 
+                    alt="Professionals shaking hands in modern office"
+                    className="w-full h-full object-cover"
+                />
+            </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default PartnerAdvantage;

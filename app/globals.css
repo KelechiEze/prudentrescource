@@ -3,13 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-inter: ui-sans-serif, system-ui, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-playfair-display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-playfair-display), serif;
+  
+  /* Custom colors */
+  --color-teal-400: #68cfa3;
+  --color-teal-500: #5abf94;
+  --color-teal-600: #4da37d;
+  --color-dark-900: #1a1a1a;
+  
+  /* Animation */
+  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +33,31 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar hiding utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom pulse ring animation */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(104, 207, 163, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(104, 207, 163, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(104, 207, 163, 0);
+  }
 }
