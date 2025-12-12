@@ -35,7 +35,7 @@ const BehavioralCTA: React.FC = () => {
         {/* Right Image Column */}
         <div className="w-full lg:w-1/2 h-[500px] lg:h-auto min-h-full relative">
           <img 
-            src="https://images.unsplash.com/photo-1606850780554-b55ea2ce98ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+            src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2574&auto=format&fit=crop" 
             alt="Medical team collaborating around a laptop" 
             className="absolute inset-0 w-full h-full object-cover"
           />
