@@ -22,10 +22,54 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     if (pathname === '/services') return 'services';
     if (pathname === '/career') return 'career';
     if (pathname === '/organizations') return 'organizations';
+    if (pathname.startsWith('/behavioral-health')) return 'behavioral-health';
+    if (pathname.startsWith('/addiction')) return 'addiction';
+    if (pathname.startsWith('/residential')) return 'residential';
     return 'home';
   };
 
   const currentPage = propCurrentPage || getCurrentPageFromPath();
+
+  // Function to check if navbar should have dark text (black text on light background)
+  const shouldHaveDarkNavbar = () => {
+    // Pages where navbar links should be black
+    const darkNavPages = [
+      '/behavioral-health',
+      '/addiction',
+      '/residential',
+    ];
+    
+    return darkNavPages.some(page => pathname.startsWith(page));
+  };
+
+  // Function to check if navbar should have light text (white text on dark background)
+  const shouldHaveLightNavbar = () => {
+    // Pages where navbar links should be white (like home page)
+    const lightNavPages = ['home', 'organizations'];
+    const current = getCurrentPageFromPath();
+    
+    return lightNavPages.includes(current) && !shouldHaveDarkNavbar();
+  };
+
+  const hasDarkNavbar = shouldHaveDarkNavbar(); // true = black text
+  const hasLightNavbar = shouldHaveLightNavbar(); // true = white text
+
+  // Determine which logo to show
+  const getLogoImage = () => {
+    if (isScrolled) {
+      return '/logoprudent.png'; // Always show light logo when scrolled
+    }
+    
+    // On initial load for dark navbar pages, show dark logo
+    if (hasDarkNavbar) {
+      return '/logodark.png'; // Dark logo for behavioral-health, addiction, residential
+    }
+    
+    // Default to light logo for other pages
+    return '/logoprudent.png';
+  };
+
+  const logoImage = getLogoImage();
 
   const handleNavigate = (page: string) => {
     if (propOnNavigate) {
@@ -66,8 +110,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
   };
 
   const handleRequestTalentsClick = () => {
-    // You might want to create a separate page for this or use a contact form
-    // For now, redirecting to organizations page as a placeholder
     handleNavigate('organizations');
     setIsMobileMenuOpen(false);
   };
@@ -77,21 +119,38 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     handleNavigate('home');
   };
 
-  const hasDarkHero = ['home', 'organizations'].includes(currentPage);
-  
+  // Determine text colors based on page and scroll state
   const linkBaseClass = isScrolled 
-    ? 'text-gray-200 hover:text-white' 
-    : (hasDarkHero ? 'text-gray-200 hover:text-white' : 'text-gray-900 hover:text-black');
+    ? 'text-gray-200 hover:text-white' // When scrolled, always use light text
+    : (hasDarkNavbar 
+      ? 'text-gray-900 hover:text-black' // Black text for specific pages
+      : (hasLightNavbar 
+        ? 'text-gray-200 hover:text-white' // White text for home/organizations
+        : 'text-gray-900 hover:text-black' // Default to black text
+      )
+    );
 
   const logoColorClass = isScrolled 
     ? 'text-white' 
-    : (hasDarkHero ? 'text-white' : 'text-gray-900');
+    : (hasDarkNavbar 
+      ? 'text-gray-900' 
+      : (hasLightNavbar 
+        ? 'text-white' 
+        : 'text-gray-900'
+      )
+    );
 
   const mobileToggleColor = isScrolled 
     ? 'text-white' 
-    : (hasDarkHero ? 'text-white' : 'text-gray-900');
+    : (hasDarkNavbar 
+      ? 'text-gray-900' 
+      : (hasLightNavbar 
+        ? 'text-white' 
+        : 'text-gray-900'
+      )
+    );
 
-  const primaryButtonClass = (isScrolled || hasDarkHero) 
+  const primaryButtonClass = (isScrolled || hasLightNavbar)
     ? 'bg-white text-gray-900' 
     : 'bg-gray-900 text-white';
 
@@ -99,8 +158,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     <nav 
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled || isMobileMenuOpen 
-          ? 'bg-black/90 backdrop-blur-md py-2' 
-          : 'bg-transparent py-2'
+          ? 'bg-black/90 backdrop-blur-md py-2' // Dark background when scrolled/menu open
+          : hasDarkNavbar 
+            ? 'bg-white/90 backdrop-blur-md py-2 border-b border-gray-200' // Light background for dark navbar pages
+            : 'bg-transparent py-2'
       }`} 
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -112,11 +173,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
         >
           <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
             <Image
-              src="/logoprudent.png"
+              src={logoImage}
               alt="Prudent Resources Logo"
               width={128}
               height={128}
-              className="object-contain w-full h-full"
+              className="object-contain w-full h-full transition-opacity duration-300"
               priority
             />
           </div>
