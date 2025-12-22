@@ -8,15 +8,15 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
           
-          {/* Column 1: Logo - Slightly larger */}
+          {/* Column 1: Logo - Updated to match navbar size */}
           <div className="lg:col-span-3">
             <div className="flex items-center gap-3 text-gray-900">
-              <div className="relative w-28 h-28 md:w-36 md:h-36 flex items-center justify-center">
+              <div className="relative w-24 h-24 flex items-center justify-center"> {/* Updated to w-24 h-24 */}
                 <Image
                   src="/logodark.png"
                   alt="Prudent Resources Logo"
-                  width={144}  // Increased from 112 to 144
-                  height={144} // Increased from 112 to 144
+                  width={96}  
+                  height={96} 
                   className="object-contain w-full h-full"
                 />
               </div>

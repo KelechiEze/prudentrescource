@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-center">
+    <section className="relative w-full h-screen min-h-[800px] overflow-hidden flex flex-col justify-center">
       {/* Background Carousel */}
       {HERO_IMAGES.map((image, index) => (
         <div
@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
             staffing, curated for trust
           </h1>
           
-          <p className="text-gray-200 text-lg md:text-xl font-light mb-8 max-w-2xl leading-relaxed opacity-90">
+          <p className="text-gray-200 text-lg md:text-xl font-light mb-20 max-w-2xl leading-relaxed opacity-90">
             We connect healthcare organizations with credentialed professionals through a carefully
             facilitated matching process — not a marketplace. Real humans curating real matches.
           </p>
@@ -54,7 +54,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
 
         {/* Bottom Section: Checklist and Search Bar */}
         {/* Changed breakpoint from xl to lg to ensure they are side-by-side on standard laptops */}
-        <div className="mt-20 flex flex-col lg:flex-row lg:items-end justify-between gap-8 w-full">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 w-full">
           
           {/* Checklist */}
           <div className="flex flex-col gap-4 shrink-0">
@@ -74,23 +74,23 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
 
           {/* Search Bar - Separated Components */}
           <div className="w-full max-w-2xl flex items-center gap-4">
-            {/* Input Field Box */}
-            <div className="flex-1 bg-white/10 backdrop-blur-md border border-white/30 rounded-full h-16 px-6 flex items-center gap-3 transition-colors hover:bg-white/15 focus-within:bg-white/20">
-               <Search className="text-white w-6 h-6 opacity-80" />
+            {/* Input Field Box - Reduced size */}
+            <div className="flex-1 bg-white/10 backdrop-blur-md border border-white/30 rounded-full h-14 px-5 flex items-center gap-3 transition-colors hover:bg-white/15 focus-within:bg-white/20">
+               <Search className="text-white w-5 h-5 opacity-80" />
                <input 
                  type="text" 
                  placeholder="Search your discipline" 
-                 className="bg-transparent border-none outline-none text-white placeholder-gray-200 w-full h-full text-lg"
+                 className="bg-transparent border-none outline-none text-white placeholder-gray-200 w-full h-full text-base md:text-lg"
                  onKeyDown={(e) => e.key === 'Enter' && onSearch()}
                />
             </div>
 
-            {/* Separate Button */}
+            {/* Separate Button - Reduced size */}
             <button 
               onClick={onSearch}
-              className="h-16 px-10 bg-teal-400 hover:bg-teal-500 text-gray-900 text-lg font-bold rounded-full flex items-center gap-2 transition-transform active:scale-95 whitespace-nowrap shadow-lg shadow-teal-900/20"
+              className="h-14 px-8 bg-teal-400 hover:bg-teal-500 text-gray-900 text-base md:text-lg font-bold rounded-full flex items-center gap-2 transition-transform active:scale-95 whitespace-nowrap shadow-lg shadow-teal-900/20"
             >
-               Search <ArrowRight size={20} />
+               Search <ArrowRight size={18} />
             </button>
           </div>
 
@@ -98,7 +98,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
       </div>
       
       {/* Carousel Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {HERO_IMAGES.map((_, idx) => (
           <button
             key={idx}

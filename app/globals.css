@@ -4,14 +4,14 @@
   --background: #ffffff;
   --foreground: #171717;
   --font-inter: ui-sans-serif, system-ui, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --font-playfair-display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-hedvig-letters-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter), sans-serif;
-  --font-serif: var(--font-playfair-display), serif;
+  --font-serif: var(--font-hedvig-letters-serif), serif;
   
   /* Custom colors */
   --color-teal-400: #68cfa3;
@@ -34,6 +34,38 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* Heading styles - using Hedvig Letters Serif */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* If you want to apply it more specifically */
+h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+/* Paragraph and general text styles - using Inter */
+p, span, a, li, button, input, textarea, label {
+  font-family: var(--font-sans);
+}
+
+/* Optional: Add a utility class for the heading font */
+.font-heading {
+  font-family: var(--font-serif);
 }
 
 /* Custom scrollbar hiding utility */

@@ -54,15 +54,32 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
   const hasDarkNavbar = shouldHaveDarkNavbar(); // true = black text
   const hasLightNavbar = shouldHaveLightNavbar(); // true = white text
 
+  // NEW FUNCTION: Check if should use dark logo initially (before scrolling)
+  const shouldUseDarkLogoInitially = () => {
+    if (isScrolled) return false; // Never use dark logo when scrolled
+    
+    const darkLogoPages = [
+      '/services',
+      '/career',
+      '/behavioral-health',
+      '/addiction',
+      '/residential'
+    ];
+    
+    return darkLogoPages.some(page => pathname.startsWith(page));
+  };
+
+  const shouldUseDarkLogo = shouldUseDarkLogoInitially();
+
   // Determine which logo to show
   const getLogoImage = () => {
     if (isScrolled) {
       return '/logoprudent.png'; // Always show light logo when scrolled
     }
     
-    // On initial load for dark navbar pages, show dark logo
-    if (hasDarkNavbar) {
-      return '/logodark.png'; // Dark logo for behavioral-health, addiction, residential
+    // Show dark logo for specific pages
+    if (shouldUseDarkLogo) {
+      return '/logodark.png';
     }
     
     // Default to light logo for other pages
@@ -164,27 +181,29 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
             : 'bg-transparent py-2'
       }`} 
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo - Large but positioned higher */}
-        <a 
-          href="#" 
-          onClick={handleLogoClick} 
-          className={`flex items-center ${logoColorClass} -mt-6 -mb-6`}
-        >
-          <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-            <Image
-              src={logoImage}
-              alt="Prudent Resources Logo"
-              width={128}
-              height={128}
-              className="object-contain w-full h-full transition-opacity duration-300"
-              priority
-            />
-          </div>
-        </a>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        {/* Logo */}
+        <div className="flex items-center justify-center flex-shrink-0">
+          <a 
+            href="#" 
+            onClick={handleLogoClick} 
+            className={`flex items-center ${logoColorClass}`}
+          >
+            <div className="relative w-24 h-24 flex items-center justify-center">
+              <Image
+                src={logoImage}
+                alt="Prudent Resources Logo"
+                width={96}
+                height={96}
+                className="object-contain w-full h-full transition-opacity duration-300"
+                priority
+              />
+            </div>
+          </a>
+        </div>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-8 -mt-6">
+        {/* Desktop Navigation Links - Center aligned with logo */}
+        <div className="hidden lg:flex items-center justify-center flex-grow gap-8">
           {NAV_LINKS.map((link) => (
             <a 
               key={link.label} 
@@ -197,18 +216,18 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
           ))}
         </div>
 
-        {/* Desktop Buttons */}
-        <div className="hidden lg:flex items-center gap-4 -mt-6">
+        {/* Desktop Buttons - Right aligned */}
+        <div className="hidden lg:flex items-center justify-end flex-shrink-0 gap-4">
           <button 
             onClick={handleFindJobClick}
-            className={`${primaryButtonClass} px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:opacity-90 transition-colors`}
+            className={`${primaryButtonClass} px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:opacity-90 transition-colors whitespace-nowrap`}
           >
             Find a job <ArrowRight size={14} />
           </button>
           
           <button 
             onClick={handleRequestTalentsClick}
-            className="bg-teal-400 text-gray-900 px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-teal-500 transition-colors"
+            className="bg-teal-400 text-gray-900 px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-teal-500 transition-colors whitespace-nowrap"
           >
             Request for talents <ArrowRight size={14} />
           </button>
@@ -216,7 +235,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
 
         {/* Mobile Menu Toggle */}
         <button 
-          className={`lg:hidden ${mobileToggleColor} -mt-6`}
+          className={`lg:hidden ${mobileToggleColor} ml-4`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}

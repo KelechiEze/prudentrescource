@@ -7,12 +7,13 @@ const CommitmentSection: React.FC = () => {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Section Header */}
-        <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-16 max-w-5xl">
-          <span className="text-gray-400">We are committed to providing trusted workforce solutions</span>
-          <span className="text-gray-900"> — matching skilled professionals with the places that need them most.</span>
-        </h2>
-
+<h2 
+  className="text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug mb-16 max-w-6xl pr-4 md:pr-8 lg:pr-12"
+  style={{ fontFamily: "var(--font-hedvig-letters-serif)" }}
+>
+  <span className="text-gray-400">We are committed to providing trusted workforce solutions</span>
+  <span className="text-gray-900"> — matching skilled professionals with the places that need them most.</span>
+</h2>
         {/* Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           

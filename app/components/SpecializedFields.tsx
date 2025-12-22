@@ -63,10 +63,10 @@ const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => 
 
           {/* Content Column */}
           <div className="lg:w-3/4">
-            <h2 className="text-4xl md:text-6xl font-serif text-gray-900 mb-8 leading-[1.1]">
-              Transforming Healthcare Staffing <br className="hidden md:block" />
-              in the following Specialized Fields
-            </h2>
+            <h2 className="text-3xl md:text-5xl font-serif text-gray-900 mb-8 leading-[1.1]">
+    Transforming Healthcare Staffing <br className="hidden md:block" />
+    in the following Specialized Fields
+  </h2>
             
             <p className="text-gray-600 text-lg leading-relaxed max-w-4xl">
               Each healthcare field needs more than experience—it needs specialized attention

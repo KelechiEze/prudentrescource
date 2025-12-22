@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Hedvig_Letters_Serif } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -12,9 +12,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfairDisplay = Playfair_Display({
+const hedvigLettersSerif = Hedvig_Letters_Serif({
   subsets: ["latin"],
-  variable: "--font-playfair-display",
+  variable: "--font-hedvig-letters-serif",
   display: "swap",
 });
 
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
+    <html lang="en" className={`${inter.variable} ${hedvigLettersSerif.variable}`}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
