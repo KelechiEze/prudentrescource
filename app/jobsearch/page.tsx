@@ -345,7 +345,7 @@ const page: React.FC<JobSearchResultsPageProps> = ({ onNavigate }) => {
             </div>
           </div>
         </div>
-        <SubmitCV onNavigate={onNavigate} />
+        <SubmitCV />
       </div>
     );
   }
@@ -470,7 +470,7 @@ const page: React.FC<JobSearchResultsPageProps> = ({ onNavigate }) => {
           </div>
         )}
       </div>
-      <SubmitCV onNavigate={onNavigate} />
+      <SubmitCV />
     </div>
   );
 };
