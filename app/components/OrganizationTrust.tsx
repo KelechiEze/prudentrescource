@@ -57,7 +57,7 @@ const OrganizationTrust: React.FC = () => {
           {/* Card 2: Image */}
           <div className="rounded-xl overflow-hidden h-[500px] lg:h-auto">
             <img 
-              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src="/helpold.png" 
               alt="Male doctor reviewing medical records" 
               className="w-full h-full object-cover"
             />

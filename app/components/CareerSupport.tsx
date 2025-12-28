@@ -11,7 +11,7 @@ const CareerSupport: React.FC = () => {
           {/* Column 1: Image */}
           <div className="h-[500px] lg:h-auto rounded-xl overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src="/nurse.png" 
               alt="Nurse with clipboard smiling" 
               className="w-full h-full object-cover"
             />

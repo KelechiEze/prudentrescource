@@ -57,7 +57,7 @@ const TrustedPartner: React.FC = () => {
           {/* Image 1: Group Thumbs Up */}
           <div className="rounded-xl overflow-hidden h-[320px] md:h-[400px]">
             <img 
-              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              src="/group.png"
               alt="Group of smiling medical professionals giving thumbs up" 
               className="w-full h-full object-cover object-top"
             />
@@ -66,7 +66,7 @@ const TrustedPartner: React.FC = () => {
           {/* Image 2: Patient Care */}
           <div className="rounded-xl overflow-hidden h-[320px] md:h-[400px]">
             <img 
-              src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src="/oldman.png" 
               alt="Nurse assisting elderly patient" 
               className="w-full h-full object-cover"
             />

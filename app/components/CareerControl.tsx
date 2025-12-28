@@ -44,7 +44,7 @@ const CareerControl: React.FC = () => {
           {/* Right Image Card */}
           <div className="rounded-xl overflow-hidden h-[500px] lg:h-auto">
             <img 
-              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+              src="/greenpeeps.png" 
               alt="Professionals shaking hands in a modern office hallway" 
               className="w-full h-full object-cover"
             />

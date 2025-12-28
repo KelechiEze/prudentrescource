@@ -4,9 +4,9 @@ import { ArrowDown } from 'lucide-react';
 
 const ServiceDetails: React.FC = () => {
   return (
-    <section className="flex flex-col lg:flex-row w-full">
+    <section className="flex flex-col lg:flex-row w-full mt-10">
       {/* Left Column: Text Content */}
-      <div className="w-full lg:w-1/2 bg-[#E3E8DE] p-12 lg:p-24 flex flex-col justify-center relative min-h-[600px]">
+      <div className="w-full lg:w-1/2 bg-[#E3E8DE] p-12 lg:p-24 flex flex-col justify-center relative min-h-[700px]">
         <div className="max-w-xl">
           <h2 className="font-serif text-5xl md:text-6xl text-[#1a1a1a] mb-8 leading-[1.1]">
             Our medical staffing services include...
@@ -26,29 +26,32 @@ const ServiceDetails: React.FC = () => {
       </div>
 
       {/* Right Column: Image & Overlay Card */}
-      <div className="w-full lg:w-1/2 relative min-h-[600px] bg-gray-200">
-        {/* Main Background Image */}
-        <img 
-          src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-          alt="Doctor examining patient" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+      <div className="w-full lg:w-1/2 relative min-h-[700px] bg-gray-200">
+        {/* Main Background Image - Reduced width, increased height */}
+        <div className="absolute inset-0 overflow-hidden">
+          <img 
+            src="/ladycare.png" 
+            alt="Doctor examining patient" 
+            className="w-full h-full object-cover object-center"
+            style={{ width: '80%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
         
-        {/* Floating Card Overlay */}
-        <div className="absolute bottom-0 left-0 lg:bottom-12 lg:-left-12 max-w-md w-full md:w-[480px] z-10 p-4 lg:p-0">
-          <div className="bg-[#1B2C42] rounded-lg overflow-hidden shadow-2xl flex h-48 lg:h-52">
+        {/* Floating Card Overlay - Increased width */}
+        <div className="absolute bottom-0 left-0 lg:bottom-12 lg:-left-12 max-w-lg w-full md:w-[550px] z-10 p-4 lg:p-0">
+          <div className="bg-[#1B2C42] rounded-lg overflow-hidden shadow-2xl flex h-52 lg:h-56">
             
-            {/* Small Image in Card */}
-            <div className="w-2/5 relative h-full">
+            {/* Small Image in Card - Increased width */}
+            <div className="w-1/2 relative h-full">
               <img 
-                src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+                src="/whitehair.png" 
                 alt="Nurse smiling with patient" 
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
 
-            {/* Content in Card */}
-            <div className="w-3/5 p-6 lg:p-8 flex flex-col justify-center">
+            {/* Content in Card - Reduced width */}
+            <div className="w-1/2 p-6 lg:p-8 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-2 h-2 rounded-full bg-[#00e055]"></div>
                 <span className="text-[10px] font-bold tracking-widest text-white/80 uppercase">

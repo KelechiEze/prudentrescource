@@ -43,7 +43,7 @@ const CostEffectiveSolutions: React.FC = () => {
           {/* Right Column: Image with Overlay */}
           <div className="relative rounded-xl overflow-hidden min-h-[500px]">
             <img 
-              src="https://images.unsplash.com/photo-1576091160550-21733e99db29?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src="/greens.png" 
               alt="Medical professionals analyzing data on screen" 
               className="absolute inset-0 w-full h-full object-cover"
             />

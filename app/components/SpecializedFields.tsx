@@ -1,128 +1,68 @@
-'use client';
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+
+import React from 'react';
 
 interface SpecializedFieldsProps {
   onNavigate?: (page: string) => void;
 }
 
 const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => {
-  const [clickedCard, setClickedCard] = useState<string | null>(null);
-  
-  const fields = [
-    {
-      title: "Behavioral Healthcare/Nursing",
-      color: "bg-[#e5a5e3]", // Pastel purple/pink
-      image: "/image5.png",
-      targetPage: "behavioral-health"
-    },
-    {
-      title: "Residential Group Homes",
-      color: "bg-[#bdd8fa]", // Pastel blue
-      image: "/image5.png",
-      targetPage: "residential"
-    },
-    {
-      title: "Addictions & Substance Abuse",
-      color: "bg-[#fcbca0]", // Pastel peach/orange
-      image: "/image5.png",
-      targetPage: "addiction"
-    }
-  ];
-
-  const handleCardClick = (target: string) => {
-    // Remove alert and enable routing
-    setClickedCard(target);
-    
-    // Show visual feedback
-    setTimeout(() => {
-      setClickedCard(null);
-    }, 300);
-    
-    // Navigate to the target page
-    if (onNavigate) {
-      onNavigate(target);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Header Section */}
-        <div className="flex flex-col lg:flex-row gap-10 mb-20 lg:items-start">
+    <section className="bg-white">
+      {/* Immersive Header Section Recreation */}
+      <div className="w-full relative min-h-[600px] md:h-[750px] overflow-hidden">
+        {/* Background Image - High-fidelity choice matching the prompt's aesthetic */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/transform.png" 
+            alt="Compassionate care - elderly and professional"
+            className="w-full h-full object-cover brightness-[0.85]"
+          />
+          {/* Subtle gradient overlays for text contrast */}
+          <div className="absolute inset-0 bg-black/30 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
+        </div>
+
+        {/* Content Layer */}
+        <div className="relative z-10 w-full h-full max-w-full px-6 md:px-12 lg:px-20 py-16 md:py-24 flex flex-col justify-between min-h-[600px] md:h-full">
           
-          {/* Label Column */}
-          <div className="lg:w-1/4 pt-3">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-[#00e055]"></div>
-              <span className="text-xs font-bold tracking-widest text-gray-900 uppercase">The Fields We Serve</span>
-            </div>
+          {/* Top Alignment: Large Heading */}
+          <div className="mt-4">
+            <h2 className="font-serif text-[42px] md:text-[68px] lg:text-[82px] text-white leading-[1.05] max-w-5xl tracking-tight font-normal">
+              Transforming Staffing in <br className="hidden md:block" />
+              Healthcare and Residential Care
+            </h2>
           </div>
 
-          {/* Content Column */}
-          <div className="lg:w-3/4">
-            <h2 className="text-3xl md:text-5xl font-serif text-gray-900 mb-8 leading-[1.1]">
-    Transforming Healthcare Staffing <br className="hidden md:block" />
-    in the following Specialized Fields
-  </h2>
-            
-            <p className="text-gray-600 text-lg leading-relaxed max-w-4xl">
-              Each healthcare field needs more than experience—it needs specialized attention
-              and a partner who truly understands its nuances. We're committed to providing
-              personalized solutions, creating valuable opportunities, and delivering exceptional
-              results for our clients and the professionals we place.
-            </p>
+          {/* Bottom Alignment: Info & Action */}
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-12 mt-12">
+            <div className="max-w-4xl">
+              {/* Badge with Green Dot */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-4 h-4 rounded-full bg-[#00e055] shadow-[0_0_15px_rgba(0,224,85,0.6)]"></div>
+                <span className="text-[12px] md:text-[14px] font-bold tracking-[0.3em] text-white uppercase font-sans">
+                  PRUDENT RESOURCES SERVICES
+                </span>
+              </div>
+
+              {/* Body Copy */}
+              <p className="text-white text-xl md:text-[23px] leading-relaxed font-light opacity-95 max-w-4xl">
+                Each healthcare field needs more than experience—it needs specialized attention 
+                and a partner who truly understands its nuances. We're committed to providing 
+                personalized staffing solutions, creating valuable opportunities, and delivering 
+                exceptional results for our clients and the professionals we place.
+              </p>
+            </div>
+
+            {/* Learn More Button - Specific Teal with Dark Text as in image */}
+            <div className="pb-2">
+              <button 
+                onClick={() => onNavigate?.('services')}
+                className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-12 py-4.5 rounded-[22px] text-[15px] font-semibold transition-all shadow-xl hover:shadow-teal-400/20 active:scale-95 whitespace-nowrap"
+              >
+                Learn more
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          {fields.map((field, index) => (
-            <div 
-              key={index} 
-              onClick={() => handleCardClick(field.targetPage)}
-              className={`group cursor-pointer rounded-xl overflow-hidden flex flex-col h-full transition-all duration-300 ${
-                clickedCard === field.targetPage 
-                  ? 'ring-4 ring-teal-400 scale-[0.98]' 
-                  : 'hover:scale-[1.02]'
-              }`}
-            >
-              {/* Image Container */}
-              <div className="relative h-[450px] overflow-hidden bg-gray-200">
-                 <img 
-                   src={field.image} 
-                   alt={field.title}
-                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                 />
-                 {/* Loading/Clicked Overlay */}
-                 {clickedCard === field.targetPage && (
-                   <div className="absolute inset-0 bg-teal-400/20 flex items-center justify-center">
-                     <div className="bg-white/90 rounded-lg p-3 text-center">
-                       <div className="text-gray-900 font-bold">Loading...</div>
-                     </div>
-                   </div>
-                 )}
-              </div>
-              
-              {/* Footer */}
-              <div className={`${field.color} p-6 h-28 flex items-center justify-between transition-all duration-300 ${
-                clickedCard === field.targetPage ? 'bg-gray-300' : ''
-              }`}>
-                <h3 className="font-serif text-2xl text-gray-900 max-w-[80%] leading-tight">
-                  {field.title}
-                </h3>
-                <ArrowRight className={`text-gray-900 w-6 h-6 shrink-0 transition-all duration-300 ${
-                  clickedCard === field.targetPage 
-                    ? 'translate-x-2 text-teal-600' 
-                    : 'group-hover:translate-x-2'
-                }`} />
-              </div>
-            </div>
-          ))}
-        </div>
-
       </div>
     </section>
   );

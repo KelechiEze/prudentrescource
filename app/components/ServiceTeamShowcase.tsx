@@ -8,7 +8,7 @@ const ServiceTeamShowcase: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <img
-          src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2574&auto=format&fit=crop" 
+          src="/doctorssmile.png" 
           alt="Team of healthcare professionals"
           className="w-full h-full object-cover object-[center_20%] opacity-90"
         />
@@ -34,7 +34,7 @@ const ServiceTeamShowcase: React.FC = () => {
 
         {/* Bottom Text Content */}
         <div className="mb-8 md:mb-12">
-          <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight max-w-4xl drop-shadow-lg">
+          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-white leading-tight max-w-4xl drop-shadow-lg">
             You can count on us to deliver cost-effective outcomes <br className="hidden lg:block" />
             and highly qualified healthcare professionals
           </h2>

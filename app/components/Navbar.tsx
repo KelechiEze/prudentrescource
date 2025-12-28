@@ -22,6 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     if (pathname === '/services') return 'services';
     if (pathname === '/career') return 'career';
     if (pathname === '/organizations') return 'organizations';
+    if (pathname === '/contact') return 'contact';
     if (pathname.startsWith('/behavioral-health')) return 'behavioral-health';
     if (pathname.startsWith('/addiction')) return 'addiction';
     if (pathname.startsWith('/residential')) return 'residential';
@@ -37,6 +38,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       '/behavioral-health',
       '/addiction',
       '/residential',
+      '/staffrequest',
+      '/jobsearch',
+      '/submitresume',
+      '/contact'
     ];
     
     return darkNavPages.some(page => pathname.startsWith(page));
@@ -61,9 +66,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     const darkLogoPages = [
       '/services',
       '/career',
+      '/organizations',
+      '/contact',
       '/behavioral-health',
       '/addiction',
-      '/residential'
+      '/residential',
+      '/staffrequest',
+      '/jobsearch',
+      '/submitresume'
     ];
     
     return darkLogoPages.some(page => pathname.startsWith(page));
@@ -115,6 +125,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       handleNavigate('career');
     } else if (label === "Organizations") {
       handleNavigate('organizations');
+    } else if (label === "Contact Us") {
+      handleNavigate('contact');
     } else {
       handleNavigate('home');
     }
@@ -214,6 +226,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
               {link.label}
             </a>
           ))}
+          {/* Contact Us Link */}
+          <a 
+            href="#" 
+            onClick={(e) => handleNavClick(e, 'Contact Us', '/contact')}
+            className={`text-sm font-medium transition-colors ${linkBaseClass} cursor-pointer`}
+          >
+            Contact Us
+          </a>
         </div>
 
         {/* Desktop Buttons - Right aligned */}
@@ -255,6 +275,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
               {link.label}
             </a>
           ))}
+          {/* Mobile Contact Us Link */}
+          <a 
+            href="#" 
+            className="text-lg font-medium transition-colors hover:text-gray-300 cursor-pointer"
+            onClick={(e) => handleNavClick(e, 'Contact Us', '/contact')}
+          >
+            Contact Us
+          </a>
           <div className="flex flex-col gap-3 mt-4">
             <button 
               onClick={handleFindJobClick}

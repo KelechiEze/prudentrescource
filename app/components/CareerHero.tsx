@@ -1,12 +1,36 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface CareerHeroProps {
-  onSearchClick: () => void;
+  onSearchClick?: () => void; // Made optional since we're handling navigation directly
 }
 
 const CareerHero: React.FC<CareerHeroProps> = ({ onSearchClick }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      // Navigate to /jobsearch with the query parameter
+      router.push(`/jobsearch?q=${encodeURIComponent(searchQuery)}`);
+    } else {
+      // Navigate to /jobsearch without any query
+      router.push('/jobsearch');
+    }
+    // Call the optional prop function if it exists
+    if (onSearchClick) {
+      onSearchClick();
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <section className="bg-white pt-40 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -24,11 +48,13 @@ const CareerHero: React.FC<CareerHeroProps> = ({ onSearchClick }) => {
               type="text" 
               placeholder="Search your discipline" 
               className="bg-transparent border-none outline-none text-gray-800 placeholder-gray-500 w-full h-full text-base md:text-lg"
-              onKeyDown={(e) => e.key === 'Enter' && onSearchClick()}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
           </div>
           <button 
-            onClick={onSearchClick}
+            onClick={handleSearch}
             className="h-14 md:h-16 px-10 bg-[#1B2C42] hover:bg-[#2a4466] text-white text-base md:text-lg font-bold rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg"
           >
             Search <ArrowRight size={20} />
@@ -61,7 +87,7 @@ const CareerHero: React.FC<CareerHeroProps> = ({ onSearchClick }) => {
           {/* Right Image Card */}
           <div className="rounded-xl overflow-hidden relative min-h-[400px] lg:min-h-auto">
             <img 
-              src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src="/cute.png" 
               alt="Smiling medical professional with stethoscope" 
               className="absolute inset-0 w-full h-full object-cover object-top"
             />

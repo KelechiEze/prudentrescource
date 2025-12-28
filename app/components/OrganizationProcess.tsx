@@ -8,7 +8,7 @@ const OrganizationProcess: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+          src="/cuteshe.png" 
           alt="Medical professional smiling" 
           className="w-full h-full object-cover object-[center_30%]"
         />

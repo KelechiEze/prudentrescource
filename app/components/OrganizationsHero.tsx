@@ -8,7 +8,7 @@ const OrganizationsHero: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+          src="/tablet.png" 
           alt="Healthcare professional using tablet"
           className="w-full h-full object-cover brightness-50"
         />

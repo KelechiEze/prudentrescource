@@ -1,114 +1,96 @@
-'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { CheckCircle, Search, ArrowRight } from 'lucide-react';
-import { HERO_IMAGES } from '../../constants';
+import { HERO_VIDEO_URL } from '../../constants';
 
 interface HeroProps {
   onSearch: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onSearch }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval);
+    const playVideo = async () => {
+      if (videoRef.current) {
+        // Subtle slow-motion effect for premium feel
+        videoRef.current.playbackRate = 0.7; 
+        try {
+          await videoRef.current.play();
+        } catch (err) {
+          console.log("Auto-play was prevented", err);
+        }
+      }
+    };
+    playVideo();
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[800px] overflow-hidden flex flex-col justify-center">
-      {/* Background Carousel */}
-      {HERO_IMAGES.map((image, index) => (
-        <div
-          key={image.id}
-          className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-          }`}
+    <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden bg-black">
+      {/* Background Video - Container matches section dimensions */}
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-60 scale-[1.02] transition-transform duration-[10s]"
         >
-          <img
-            src={image.url}
-            alt={image.alt}
-            className="w-full h-full object-cover"
-          />
-          {/* Dark Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" />
-        </div>
-      ))}
+          <source src={HERO_VIDEO_URL} type="video/mp4" />
+        </video>
+        {/* Cinematic gradient overlay for content readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/85" />
+      </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-20">
-        <div className="max-w-4xl">
-          <h1 className="font-serif text-5xl md:text-7xl text-white mb-6 leading-[1.1] tracking-tight">
-            Precision healthcare <br />
+      {/* Main Content */}
+      <div className="relative z-10 w-full px-6 md:px-10 lg:px-20 pt-40 pb-20">
+        <div className="mb-20">
+          <h1 className="font-serif text-5xl md:text-8xl lg:text-[105px] leading-[1] mb-10 text-white font-normal tracking-tight">
+            Precision healthcare <br className="hidden lg:block" />
             staffing, curated for trust
           </h1>
           
-          <p className="text-gray-200 text-lg md:text-xl font-light mb-20 max-w-2xl leading-relaxed opacity-90">
-            We connect healthcare organizations with credentialed professionals through a carefully
-            facilitated matching process — not a marketplace. Real humans curating real matches.
+          <p className="text-lg md:text-2xl text-gray-200 max-w-5xl leading-snug font-light opacity-90 tracking-wide">
+            We connect healthcare organizations with credentialed professionals through a carefully facilitated matching process — not a marketplace. <br className="hidden lg:block" />
+            Real humans curating real matches.
           </p>
         </div>
 
-        {/* Bottom Section: Checklist and Search Bar */}
-        {/* Changed breakpoint from xl to lg to ensure they are side-by-side on standard laptops */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 w-full">
+        {/* Bottom Bar: Checklist and Search side-by-side */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-12 w-full">
           
-          {/* Checklist */}
-          <div className="flex flex-col gap-4 shrink-0">
+          {/* Checklist on the left */}
+          <div className="flex flex-col gap-6">
             {[
               "100% Credential verified professionals",
               "Admin-facilitated matching",
               "For Hospitals, Clinics & Home-care"
-            ].map((feature, i) => (
-              <div key={i} className="flex items-center gap-3 text-white font-medium text-lg">
-                <div className="bg-white/10 rounded-full p-0.5">
-                   <CheckCircle className="text-white w-6 h-6" strokeWidth={2} />
-                </div>
-                <span>{feature}</span>
+            ].map((text, i) => (
+              <div key={i} className="flex items-center gap-4 group">
+                <CheckCircle className="text-teal-400 w-5 h-5 opacity-90 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                <span className="text-[15px] font-medium tracking-[0.05em] text-white/95">{text}</span>
               </div>
             ))}
           </div>
 
-          {/* Search Bar - Separated Components */}
-          <div className="w-full max-w-2xl flex items-center gap-4">
-            {/* Input Field Box - Reduced size */}
-            <div className="flex-1 bg-white/10 backdrop-blur-md border border-white/30 rounded-full h-14 px-5 flex items-center gap-3 transition-colors hover:bg-white/15 focus-within:bg-white/20">
-               <Search className="text-white w-5 h-5 opacity-80" />
-               <input 
-                 type="text" 
-                 placeholder="Search your discipline" 
-                 className="bg-transparent border-none outline-none text-white placeholder-gray-200 w-full h-full text-base md:text-lg"
-                 onKeyDown={(e) => e.key === 'Enter' && onSearch()}
-               />
+          {/* Search bar and button */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-2xl">
+            <div className="flex-1 w-full bg-white/10 backdrop-blur-2xl rounded-full h-16 px-8 flex items-center gap-4 border border-white/20 transition-all focus-within:bg-white/20 focus-within:border-teal-400/50">
+              <Search className="text-white/60 w-5 h-5" />
+              <input 
+                type="text" 
+                placeholder="Search your discipline" 
+                className="bg-transparent border-none outline-none text-white placeholder-white/40 w-full h-full text-lg font-light"
+              />
             </div>
-
-            {/* Separate Button - Reduced size */}
             <button 
               onClick={onSearch}
-              className="h-14 px-8 bg-teal-400 hover:bg-teal-500 text-gray-900 text-base md:text-lg font-bold rounded-full flex items-center gap-2 transition-transform active:scale-95 whitespace-nowrap shadow-lg shadow-teal-900/20"
+              className="w-full sm:w-auto h-16 px-12 bg-teal-400 hover:bg-teal-500 text-gray-900 text-[14px] font-bold rounded-full flex items-center justify-center gap-2 transition-all uppercase tracking-widest shadow-[0_0_30px_rgba(104,207,163,0.3)] active:scale-95 whitespace-nowrap"
             >
-               Search <ArrowRight size={18} />
+              Search <ArrowRight size={18} />
             </button>
           </div>
-
         </div>
-      </div>
-      
-      {/* Carousel Indicators */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-        {HERO_IMAGES.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentImageIndex(idx)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              idx === currentImageIndex ? 'bg-white w-6' : 'bg-white/40 hover:bg-white/60'
-            }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
       </div>
     </section>
   );
