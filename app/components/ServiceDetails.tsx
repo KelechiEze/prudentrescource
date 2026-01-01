@@ -4,19 +4,19 @@ import { ArrowDown } from 'lucide-react';
 
 const ServiceDetails: React.FC = () => {
   return (
-    <section className="flex flex-col lg:flex-row w-full mt-10">
+    <section className="flex flex-col lg:flex-row w-full">
       {/* Left Column: Text Content */}
-      <div className="w-full lg:w-1/2 bg-[#E3E8DE] p-12 lg:p-24 flex flex-col justify-center relative min-h-[700px]">
-        <div className="max-w-xl">
-          <h2 className="font-serif text-5xl md:text-6xl text-[#1a1a1a] mb-8 leading-[1.1]">
-            Our medical staffing services include...
-          </h2>
-          
-          <p className="text-[#4a4a4a] text-lg leading-relaxed mb-12">
+      <div className="w-full lg:w-1/2 bg-[#E3E8DE] flex flex-col  relative min-h-[500px] lg:min-h-[700px]">
+        <div className="max-w-xl pt-[6rem] pl-[72px]">
+        
+          <p className="text-[#4a4a4a] text-lg leading-[150%] mb-6">
             Backed by years of proven experience, we partner with healthcare organizations 
             to navigate staffing needs proactively while connecting skilled professionals 
             with rewarding opportunities across multiple specialties.
           </p>
+            <h2 className="font-serif text-4xl md:text-5xl text-[#1a1a1a] mb-8 leading-[1.1]">
+            Our medical staffing services include...
+          </h2>
         </div>
 
         {/* Down Arrow anchored to bottom */}
@@ -28,17 +28,17 @@ const ServiceDetails: React.FC = () => {
       {/* Right Column: Image & Overlay Card */}
       <div className="w-full lg:w-1/2 relative min-h-[700px] bg-gray-200">
         {/* Main Background Image - Reduced width, increased height */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden rounded-lg m-2">
           <img 
             src="/ladycare.png" 
             alt="Doctor examining patient" 
             className="w-full h-full object-cover object-center"
-            style={{ width: '80%', height: '100%', objectFit: 'cover' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </div>
         
         {/* Floating Card Overlay - Increased width */}
-        <div className="absolute bottom-0 left-0 lg:bottom-12 lg:-left-12 max-w-lg w-full md:w-[550px] z-10 p-4 lg:p-0">
+        <div className="absolute bottom-0 left-0 lg:bottom-[3rem] lg:-left-[45%] max-w-lg w-full md:w-[550px] z-10 p-4 lg:p-0">
           <div className="bg-[#1B2C42] rounded-lg overflow-hidden shadow-2xl flex h-52 lg:h-56">
             
             {/* Small Image in Card - Increased width */}
@@ -51,7 +51,7 @@ const ServiceDetails: React.FC = () => {
             </div>
 
             {/* Content in Card - Reduced width */}
-            <div className="w-1/2 p-6 lg:p-8 flex flex-col justify-center">
+            <div className="w-1/2 p-4 lg:p-6 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-2 h-2 rounded-full bg-[#00e055]"></div>
                 <span className="text-[10px] font-bold tracking-widest text-white/80 uppercase">
@@ -59,7 +59,7 @@ const ServiceDetails: React.FC = () => {
                 </span>
               </div>
               
-              <h3 className="font-serif text-2xl lg:text-3xl text-white leading-tight">
+              <h3 className="font-serif text-xl lg:text-3xl text-white leading-tight">
                 We Guarantee 100% Compatibility
               </h3>
             </div>

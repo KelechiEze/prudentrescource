@@ -4,11 +4,11 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const OrganizationTrust: React.FC = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="pt-[56px] bg-white">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row gap-10 mb-20 lg:items-start">
+        <div className="flex flex-col lg:flex-row gap-10 mb-[56px] lg:items-start">
           
           {/* Label Column */}
           <div className="lg:w-1/4 pt-4">
@@ -30,7 +30,7 @@ const OrganizationTrust: React.FC = () => {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 items-stretch">
           
           {/* Card 1: Fast & Responsive Support (Peach) */}
           <div className="bg-[#FFBCA0] rounded-xl p-8 lg:p-10 flex flex-col justify-between min-h-[500px]">
@@ -69,12 +69,12 @@ const OrganizationTrust: React.FC = () => {
               Flexible Staffing Options
             </h3>
             
-            <p className="text-[#1B2C42] text-lg leading-relaxed mb-12">
+            <p className="text-[#1B2C42] text-lg leading-relaxed mb-[92px]">
               Fill one role or one hundred. Temporary, long-term, temp-to-hire, or urgent call-outs
               —we adapt to your staffing demands.
             </p>
 
-            <ul className="space-y-5">
+            <ul className="space-y-2">
               {[
                 "Fill temporary roles",
                 "Long-term placements",

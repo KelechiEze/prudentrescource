@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const PartnerAdvantage: React.FC = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="pt-[72px] bg-white">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header Section - Split Layout */}
@@ -20,7 +20,7 @@ const PartnerAdvantage: React.FC = () => {
 
           {/* Heading Column */}
           <div className="lg:w-3/4">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.1]">
+            <h2 className="text-4xl md:text-5xl font-serif text-gray-900 leading-[130%]">
               Experience the advantage of <br className="hidden lg:block" />
               Partnering With Prudent Resources
             </h2>
@@ -28,20 +28,20 @@ const PartnerAdvantage: React.FC = () => {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-[64px]">
             
             {/* Left Content Box - Lavender Background */}
             <div className="bg-[#EFEDFA] rounded-xl p-8 md:p-12 flex flex-col justify-center">
-                <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-6">
-                    <span className="text-gray-500">No one-size-fits-all here.</span>{" "}
-                    <span className="text-gray-900">We build a hiring solution that actually fits your goals and your culture</span>
+                <h3 className="font-serif text-3xl md:text-4xl leading-[140%] mb-6">
+                    <span className="text-[#6B6B6B]">No one-size-fits-all here.</span>{" "}
+                    <span className="text-[#1E1E1E]">We build a hiring solution that actually fits your goals and your culture</span>
                 </h3>
 
-                <p className="text-gray-600 text-lg leading-relaxed mb-10">
+                <p className="text-[#1E1E1E] text-lg leading-[150%] mb-12">
                     We take the time to understand your staffing goals, adapting our recruitment process to meet your specific requirements and help you achieve:
                 </p>
 
-                <div className="space-y-4 mb-12">
+                <div className="space-y-4 mt-12 mb-12">
                     {[
                         "Faster, High-Quality Hiring",
                         "Reduced Staffing Costs",

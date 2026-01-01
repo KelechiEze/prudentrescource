@@ -15,19 +15,19 @@ const CommitmentSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-[72px] bg-white">
       <div className="max-w-7xl mx-auto px-6">
         
         <h2 
           className="text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug mb-16 max-w-6xl pr-4 md:pr-8 lg:pr-12"
           style={{ fontFamily: "var(--font-hedvig-letters-serif)" }}
         >
-          <span className="text-gray-400">We are committed to providing trusted workforce solutions</span>
+          <span className="text-[#6B6B6B]">We are committed to providing trusted workforce solutions</span>
           <span className="text-gray-900"> — matching skilled professionals with the places that need them most.</span>
         </h2>
         
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
           
           {/* Card 1: For Professionals */}
           <div className="relative group overflow-hidden rounded-lg min-h-[700px] bg-blue-50">
@@ -43,7 +43,7 @@ const CommitmentSection: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 p-8 md:p-12 h-full flex flex-col justify-between">
+            <div className="relative z-10 p-8 md:p-[40px] h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-3 rounded-full bg-orange-400"></div>
@@ -70,7 +70,7 @@ const CommitmentSection: React.FC = () => {
 
           {/* Card 2: For Organizations */}
           <div className="relative overflow-hidden rounded-lg min-h-[650px] bg-[#E3E8DE]">
-            <div className="relative z-10 p-8 md:p-12 h-full flex flex-col justify-between">
+            <div className="relative z-10 p-8 md:p-[40px] h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-3 rounded-full bg-purple-500"></div>

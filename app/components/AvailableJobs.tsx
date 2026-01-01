@@ -131,10 +131,10 @@ const AvailableJobs: React.FC = () => {
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 w-full h-full flex items-center">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 w-full h-[600px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full h-[600px]">
             
             {/* Left Column: Fixed context during scroll */}
-            <div className="lg:col-span-4 flex flex-col justify-center">
+            <div className=" flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-2.5 h-2.5 rounded-full bg-teal-400"></div>
                 <span className="text-[11px] font-bold tracking-[0.2em] text-gray-900 uppercase">Current Openings</span>
@@ -144,7 +144,7 @@ const AvailableJobs: React.FC = () => {
                 Available job listing
               </h2>
               
-              <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-sm">
+              <p className="text-gray-600 text-lg leading-[150%] mb-10 max-w-md">
                 Just beginning your career or already have many years of experience? 
                 Scroll to explore our top picks curated specifically for your professional growth.
               </p>
@@ -161,7 +161,7 @@ const AvailableJobs: React.FC = () => {
             </div>
 
             {/* Right Column: Animated Card Stage */}
-            <div className="lg:col-span-8 relative h-full flex items-center justify-center perspective-1000">
+            <div className="relative h-full flex items-center justify-center perspective-1000">
               {JOBS.map((job, index) => {
                 const isActive = index === activeIndex;
                 const isPast = index < activeIndex;

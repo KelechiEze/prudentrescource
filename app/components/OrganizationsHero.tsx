@@ -23,12 +23,12 @@ const OrganizationsHero: React.FC = () => {
           <span className="text-xs font-bold tracking-widest uppercase text-white/90">For Organizations</span>
         </div>
 
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight drop-shadow-sm">
+        <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 leading-[130%] drop-shadow-sm">
           Find Qualified Healthcare Professionals <br />
           When You Need Them Most
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-sm font-light">
+        <p className="text-lg md:text-xl text-gray-100 mb-[56px] max-w-3xl mx-auto leading-[150%] drop-shadow-sm font-light">
           Partner with Prudent Resources to access dependable, fully screened professionals for
           every level of care. We help healthcare organizations stay staffed, compliant, and ready
           to deliver exceptional patient outcomes.

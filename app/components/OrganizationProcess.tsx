@@ -96,7 +96,7 @@ const OrganizationProcess: React.FC = () => {
 
           {/* Right Column: Heading text (positioned at bottom right) */}
           <div className="w-full lg:w-7/12 flex justify-end items-end text-right">
-             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-tight max-w-2xl drop-shadow-lg">
+             <h2 className="text-3xl md:text-4xl lg:text-4xl font-serif text-white leading-tight max-w-2xl drop-shadow-lg">
                Our process of solving your staffing needs is simplified for you
              </h2>
           </div>

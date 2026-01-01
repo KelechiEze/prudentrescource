@@ -4,12 +4,12 @@ import { ArrowRight } from 'lucide-react';
 
 const SubmitCV: React.FC = () => {
   return (
-    <section className="bg-[#1B2C42] py-20">
+    <section className="bg-[#1B2C42] py-[72px]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           
           <div className="max-w-3xl">
-            <h2 className="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight">
+            <h2 className="font-serif text-3xl md:text-4xl text-white mb-6 leading-tight">
               Can’t find the right role? Submit your CV
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl">

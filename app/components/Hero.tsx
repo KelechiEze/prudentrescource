@@ -45,13 +45,13 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
       {/* Main Content */}
       <div className="relative z-10 w-full px-6 md:px-10 lg:px-20 pt-40 pb-20">
         <div className="mb-20">
-          <h1 className="font-serif text-5xl md:text-8xl lg:text-[105px] leading-[1] mb-10 text-white font-normal tracking-tight">
+          <h1 className="font-serif text-5xl md:text-8xl lg:text-[105px] leading-[110%] mb-10 text-white font-normal tracking-tight">
             Precision healthcare <br className="hidden lg:block" />
             staffing, curated for trust
           </h1>
           
-          <p className="text-lg md:text-2xl text-gray-200 max-w-5xl leading-snug font-light opacity-90 tracking-wide">
-            We connect healthcare organizations with credentialed professionals through a carefully facilitated matching process — not a marketplace. <br className="hidden lg:block" />
+          <p className="text-lg md:text-2xl text-gray-200 max-w-5xl leading-[150%] font-light opacity-90 tracking-wide">
+            We connect healthcare organizations with credentialed professionals through a carefully facilitated matching process — not a marketplace.
             Real humans curating real matches.
           </p>
         </div>

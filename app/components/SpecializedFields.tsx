@@ -22,11 +22,11 @@ const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => 
         </div>
 
         {/* Content Layer */}
-        <div className="relative z-10 w-full h-full max-w-full px-6 md:px-12 lg:px-20 py-16 md:py-24 flex flex-col justify-between min-h-[600px] md:h-full">
+        <div className="relative z-10 w-full h-full max-w-full px-6 md:px-12 lg:px-20 py-[48px] md:py-[56px] flex flex-col justify-between min-h-[600px] md:h-full">
           
           {/* Top Alignment: Large Heading */}
-          <div className="mt-4">
-            <h2 className="font-serif text-[42px] md:text-[68px] lg:text-[82px] text-white leading-[1.05] max-w-5xl tracking-tight font-normal">
+          <div className="">
+            <h2 className="font-serif text-[42px] md:text-[50px] lg:text-[50px] text-white leading-[130%] max-w-5xl tracking-tight font-normal">
               Transforming Staffing in <br className="hidden md:block" />
               Healthcare and Residential Care
             </h2>
@@ -44,7 +44,7 @@ const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => 
               </div>
 
               {/* Body Copy */}
-              <p className="text-white text-xl md:text-[23px] leading-relaxed font-light opacity-95 max-w-4xl">
+              <p className="text-white text-xl md:text-[23px] leading-normal font-light opacity-95 max-w-4xl">
                 Each healthcare field needs more than experience—it needs specialized attention 
                 and a partner who truly understands its nuances. We're committed to providing 
                 personalized staffing solutions, creating valuable opportunities, and delivering 

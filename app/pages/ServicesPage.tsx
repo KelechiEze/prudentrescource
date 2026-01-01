@@ -2,9 +2,8 @@ import React from 'react';
 import ServiceHero from '../components/ServiceHero';
 import ServiceTeamShowcase from '../components/ServiceTeamShowcase';
 import ServiceDetails from '../components/ServiceDetails';
-import BehavioralHealthSection from '../components/BehavioralHealthSection';
-import ResidentialGroupHomesSection from '../components/ResidentialGroupHomesSection';
-import AddictionSubstanceAbuseSection from '../components/AddictionSubstanceAbuseSection';
+import SpecializedStaffingList from '../components/SpecializedStaffingList';
+import CredentialAlignment from '../components/CredentialAlignment';
 import ServicesCTA from '../components/ServicesCTA';
 
 const ServicesPage: React.FC = () => {
@@ -13,9 +12,8 @@ const ServicesPage: React.FC = () => {
       <ServiceHero />
       <ServiceTeamShowcase />
       <ServiceDetails />
-      <BehavioralHealthSection />
-      <ResidentialGroupHomesSection />
-      <AddictionSubstanceAbuseSection />
+      <SpecializedStaffingList/>
+      <CredentialAlignment/>
       <ServicesCTA />
     </div>
   );
