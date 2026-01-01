@@ -13,7 +13,7 @@ const page: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white pt-40 font-sans">
-      <div className="max-w-7xl mx-auto px-6 mb-32">
+      <div className="max-w-7xl mx-auto px-6 mb-[72px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           
           {/* Left Column: Contact Info */}
@@ -23,10 +23,10 @@ const page: React.FC = () => {
                 <div className="w-3 h-3 rounded-full bg-[#8b5cf6]"></div>
                 <span className="text-[11px] font-bold tracking-[0.25em] text-gray-900 uppercase">CONTACT US</span>
               </div>
-              <h1 className="font-serif text-[56px] md:text-[72px] text-[#1B2C42] leading-tight">
+              <h1 className="font-serif text-[56px] md:text-[64px] text-[#1B2C42] leading-[130%]">
                 Let's get in touch.
               </h1>
-              <p className="text-gray-600 text-xl leading-relaxed max-w-xl font-light">
+              <p className="text-gray-600 text-xl leading-[150%] max-w-xl font-light">
                 Have questions or want to learn more about how we can support you? 
                 Give us a call or send us a message. One of our representatives will be in 
                 touch soon. We look forward to connecting and helping you find solutions 
@@ -34,7 +34,7 @@ const page: React.FC = () => {
               </p>
             </div>
 
-            <div className="space-y-10">
+            <div className="space-y-8">
               {/* Business Address */}
               <div className="flex items-center gap-6">
                 <div className="w-16 h-16 rounded-full bg-[#1B2C42] flex items-center justify-center shrink-0">
@@ -83,10 +83,10 @@ const page: React.FC = () => {
           </div>
 
           {/* Right Column: Form */}
-          <div className="bg-[#E7EAE0] rounded-xl p-10 md:p-14">
+          <div className="bg-[#E7EAE0] rounded-xl p-6 md:p-8">
             <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
               <div className="space-y-2">
-                <label className="text-[16px] font-semibold text-gray-900">Full Name</label>
+                <label className="text-[16px] block font-semibold text-gray-900 mb-2">Full Name</label>
                 <input 
                   type="text" 
                   placeholder="John Doe" 
@@ -95,7 +95,7 @@ const page: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[16px] font-semibold text-gray-900">Your Email</label>
+                <label className="text-[16px] font-semibold text-gray-900 block mb-2">Your Email</label>
                 <input 
                   type="email" 
                   placeholder="john@example.com" 
@@ -104,7 +104,7 @@ const page: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[16px] font-semibold text-gray-900">Your Number</label>
+                <label className="text-[16px] font-semibold text-gray-900 block mb-2">Your Number</label>
                 <input 
                   type="tel" 
                   placeholder="(123) 456-7890" 
@@ -113,7 +113,7 @@ const page: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[16px] font-semibold text-gray-900">Enter your message</label>
+                <label className="text-[16px] font-semibold text-gray-900 block mb-2">Enter your message</label>
                 <textarea 
                   placeholder="Enter your message" 
                   className="w-full h-44 p-6 border border-gray-200/50 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white placeholder-gray-400 text-gray-900 resize-none"

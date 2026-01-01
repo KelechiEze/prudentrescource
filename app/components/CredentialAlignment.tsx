@@ -4,15 +4,15 @@ import { ArrowRight } from 'lucide-react';
 
 const CredentialAlignment: React.FC = () => {
   return (
-    <section className="bg-[#1B2C42] py-24 md:py-32 overflow-hidden">
+    <section className="bg-[#1B2C42] py-12 md:py-16 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
         
         {/* Header Section */}
-        <div className="max-w-4xl mb-20">
+        <div className="max-w-4xl mb-16">
           <h2 className="font-serif text-[42px] md:text-[56px] text-white leading-[1.1] mb-8 tracking-tight">
             Credential Assessment and Skills Alignment
           </h2>
-          <p className="text-gray-300 text-lg md:text-[19px] leading-relaxed font-light opacity-90 max-w-3xl">
+          <p className="text-gray-300 text-lg leading-[150%] font-light opacity-90 max-w-3xl">
             Before making any matches, we invest time in thoroughly assessing and vetting professionals’ skills, 
             credentials, and experience to ensure the best possible fit — improving outcomes for both sides.
           </p>

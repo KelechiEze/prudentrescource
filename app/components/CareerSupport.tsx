@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const CareerSupport: React.FC = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           
@@ -46,12 +46,12 @@ const CareerSupport: React.FC = () => {
               Enjoy the Benefits of Choosing Prudent Resources
             </h3>
             
-            <p className="text-gray-700 text-lg leading-relaxed mb-10">
+            <p className="text-gray-700 text-lg leading-relaxed mb-14">
               Our focus is on continually improving how we match professionals with roles 
               that help them grow and succeed.
             </p>
             
-            <ul className="space-y-5">
+            <ul className="space-y-2">
               {[
                 "No commitment to register",
                 "No referral fees",

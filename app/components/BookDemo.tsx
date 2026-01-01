@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 const BookDemo: React.FC = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-[72px] bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           

@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#E5E7E1] pt-20 pb-10 text-gray-800 font-sans">
+    <footer className="bg-[#E5E7E1] pt-16 pb-10 text-gray-800 font-sans">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-12">
           
           {/* Column 1: Logo - Updated to match navbar size */}
           <div className="lg:col-span-3">

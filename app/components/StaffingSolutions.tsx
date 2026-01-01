@@ -15,7 +15,7 @@ const StaffingSolutions: React.FC = () => {
   ];
 
   return (
-    <section className="flex flex-col lg:flex-row w-full bg-[#E3E8DE] my-3">
+    <section className="flex flex-col lg:flex-row w-full bg-[#E3E8DE] my-[8px] ">
       {/* Left Column: Content */}
       <div className="w-full lg:w-1/2 p-12 lg:p-24 flex flex-col justify-center">
         <h2 className="font-serif text-4xl md:text-5xl text-[#1B2C42] mb-8 leading-tight">
@@ -38,11 +38,11 @@ const StaffingSolutions: React.FC = () => {
       </div>
 
       {/* Right Column: Image */}
-      <div className="w-full lg:w-1/2 min-h-[500px] lg:min-h-auto relative">
+      <div className="w-full lg:w-1/2 min-h-[500px] lg:min-h-auto m-2 relative">
         <img 
           src="/msold.png" 
           alt="Healthcare professional looking at monitor" 
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover rounded-lg "
         />
       </div>
     </section>

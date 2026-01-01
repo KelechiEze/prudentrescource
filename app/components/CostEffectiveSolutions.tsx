@@ -4,24 +4,24 @@ import { CheckCircle2 } from 'lucide-react';
 
 const CostEffectiveSolutions: React.FC = () => {
   return (
-    <section className="pb-24 pt-6 bg-white">
+    <section className="pb-16 pt-[8px] bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 items-stretch">
           
           {/* Left Column: Blue Content */}
-          <div className="bg-[#B5D0FF] rounded-xl p-8 md:p-12 lg:p-16 flex flex-col justify-between min-h-[500px]">
+          <div className="bg-[#B5D0FF] rounded-xl px-8 py-10 md:py-12 flex flex-col justify-between min-h-[500px]">
             <div>
               <h2 className="font-serif text-4xl md:text-5xl text-[#1B2C42] mb-6 leading-tight">
                 Cost-Effective Solutions
               </h2>
               
-              <p className="text-[#1B2C42] text-lg leading-relaxed mb-10">
+              <p className="text-[#1B2C42] text-lg leading-relaxed mb-[7rem]">
                 Reduce staffing overhead without compromising care. We help healthcare organizations 
                 eliminate recruitment costs, improve coverage, and access qualified professionals 
                 within budget. Reduce cost on advertising, screening, and credentialing.
               </p>
 
-              <ul className="space-y-4 mb-12">
+              <ul className="space-y-2 mb-12">
                 {[
                   "Get the most value out of every penny",
                   "Reduce overtime and emergency staffing expenses",
@@ -35,7 +35,7 @@ const CostEffectiveSolutions: React.FC = () => {
               </ul>
             </div>
 
-            <h3 className="font-serif text-2xl md:text-3xl text-[#1B2C42] leading-tight">
+            <h3 className="font-serif text-xl md:text-2xl text-[#1B2C42] leading-tight">
               Access talented professionals within your budget
             </h3>
           </div>

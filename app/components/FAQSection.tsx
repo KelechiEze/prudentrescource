@@ -14,7 +14,7 @@ const FAQSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-[64px] bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
           
