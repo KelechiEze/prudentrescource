@@ -41,7 +41,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       '/staffrequest',
       '/jobsearch',
       '/submitresume',
-      '/contact'
+      '/contact',
+      '/login'
     ];
     
     return darkNavPages.some(page => pathname.startsWith(page));
@@ -73,7 +74,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       '/residential',
       '/staffrequest',
       '/jobsearch',
-      '/submitresume'
+      '/submitresume',
+      '/login'
     ];
     
     return darkLogoPages.some(page => pathname.startsWith(page));
