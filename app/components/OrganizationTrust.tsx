@@ -5,13 +5,13 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 const OrganizationTrust: React.FC = () => {
   return (
     <section className="pt-[56px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="mx-auto px-2">
         
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row gap-10 mb-[56px] lg:items-start">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 mb-[56px] lg:items-start">
           
           {/* Label Column */}
-          <div className="lg:w-1/4 pt-4">
+          <div className="lg:w-2/6 pt-4">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-[#8b5cf6]"></div> {/* Purple dot */}
               <span className="text-xs font-bold tracking-widest text-gray-900 uppercase">
@@ -21,8 +21,8 @@ const OrganizationTrust: React.FC = () => {
           </div>
 
           {/* Heading Column */}
-          <div className="lg:w-3/4">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15]">
+          <div className="lg:w-4/6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-gray-900 leading-[1.15]">
               Why Healthcare Organizations <br />
               Trust Prudent Resources
             </h2>

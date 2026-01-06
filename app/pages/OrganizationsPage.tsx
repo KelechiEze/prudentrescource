@@ -1,4 +1,3 @@
-
 import React from 'react';
 import OrganizationsHero from '../components/OrganizationsHero';
 import StaffingSolutions from '../components/StaffingSolutions';

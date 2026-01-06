@@ -5,13 +5,13 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 const PartnerAdvantage: React.FC = () => {
   return (
     <section className="pt-[72px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className=" mx-auto px-2">
         
         {/* Header Section - Split Layout */}
-        <div className="flex flex-col lg:flex-row gap-10 mb-16 lg:items-start">
+        <div className="max-w-7xl px-6 mx-auto flex flex-col lg:flex-row gap-10 mb-16 lg:items-start">
           
           {/* Label Column */}
-          <div className="lg:w-1/4 pt-4">
+          <div className="lg:w-2/6 pt-4">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-[#8b5cf6]"></div> {/* Purple dot */}
               <span className="text-xs font-bold tracking-widest text-gray-900 uppercase">BENEFITS OF WORKING WITH US</span>
@@ -19,7 +19,7 @@ const PartnerAdvantage: React.FC = () => {
           </div>
 
           {/* Heading Column */}
-          <div className="lg:w-3/4">
+          <div className="lg:w-4/6">
             <h2 className="text-4xl md:text-5xl font-serif text-gray-900 leading-[130%]">
               Experience the advantage of <br className="hidden lg:block" />
               Partnering With Prudent Resources

@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 const ScalableSolutions: React.FC = () => {
   return (
     <section className="pt-2 pb-[58px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className=" mx-auto px-2">
         
         {/* Top Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-[6fr_7fr] gap-2 mb-[72px]">

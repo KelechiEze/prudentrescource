@@ -16,10 +16,10 @@ const CommitmentSection: React.FC = () => {
 
   return (
     <section className="py-[72px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className=" mx-auto px-2">
         
         <h2 
-          className="text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug mb-16 max-w-6xl pr-4 md:pr-8 lg:pr-12"
+          className="max-w-7xl px-10 text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug mb-16 max-w-6xl pr-4 md:pr-8 lg:pr-12"
           style={{ fontFamily: "var(--font-hedvig-letters-serif)" }}
         >
           <span className="text-[#6B6B6B]">We are committed to providing trusted workforce solutions</span>
@@ -60,7 +60,7 @@ const CommitmentSection: React.FC = () => {
               <div>
                 <button 
                   onClick={handleResumeClick}
-                  className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all shadow-lg shadow-teal-900/10 w-fit mt-12 cursor-pointer"
+                  className="bg-[#1f2937] hover:bg-gray-800 text-white px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all shadow-lg shadow-teal-900/10 w-fit mt-12 cursor-pointer"
                 >
                   Submit your Resume/CV <ArrowRight size={18} />
                 </button>
@@ -87,7 +87,7 @@ const CommitmentSection: React.FC = () => {
               <div>
                 <button 
                   onClick={handleStaffRequestClick}
-                  className="bg-[#1f2937] hover:bg-gray-800 text-white px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all w-fit mt-12 cursor-pointer"
+                  className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all w-fit mt-12 cursor-pointer"
                 >
                   Submit Staffing Request <ArrowRight size={18} />
                 </button>

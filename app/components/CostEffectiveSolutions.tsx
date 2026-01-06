@@ -5,7 +5,7 @@ import { CheckCircle2 } from 'lucide-react';
 const CostEffectiveSolutions: React.FC = () => {
   return (
     <section className="pb-16 pt-[8px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="mx-auto px-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 items-stretch">
           
           {/* Left Column: Blue Content */}

@@ -13,7 +13,7 @@ const CredentialingStandards: React.FC = () => {
 
   return (
     <section className="bg-[#1E3449]">
-      <div className="mx-auto p-2">
+      <div className="mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-7 min-h-[600px] rounded-xl overflow-hidden">
           {/* Left Column: Image */}
           <div className="lg:col-span-3 relative h-[400px] lg:h-auto m-2">

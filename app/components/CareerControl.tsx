@@ -5,7 +5,7 @@ import { CheckCircle2 } from 'lucide-react';
 const CareerControl: React.FC = () => {
   return (
     <section className="mt-[72px] mb-[8px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className=" px-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
           
           {/* Left Content Card - Lavender */}

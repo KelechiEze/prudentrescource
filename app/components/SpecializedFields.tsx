@@ -7,11 +7,11 @@ interface SpecializedFieldsProps {
 
 const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => {
   return (
-    <section className="bg-white">
+    <section className="bg-white px-2">
       {/* Immersive Header Section Recreation */}
-      <div className="w-full relative min-h-[600px] md:h-[750px] overflow-hidden">
+      <div className="w-full relative min-h-[600px] md:h-[750px] overflow-hidden rounded-lg">
         {/* Background Image - High-fidelity choice matching the prompt's aesthetic */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 ">
           <img 
             src="/transform.png" 
             alt="Compassionate care - elderly and professional"

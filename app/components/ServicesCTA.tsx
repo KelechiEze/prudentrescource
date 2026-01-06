@@ -5,8 +5,8 @@ import { ArrowRight } from 'lucide-react';
 const ServicesCTA: React.FC = () => {
   return (
     <section className="py-[72px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="px-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           
           {/* Left Card: Job Opportunity */}
           <div className="bg-[#EFF3F9] rounded-xl p-12 md:p-16 flex flex-col items-center text-center justify-center min-h-[400px]">

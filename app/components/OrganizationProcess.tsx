@@ -4,7 +4,7 @@ import { ClipboardList, UserCheck, Clock } from 'lucide-react';
 
 const OrganizationProcess: React.FC = () => {
   return (
-    <section className="relative w-full py-24 bg-gray-900 overflow-hidden">
+    <section className="mx-2 relative w-full py-24 bg-gray-900 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
