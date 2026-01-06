@@ -5,7 +5,8 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 const PartnerAdvantage: React.FC = () => {
   return (
     <section className="pt-[72px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Reduced padding for even closer edges */}
+      <div className="px-2 sm:px-2 lg:px-2">
         
         {/* Header Section - Split Layout */}
         <div className="flex flex-col lg:flex-row gap-10 mb-16 lg:items-start">
@@ -27,14 +28,15 @@ const PartnerAdvantage: React.FC = () => {
           </div>
         </div>
 
-        {/* Content Grid */}
+        {/* Content Grid - Adjusted to use full available width */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-[64px]">
             
             {/* Left Content Box - Lavender Background */}
-            <div className="bg-[#EFEDFA] rounded-xl p-8 md:p-12 flex flex-col justify-center">
+            <div className="bg-[#EFEDFA] rounded-[6px] p-8 md:p-12 flex flex-col justify-center">
                 <h3 className="font-serif text-3xl md:text-4xl leading-[140%] mb-6">
                     <span className="text-[#6B6B6B]">No one-size-fits-all here.</span>{" "}
-                    <span className="text-[#1E1E1E]">We build a hiring solution that actually fits your goals and your culture</span>
+                    {/* Changed to black as requested */}
+                    <span className="text-black">We build a hiring solution that actually fits your goals and your culture</span>
                 </h3>
 
                 <p className="text-[#1E1E1E] text-lg leading-[150%] mb-12">
@@ -62,9 +64,9 @@ const PartnerAdvantage: React.FC = () => {
             </div>
 
             {/* Right Image Box */}
-            <div className="h-full min-h-[500px] lg:min-h-0 rounded-xl overflow-hidden">
+            <div className="h-full min-h-[500px] lg:min-h-0 rounded-[6px] overflow-hidden">
                 <img 
-                    src="/image6.png" 
+                    src="/lpoi.png" 
                     alt="Professionals shaking hands in modern office"
                     className="w-full h-full object-cover"
                 />
