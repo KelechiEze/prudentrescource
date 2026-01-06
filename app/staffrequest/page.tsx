@@ -54,7 +54,7 @@ const page: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#E3E8DE] py-20 px-6 font-sans">
+    <div className="min-h-screen bg-[#E3E8DE] pt-40 pb-20 px-6 font-sans">
       <div className="max-w-4xl mx-auto">
         {/* Page Title */}
         <h1 className="font-serif text-[42px] text-[#1B2C42] text-center mb-12">
@@ -67,7 +67,7 @@ const page: React.FC = () => {
             
             {/* Section 1: Company Contact Details */}
             <div className="space-y-8">
-              <h2 className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-900 border-b border-transparent">
+              <h2 className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-900">
                 COMPANY CONTACT DETAILS
               </h2>
 
@@ -152,19 +152,50 @@ const page: React.FC = () => {
             </div>
 
             {/* Section 2: Request Position Details */}
-            <div className="space-y-8 pt-6">
-              <h2 className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-900">
+            <div className="space-y-6 pt-6">
+              <h2 className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-900 mb-4">
                 REQUEST POSITION DETAILS
               </h2>
 
-              <div className="flex flex-col gap-4">
-                <label className="text-[13px] font-semibold text-gray-900 flex items-center gap-0.5">
-                  Job title of the position(s) you're hiring for <span className="text-red-500">*</span>
-                </label>
+              {/* Position Container matching the design image */}
+              <div className="border border-gray-100 rounded-[8px] p-8 space-y-8 bg-white shadow-sm">
                 
-                <div className="space-y-3 mb-2">
+                {/* Job Title Field */}
+                <div className="space-y-4">
+                  <label className="text-[13px] font-bold text-gray-900 block">
+                    Job title of the position(s) you're hiring for<span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    placeholder="Enter job title/role" 
+                    className="w-full h-12 px-4 border border-gray-100 rounded-[6px] text-sm focus:outline-none focus:border-teal-400 bg-[#FAFAFA] text-gray-900 placeholder-gray-400"
+                  />
+                </div>
+
+                {/* Type of Hire Field */}
+                <div className="space-y-4">
+                  <label className="text-[13px] font-bold text-gray-900 block">
+                    Type of Hire<span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <select className="w-full h-12 px-4 appearance-none border border-gray-100 rounded-[6px] text-sm focus:outline-none focus:border-teal-400 text-gray-700 bg-[#FAFAFA] cursor-pointer">
+                      <option>Contract role</option>
+                      <option>Permanent Hire</option>
+                      <option>Project-Based</option>
+                      <option>Bulk Staffing</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                      <ChevronDown size={18} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Add New Job Position Selector */}
+              <div className="flex flex-col gap-4 mt-8">
+                <div className="space-y-3">
                   {selectedPositions.map((pos, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-[13px] text-gray-700 animate-in fade-in slide-in-from-left-2 duration-300">
+                    <div key={idx} className="flex items-center gap-3 text-[13px] text-gray-700">
                       <button 
                         type="button"
                         onClick={() => handleRemovePosition(pos)}
@@ -194,7 +225,7 @@ const page: React.FC = () => {
                   </div>
 
                   {isDropdownOpen && (
-                    <div className="absolute z-20 top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded shadow-xl max-h-60 overflow-y-auto no-scrollbar animate-in fade-in zoom-in-95 duration-200">
+                    <div className="absolute z-20 top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded shadow-xl max-h-60 overflow-y-auto no-scrollbar">
                       {availablePositions.map((pos) => (
                         <div 
                           key={pos}
@@ -210,25 +241,8 @@ const page: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-[13px] font-semibold text-gray-900 flex items-center gap-0.5">
-                  Type of Hire <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <select className="w-full h-12 px-4 appearance-none border border-gray-200 rounded text-sm focus:outline-none focus:border-teal-400 text-gray-700 bg-white cursor-pointer">
-                    <option value="" disabled selected>Select hire type</option>
-                    <option>Contract Roles</option>
-                    <option>Permanent Hires</option>
-                    <option>Project-Based/Bulk Staffing</option>
-                    <option>I Am Not Sure</option>
-                  </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                    <ChevronDown size={18} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
+              {/* Attach Job Description */}
+              <div className="flex flex-col gap-2 mt-8">
                 <label className="text-[13px] font-semibold text-gray-900 flex items-center gap-0.5">
                   Attach Job Description <span className="text-red-500">*</span>
                 </label>
@@ -256,7 +270,8 @@ const page: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-2">
+              {/* Additional Comments */}
+              <div className="flex flex-col gap-2 mt-8">
                 <label className="text-[13px] font-semibold text-gray-900 flex items-center gap-0.5">
                   Additional Comments <span className="text-red-500">*</span>
                 </label>
