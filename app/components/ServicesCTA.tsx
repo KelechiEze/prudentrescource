@@ -5,11 +5,12 @@ import { ArrowRight } from 'lucide-react';
 const ServicesCTA: React.FC = () => {
   return (
     <section className="py-[72px] bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Removed max-width constraint and adjusted padding for closer edges */}
+      <div className="px-4 sm:px-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2"> {/* Reduced gap from 6 to 2 (8px) */}
           
           {/* Left Card: Job Opportunity */}
-          <div className="bg-[#EFF3F9] rounded-xl p-12 md:p-16 flex flex-col items-center text-center justify-center min-h-[400px]">
+          <div className="bg-[#EFF3F9] rounded-[6px] p-12 md:p-16 flex flex-col items-center text-center justify-center min-h-[400px]">
             <h3 className="font-serif text-3xl md:text-4xl text-[#1B2C42] mb-6 leading-tight">
               Find your Next Job Opportunity
             </h3>
@@ -25,14 +26,14 @@ const ServicesCTA: React.FC = () => {
           </div>
 
           {/* Right Card: Staffing Solutions */}
-          <div className="bg-[#68cfa3] rounded-xl p-12 md:p-16 flex flex-col items-center text-center justify-center min-h-[400px]">
+          <div className="bg-[#68cfa3] rounded-[6px] p-12 md:p-16 flex flex-col items-center text-center justify-center min-h-[400px]">
             <h3 className="font-serif text-3xl md:text-4xl text-[#1B2C42] mb-6 leading-tight">
               Request Reliable Staffing Solutions
             </h3>
             
             <p className="text-[#1B2C42]/80 text-lg leading-relaxed mb-10 max-w-md font-medium">
-              “Get the right people for the right roles with staffing solutions 
-              you can count on—anytime you need them.
+              "Get the right people for the right roles with staffing solutions 
+              you can count on—anytime you need them."
             </p>
             
             <button className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg">
