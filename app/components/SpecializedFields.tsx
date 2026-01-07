@@ -6,31 +6,6 @@ interface SpecializedFieldsProps {
 
 const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => {
   return (
-<<<<<<< HEAD
-    <section className="bg-white px-2">
-      {/* Immersive Header Section Recreation */}
-      <div className="w-full relative min-h-[600px] md:h-[750px] overflow-hidden rounded-lg">
-        {/* Background Image - High-fidelity choice matching the prompt's aesthetic */}
-        <div className="absolute inset-0 z-0 ">
-          <img 
-            src="/transform.png" 
-            alt="Compassionate care - elderly and professional"
-            className="w-full h-full object-cover brightness-[0.85]"
-          />
-          {/* Subtle gradient overlays for text contrast */}
-          <div className="absolute inset-0 bg-black/30 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
-        </div>
-
-        {/* Content Layer */}
-        <div className="relative z-10 w-full h-full max-w-full px-6 md:px-12 lg:px-20 py-[48px] md:py-[56px] flex flex-col justify-between min-h-[600px] md:h-full">
-          
-          {/* Top Alignment: Large Heading */}
-          <div className="">
-            <h2 className="font-serif text-[42px] md:text-[50px] lg:text-[50px] text-white leading-[130%] max-w-5xl tracking-tight font-normal">
-              Transforming Staffing in <br className="hidden md:block" />
-              Healthcare and Residential Care
-            </h2>
-=======
     <section className="bg-white">
       {/* Small space on left and right side */}
       <div className="px-2 md:px-2">
@@ -44,7 +19,6 @@ const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => 
               className="w-full h-full object-cover brightness-[0.85]"
             />
             {/* Removed gradient overlay */}
->>>>>>> 0dc7a05e0bbac19becb7c5dc3f13474bdf5bb789
           </div>
 
           {/* Content Layer */}
