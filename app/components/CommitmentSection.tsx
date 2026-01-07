@@ -16,21 +16,23 @@ const CommitmentSection: React.FC = () => {
 
   return (
     <section className="py-[72px] bg-white">
-      <div className=" mx-auto px-2">
+
+      {/* Cards at the very edge - minimal to no padding */}
+      <div className="px-0 md:px-2">
         
         <h2 
-          className="max-w-7xl px-10 text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug mb-16 max-w-6xl pr-4 md:pr-8 lg:pr-12"
+          className="text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug mb-16 max-w-6xl ml-2 md:ml-4"
           style={{ fontFamily: "var(--font-hedvig-letters-serif)" }}
         >
           <span className="text-[#6B6B6B]">We are committed to providing trusted workforce solutions</span>
           <span className="text-gray-900"> — matching skilled professionals with the places that need them most.</span>
         </h2>
         
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+        {/* Cards Grid - Remove gap, handle spacing with margins instead */}
+        <div className="grid grid-cols-1 lg:grid-cols-2">
           
           {/* Card 1: For Professionals */}
-          <div className="relative group overflow-hidden rounded-lg min-h-[700px] bg-blue-50">
+          <div className="relative group overflow-hidden lg:min-h-[700px] bg-blue-50 lg:mr-1 rounded-[6px]">
             {/* Background Image Layer */}
             <div className="absolute inset-0 z-0">
                <img 
@@ -38,12 +40,10 @@ const CommitmentSection: React.FC = () => {
                  alt="Nurse checking patient blood pressure"
                  className="w-full h-full object-cover object-center opacity-90 transition-transform duration-700 group-hover:scale-105"
                />
-               {/* Gradient overlay to ensure text readability at the top if image is dark */}
-               <div className="absolute inset-0 bg-gradient-to-b from-blue-50/90 via-blue-50/20 to-transparent h-1/2"></div>
             </div>
 
-            {/* Content */}
-            <div className="relative z-10 p-8 md:p-[40px] h-full flex flex-col justify-between">
+            {/* Content - Increased top and bottom padding */}
+            <div className="relative z-10 p-8 pt-12 pb-12 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-3 rounded-full bg-orange-400"></div>
@@ -69,8 +69,9 @@ const CommitmentSection: React.FC = () => {
           </div>
 
           {/* Card 2: For Organizations */}
-          <div className="relative overflow-hidden rounded-lg min-h-[650px] bg-[#E3E8DE]">
-            <div className="relative z-10 p-8 md:p-[40px] h-full flex flex-col justify-between">
+          <div className="relative overflow-hidden lg:min-h-[700px] bg-[#E3E8DE] lg:ml-1 mt-2 lg:mt-0 rounded-[6px]">
+            {/* Content - Increased top and bottom padding */}
+            <div className="relative z-10 p-8 pt-12 pb-12 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-3 rounded-full bg-purple-500"></div>

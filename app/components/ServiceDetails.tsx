@@ -3,46 +3,66 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 
 const ServiceDetails: React.FC = () => {
+  // Updated scroll function to target the specific component
+  const scrollToNextSection = () => {
+    // Scroll to the specialized-staffing section
+    const specializedSection = document.getElementById('specialized-staffing');
+    if (specializedSection) {
+      specializedSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      // Fallback: scroll down by viewport height
+      window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="flex flex-col lg:flex-row w-full">
-      {/* Left Column: Text Content */}
-      <div className="w-full lg:w-1/2 bg-[#E3E8DE] flex flex-col  relative min-h-[500px] lg:min-h-[700px]">
-        <div className="max-w-xl pt-[6rem] pl-[72px]">
-        
-          <p className="text-[#4a4a4a] text-lg leading-[150%] mb-6">
+      {/* Left Column: Text Content - CHANGED from justify-center to justify-start */}
+      <div className="w-full lg:w-1/2 bg-[#E3E8DE] flex flex-col justify-start relative min-h-[600px] lg:min-h-[750px]">
+        <div className="max-w-xl px-8 lg:pl-[72px] lg:pr-0 pt-12 lg:pt-16"> {/* Reduced top padding */}
+          <p className="text-[#4a4a4a] text-base leading-[150%] mb-6">
             Backed by years of proven experience, we partner with healthcare organizations 
             to navigate staffing needs proactively while connecting skilled professionals 
             with rewarding opportunities across multiple specialties.
           </p>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#1a1a1a] mb-8 leading-[1.1]">
+          
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-[2.8rem] text-[#1a1a1a] mb-8 leading-[1.15]">
             Our medical staffing services include...
           </h2>
         </div>
 
-        {/* Down Arrow anchored to bottom */}
-        <div className="absolute bottom-12 left-12 lg:left-24 animate-bounce">
-          <ArrowDown className="w-6 h-6 text-gray-800" />
+        {/* Down Arrow - Moved up with the content */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 lg:left-24 lg:transform-none">
+          <button 
+            onClick={scrollToNextSection}
+            className="animate-bounce cursor-pointer hover:scale-110 transition-transform"
+            aria-label="Scroll to next section"
+          >
+            <ArrowDown className="w-6 h-6 text-gray-800" />
+          </button>
         </div>
       </div>
 
       {/* Right Column: Image & Overlay Card */}
-      <div className="w-full lg:w-1/2 relative min-h-[700px] bg-gray-200">
-        {/* Main Background Image - Reduced width, increased height */}
-        <div className="absolute inset-0 overflow-hidden rounded-lg m-2">
+      <div className="w-full lg:w-1/2 relative min-h-[600px] lg:min-h-[750px] bg-gray-900">
+        {/* Main Background Image - Cover entire section without white background */}
+        <div className="absolute inset-0 overflow-hidden">
           <img 
             src="/ladycare.png" 
             alt="Doctor examining patient" 
-            className="w-full h-full object-cover object-center"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            className="w-full h-full object-cover object-center rounded-[6px]"
           />
         </div>
         
-        {/* Floating Card Overlay - Increased width */}
-        <div className="absolute bottom-0 left-0 lg:bottom-[3rem] lg:-left-[45%] max-w-lg w-full md:w-[550px] z-10 p-4 lg:p-0">
-          <div className="bg-[#1B2C42] rounded-lg overflow-hidden shadow-2xl flex h-52 lg:h-56">
+        {/* Floating Card Overlay - Moved more to the right */}
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 lg:bottom-12 lg:left-[15%] max-w-md lg:max-w-lg w-[90%] lg:w-[500px] z-10">
+          <div className="bg-[#1B2C42] rounded-[6px] overflow-hidden shadow-2xl flex flex-col lg:flex-row h-auto lg:h-48">
             
-            {/* Small Image in Card - Increased width */}
-            <div className="w-1/2 relative h-full">
+            {/* Image Section - Takes less space */}
+            <div className="w-full lg:w-2/5 relative h-48 lg:h-auto">
               <img 
                 src="/whitehair.png" 
                 alt="Nurse smiling with patient" 
@@ -50,16 +70,16 @@ const ServiceDetails: React.FC = () => {
               />
             </div>
 
-            {/* Content in Card - Reduced width */}
-            <div className="w-1/2 p-4 lg:p-6 flex flex-col justify-center">
-              <div className="flex items-center gap-2 mb-3">
+            {/* Content Section - Better spacing */}
+            <div className="w-full lg:w-3/5 p-6 lg:p-8 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-4">
                 <div className="w-2 h-2 rounded-full bg-[#00e055]"></div>
-                <span className="text-[10px] font-bold tracking-widest text-white/80 uppercase">
-                  THE FIELDS WE SERVE
+                <span className="text-[10px] font-bold tracking-widest text-white/90 uppercase">
+                  YOU CAN COUNT ON US
                 </span>
               </div>
               
-              <h3 className="font-serif text-xl lg:text-3xl text-white leading-tight">
+              <h3 className="font-serif text-xl lg:text-2xl text-white leading-tight">
                 We Guarantee 100% Compatibility
               </h3>
             </div>

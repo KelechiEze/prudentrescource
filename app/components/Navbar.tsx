@@ -67,7 +67,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     const darkLogoPages = [
       '/services',
       '/career',
-      '/organizations',
       '/contact',
       '/behavioral-health',
       '/addiction',
