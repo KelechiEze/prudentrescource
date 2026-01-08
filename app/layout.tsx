@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Hedvig_Letters_Serif } from "next/font/google";
+import TopBar from "./components/TopBar"; // Add this import
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -35,6 +36,8 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col bg-gray-900">
+        {/* Add TopBar here, before Navbar */}
+        <TopBar />
         <Navbar />
         <main className="flex-grow">
           {children}

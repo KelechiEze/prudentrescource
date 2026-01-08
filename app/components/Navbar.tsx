@@ -186,7 +186,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled 
+          ? 'top-0' // When scrolled, stick to top
+          : 'top-7' // When at top, add margin for TopBar
+      } ${
         isScrolled || isMobileMenuOpen 
           ? 'bg-black/90 backdrop-blur-md py-2' // Dark background when scrolled/menu open
           : hasDarkNavbar 
