@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Search, ChevronDown, ChevronLeft, ChevronRight, Check, X, Calendar, ArrowRight, Loader2, Edit2 } from 'lucide-react';
 
@@ -47,7 +47,8 @@ interface AdminJobsPageProps {
   currentPage: string;
 }
 
-export default function AdminJobsPage({ onLogout, currentPage: activePageId }: AdminJobsPageProps) {
+// Create a wrapper component that handles the search params with Suspense
+function AdminJobsPageContent({ onLogout, currentPage: activePageId }: AdminJobsPageProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const autoOpenCreate = searchParams.get('autoOpenCreate') === 'true';
@@ -236,6 +237,19 @@ export default function AdminJobsPage({ onLogout, currentPage: activePageId }: A
         <CreateJobModal onSubmit={handleCreateJob} onClose={() => setIsCreating(false)} />
       )}
     </div>
+  );
+}
+
+// Main export wrapped with Suspense
+export default function AdminJobsPage(props: AdminJobsPageProps) {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-[#1B2C42] font-serif text-xl">Loading job listings...</div>
+      </div>
+    }>
+      <AdminJobsPageContent {...props} />
+    </Suspense>
   );
 }
 
