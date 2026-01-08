@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
   // Function to check if navbar should have light text (white text on dark background)
   const shouldHaveLightNavbar = () => {
     // Pages where navbar links should be white (like home page)
-    const lightNavPages = ['home', 'organizations'];
+    const lightNavPages = ['home'];
     const current = getCurrentPageFromPath();
     
     return lightNavPages.includes(current) && !shouldHaveDarkNavbar();
@@ -69,6 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       '/career',
       '/contact',
       '/behavioral-health',
+      '/organizations',
       '/addiction',
       '/residential',
       '/staffrequest',

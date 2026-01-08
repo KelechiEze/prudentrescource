@@ -19,9 +19,9 @@ const ServiceDetails: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col lg:flex-row w-full">
+    <section className="flex flex-col bg-[#E3E8DE] lg:flex-row w-full">
       {/* Left Column: Text Content - CHANGED from justify-center to justify-start */}
-      <div className="w-full lg:w-1/2 bg-[#E3E8DE] flex flex-col justify-start relative min-h-[600px] lg:min-h-[750px]">
+      <div className="w-full lg:w-1/2  flex flex-col justify-start relative min-h-[600px] lg:min-h-[750px]">
         <div className="max-w-xl px-8 lg:pl-[72px] lg:pr-0 pt-12 lg:pt-16"> {/* Reduced top padding */}
           <p className="text-[#4a4a4a] text-base leading-[150%] mb-6">
             Backed by years of proven experience, we partner with healthcare organizations 
@@ -47,7 +47,7 @@ const ServiceDetails: React.FC = () => {
       </div>
 
       {/* Right Column: Image & Overlay Card */}
-      <div className="w-full lg:w-1/2 relative min-h-[600px] lg:min-h-[750px] bg-gray-900">
+      <div className="w-full lg:w-1/2 relative min-h-[600px] lg:min-h-[750px] bg-gray-900 m-2 rounded-lg">
         {/* Main Background Image - Cover entire section without white background */}
         <div className="absolute inset-0 overflow-hidden">
           <img 
@@ -58,15 +58,15 @@ const ServiceDetails: React.FC = () => {
         </div>
         
         {/* Floating Card Overlay - Moved more to the right */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 lg:bottom-12 lg:left-[15%] max-w-md lg:max-w-lg w-[90%] lg:w-[500px] z-10">
-          <div className="bg-[#1B2C42] rounded-[6px] overflow-hidden shadow-2xl flex flex-col lg:flex-row h-auto lg:h-48">
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 lg:bottom-12 lg:left-[4%] max-w-lg lg:max-w-2xl w-[90%] lg:w-[600px] z-10">
+          <div className="bg-[#1B2C42] rounded-[6px] overflow-hidden shadow-2xl flex flex-col lg:flex-row h-auto lg:h-48 p-[13px]">
             
             {/* Image Section - Takes less space */}
             <div className="w-full lg:w-2/5 relative h-48 lg:h-auto">
               <img 
                 src="/whitehair.png" 
                 alt="Nurse smiling with patient" 
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover rounded-lg"
               />
             </div>
 
@@ -79,8 +79,8 @@ const ServiceDetails: React.FC = () => {
                 </span>
               </div>
               
-              <h3 className="font-serif text-xl lg:text-2xl text-white leading-tight">
-                We Guarantee 100% Compatibility
+              <h3 className="font-serif text-2xl lg:text-3xl text-white leading-tight">
+                We Guarantee 100% <br/> Compatibility
               </h3>
             </div>
           </div>

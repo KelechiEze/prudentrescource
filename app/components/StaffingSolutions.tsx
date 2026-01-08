@@ -38,7 +38,7 @@ const StaffingSolutions: React.FC = () => {
       </div>
 
       {/* Right Column: Image */}
-      <div className="w-full lg:w-1/2 min-h-[400px] lg:min-h-[600px] relative">
+      <div className="w-full lg:w-1/2 min-h-[400px] lg:min-h-[600px] relative m-2">
         <img 
           src="/msold.png" 
           alt="Healthcare professional looking at monitor" 
