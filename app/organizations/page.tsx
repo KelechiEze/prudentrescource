@@ -11,14 +11,14 @@ import BookDemo from '../components/BookDemo';
 
 const OrganizationsPage: React.FC = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-hidden">
       <OrganizationsHero />
       <StaffingSolutions />
       <OrganizationProcess />
       <OrganizationTrust />
       <CostEffectiveSolutions />
       <CredentialingStandards />
-      <ExploreProfessionals />
+      {/* <ExploreProfessionals /> */}
       <BookDemo />
     </div>
   );

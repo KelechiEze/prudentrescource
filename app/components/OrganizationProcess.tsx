@@ -30,7 +30,7 @@ const OrganizationProcess: React.FC = () => {
            </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-8 items-end lg:items-end min-h-[600px] pb-12">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-48 items-end lg:items-end min-h-[600px] pb-12">
           
           {/* Left Column: Process Cards */}
           <div className="w-full lg:w-5/12 flex flex-col gap-4">
@@ -95,7 +95,7 @@ const OrganizationProcess: React.FC = () => {
           </div>
 
           {/* Right Column: Heading text (positioned at bottom right) */}
-          <div className="w-full lg:w-7/12 flex justify-end items-end text-right">
+          <div className="w-full lg:w-7/12 flex justify-end items-end">
              <h2 className="text-3xl md:text-4xl lg:text-4xl font-serif text-white leading-tight max-w-2xl drop-shadow-lg">
                Our process of solving your staffing needs is simplified for you
              </h2>

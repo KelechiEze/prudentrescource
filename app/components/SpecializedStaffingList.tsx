@@ -16,13 +16,13 @@ const SpecializedStaffingList: React.FC = () => {
   ];
 
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="bg-white pt-[104px] pb-[72px]">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
         
         {/* Top Section: Heading, Paragraph and Button */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16 lg:mb-20">
           <div className="max-w-4xl">
-            <h2 className="font-serif text-[42px] md:text-[56px] lg:text-[68px] text-[#1B2C42] leading-[1.05] mb-8 tracking-tight font-normal">
+            <h2 className="font-serif text-[42px] md:text-[50px] text-[#1B2C42] leading-[1.05] mb-8 tracking-tight font-normal">
               Specialized Healthcare Staffing
             </h2>
             <p className="font-sans text-gray-600 text-lg md:text-[20px] leading-relaxed font-normal max-w-2xl">

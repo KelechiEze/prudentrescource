@@ -4,16 +4,15 @@ import { ArrowRight } from 'lucide-react';
 
 const OrganizationsHero: React.FC = () => {
   return (
-    <section className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden mt-16 lg:mt-20">      {/* Background Image */}
+      <div className="absolute inset-0 mx-2 z-0">
         <img
           src="/tablet.png" 
           alt="Healthcare professional using tablet"
-          className="w-full h-full object-cover brightness-50"
+          className="w-full h-full object-cover brightness-95 rounded-lg"
         />
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40" /> 
+        <div className="absolute inset-0 bg-black/10 rounded-lg" /> 
       </div>
 
       {/* Content */}
