@@ -55,7 +55,7 @@ const CareerHero: React.FC<CareerHeroProps> = ({ onSearchClick }) => {
           </div>
           <button 
             onClick={handleSearch}
-            className="h-10 md:h-12 px-10 bg-[#1B2C42] hover:bg-[#2a4466] text-white text-base md:text-lg %rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg"
+            className="h-10 md:h-12 px-10 bg-[#1B2C42] hover:bg-[#2a4466] text-white text-base md:text-lg rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg"
           >
             Search <ArrowRight size={20} />
           </button>
