@@ -36,7 +36,7 @@ const CareerHero: React.FC<CareerHeroProps> = ({ onSearchClick }) => {
       <div className="max-w-7xl mx-auto">
         
         {/* Main Title */}
-        <h1 className="font-serif text-4xl md:text-5xl text-center text-[#1a1a1a] mb-[40px]">
+        <h1 className="font-serif text-4xl md:text-5xl text-cen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ter text-[#1a1a1a] mb-[40px]">
           Explore Career Opportunities
         </h1>
 
