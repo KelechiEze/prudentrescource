@@ -111,7 +111,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
   {/* Adjust text size: text-xs, text-sm */}
   <button 
     onClick={onSearch}
-    className="w-full sm:w-auto h-12 px-8 bg-teal-400 hover:bg-teal-500 text-gray-900 text-xs font-bold rounded-full flex items-center justify-center gap-2 transition-all uppercase tracking-widest shadow-[0_0_15px_rgba(104,207,163,0.3)] active:scale-95 whitespace-nowrap"
+    className="w-full sm:w-auto h-12 px-8 bg-teal-400 hover:bg-teal-500 text-gray-900 text-xs font-bold rounded-full flex items-center justify-center gap-2 transition-all tracking-widest shadow-[0_0_15px_rgba(104,207,163,0.3)] active:scale-95 whitespace-nowrap"
   >
     Search <ArrowRight size={14} />
   </button>
