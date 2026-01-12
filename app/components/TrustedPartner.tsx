@@ -66,7 +66,7 @@ const TrustedPartner: React.FC = () => {
           {/* Image 2: Patient Care */}
           <div className="rounded-xl overflow-hidden h-[320px] md:h-[400px]">
             <img 
-              src="/oldman.png" 
+              src="/shid.png" 
               alt="Nurse assisting elderly patient" 
               className="w-full h-full object-cover"
             />

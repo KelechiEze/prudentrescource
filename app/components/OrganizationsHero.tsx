@@ -4,7 +4,8 @@ import { ArrowRight } from 'lucide-react';
 
 const OrganizationsHero: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden mt-16 lg:mt-20">      {/* Background Image */}
+    <section className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden mt-16 lg:mt-20">
+      {/* Background Image */}
       <div className="absolute inset-0 mx-2 z-0">
         <img
           src="/tablet.png" 
@@ -33,12 +34,10 @@ const OrganizationsHero: React.FC = () => {
           to deliver exceptional patient outcomes.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="bg-white hover:bg-gray-100 text-[#1B2C42] px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg">
-            Request for talents <ArrowRight size={18} />
-          </button>
+        {/* Updated: Single centered button */}
+        <div className="flex items-center justify-center">
           <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg">
-            Book a meeting with us <ArrowRight size={18} />
+            Request For Talents <ArrowRight size={18} />
           </button>
         </div>
       </div>

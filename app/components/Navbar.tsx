@@ -199,7 +199,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
             : 'bg-transparent py-2'
       }`} 
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      {/* UPDATED: Changed max-w-7xl to max-w-[1920px] and px-6 md:px-10 lg:px-20 to match Hero */}
+      <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-16">
         {/* Logo */}
         <div className="flex items-center justify-center flex-shrink-0">
           <a 

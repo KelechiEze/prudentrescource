@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 
@@ -27,7 +26,7 @@ const SpecializedStaffingList: React.FC = () => {
             </h2>
             <p className="font-sans text-gray-600 text-lg md:text-[20px] leading-relaxed font-normal max-w-2xl">
               We connect qualified care professionals with organizations across behavioral health, 
-              residential care, and recovery services. Whether you’re looking for full-time, part-time, 
+              residential care, and recovery services. Whether you're looking for full-time, part-time, 
               or shift-based opportunities, we help you find the right fit.
             </p>
           </div>
@@ -42,8 +41,8 @@ const SpecializedStaffingList: React.FC = () => {
         {/* Bottom Section: List and Wide Image */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* List Column */}
-          <div className="lg:col-span-5 flex flex-col gap-6 pt-4">
+          {/* List Column - UPDATED: Reduced gap from gap-6 to gap-4 */}
+          <div className="lg:col-span-5 flex flex-col gap-4 pt-4">
             {roles.map((role, index) => (
               <div key={index} className="flex items-center gap-4 group">
                 <CheckCircle2 className="w-[22px] h-[22px] text-[#1B2C42] shrink-0 opacity-80" strokeWidth={1.5} />

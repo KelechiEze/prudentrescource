@@ -10,9 +10,10 @@ const CredentialAlignment: React.FC = () => {
           <h2 className="font-serif text-[42px] md:text-[56px] text-white leading-[1.1] mb-8 tracking-tight">
             Credential Assessment and Skills Alignment
           </h2>
-          <p className="text-white text-lg leading-[150%] font-light opacity-90 max-w-3xl">
+          {/* UPDATED: Changed from text-lg to text-xl to match the other text */}
+          <p className="text-white text-xl leading-[150%] font-light opacity-90 max-w-3xl">
             Before making any matches, we invest time in thoroughly assessing
-            and vetting professionals’ skills, credentials, and experience to
+            and vetting professionals' skills, credentials, and experience to
             ensure the best possible fit — improving outcomes for both sides.
           </p>
         </div>

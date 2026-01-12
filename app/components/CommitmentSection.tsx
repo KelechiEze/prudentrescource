@@ -16,10 +16,8 @@ const CommitmentSection: React.FC = () => {
 
   return (
     <section className="py-[72px] bg-white">
-
       {/* Cards at the very edge - minimal to no padding */}
       <div className="px-0 md:px-2">
-        
         <h2 
           className="text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug mb-16 max-w-6xl ml-2 md:ml-4"
           style={{ fontFamily: "var(--font-hedvig-letters-serif)" }}
@@ -28,21 +26,21 @@ const CommitmentSection: React.FC = () => {
           <span className="text-gray-900"> — matching skilled professionals with the places that need them most.</span>
         </h2>
         
-        {/* Cards Grid - Remove gap, handle spacing with margins instead */}
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Cards Grid - Perfect horizontal alignment */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-2">
           
           {/* Card 1: For Professionals */}
-          <div className="relative group overflow-hidden lg:min-h-[700px] bg-blue-50 lg:mr-1 rounded-[6px]">
-            {/* Background Image Layer */}
+          <div className="relative group overflow-hidden lg:min-h-[700px] bg-blue-50 rounded-[6px]">
+            {/* Background Image Layer - Removed opacity */}
             <div className="absolute inset-0 z-0">
                <img 
-                 src="/greenpeeps.png" 
+                 src="/thechange.png" 
                  alt="Nurse checking patient blood pressure"
-                 className="w-full h-full object-cover object-center opacity-90 transition-transform duration-700 group-hover:scale-105"
+                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                />
             </div>
 
-            {/* Content - Increased top and bottom padding */}
+            {/* Content - Consistent padding across both cards */}
             <div className="relative z-10 p-8 pt-12 pb-12 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -52,7 +50,7 @@ const CommitmentSection: React.FC = () => {
                 
                 <h3 className="text-4xl md:text-5xl font-serif text-gray-900 mb-6">For Professionals</h3>
                 
-                <p className="text-gray-700 text-base leading-relaxed max-w-md">
+                <p className="text-gray-700 text-lg leading-relaxed max-w-md">
                   Advance your career on your terms. Access premium shifts and contracts at top facilities. We handle the vetting so you can focus on care.
                 </p>
               </div>
@@ -69,8 +67,8 @@ const CommitmentSection: React.FC = () => {
           </div>
 
           {/* Card 2: For Organizations */}
-          <div className="relative overflow-hidden lg:min-h-[700px] bg-[#E3E8DE] lg:ml-1 mt-2 lg:mt-0 rounded-[6px]">
-            {/* Content - Increased top and bottom padding */}
+          <div className="relative overflow-hidden lg:min-h-[700px] bg-[#E3E8DE] mt-2 lg:mt-0 rounded-[6px]">
+            {/* Content - Same padding structure as Card 1 */}
             <div className="relative z-10 p-8 pt-12 pb-12 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
