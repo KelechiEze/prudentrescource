@@ -201,7 +201,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
           ? 'top-0' // When scrolled, stick to top
           : isMobileMenuOpen
             ? 'top-0' // When mobile menu is open, stick to top
-            : 'top-4 lg:top-7' // When at top, add margin for TopBar (4px on mobile, 28px on desktop)
+            : 'top-4 lg:top-12' // INCREASED: More space from top for desktop
       } ${
         isScrolled || isMobileMenuOpen 
           ? 'bg-black/95 backdrop-blur-md py-0' // Dark background when scrolled/menu open
@@ -215,19 +215,19 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
         <div className="flex flex-col min-h-screen">
           {/* Header with Logo and Close Button */}
           <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-16 border-b border-gray-800">
-            {/* Logo - 140px size for mobile menu */}
+            {/* Logo - Larger size for mobile menu */}
             <div className="flex items-center justify-center flex-shrink-0">
               <a 
                 href="#" 
                 onClick={handleLogoClick} 
                 className="flex items-center text-white"
               >
-                <div className="relative w-28 h-28 lg:w-35 lg:h-35 flex items-center justify-center">
+                <div className="relative w-36 h-36 lg:w-44 lg:h-44 flex items-center justify-center">
                   <Image
                     src="/logoprudent.png" // Always white logo when mobile menu is open
                     alt="Prudent Resources Logo"
-                    width={140}
-                    height={140}
+                    width={176}
+                    height={176}
                     className="object-contain w-full h-full transition-opacity duration-300"
                     priority
                   />
@@ -283,19 +283,19 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       ) : (
         /* Regular Navbar - Only shown when mobile menu is closed */
         <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-14 lg:h-16">
-          {/* Logo - 140px size */}
+          {/* Logo - Larger size for better visibility */}
           <div className="flex items-center justify-center flex-shrink-0">
             <a 
               href="#" 
               onClick={handleLogoClick} 
               className={`flex items-center ${logoColorClass}`}
             >
-              <div className="relative w-28 h-28 lg:w-35 lg:h-35 flex items-center justify-center -ml-3 -mt-3 lg:-ml-5 lg:-mt-5">
+              <div className="relative w-36 h-36 lg:w-44 lg:h-44 flex items-center justify-center -ml-4 -mt-4 lg:-ml-6 lg:-mt-6">
                 <Image
                   src={logoImage}
                   alt="Prudent Resources Logo"
-                  width={140}
-                  height={140}
+                  width={176}
+                  height={176}
                   className="object-contain w-full h-full transition-opacity duration-300"
                   priority
                 />
