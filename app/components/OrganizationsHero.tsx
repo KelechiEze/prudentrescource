@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 const OrganizationsHero: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden mt-16 lg:mt-20">
+    <section className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden mt-24 lg:mt-28">
       {/* Background Image */}
       <div className="absolute inset-0 mx-2 z-0">
         <img

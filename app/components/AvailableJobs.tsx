@@ -125,111 +125,113 @@ const AvailableJobs: React.FC = () => {
     <section 
       ref={containerRef}
       className="bg-white relative"
-      style={{ height: `${JOBS.length * 100}vh` }} // Creates the scroll runway
+      style={{ height: `${JOBS.length * 80}vh` }}
     >
-      {/* Sticky Wrapper - Keeps content centered during the scroll cycle */}
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 w-full h-full flex items-center">
+      {/* Sticky Wrapper - Using dynamic viewport height to handle mobile browser UI */}
+      <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-16 w-full flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-20">
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full h-[600px]">
+          {/* Header Info - Tighter for mobile to save space */}
+          <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 md:pt-10 lg:pt-0">
+            <div className="flex items-center justify-center lg:justify-start gap-2 mb-2 lg:mb-6">
+              <div className="w-2 h-2 rounded-full bg-teal-400"></div>
+              <span className="text-[9px] md:text-[11px] font-bold tracking-[0.2em] text-[#1B2C42] uppercase">
+                Current Openings
+              </span>
+            </div>
             
-            {/* Left Column: Fixed context during scroll */}
-            <div className=" flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-2.5 h-2.5 rounded-full bg-teal-400"></div>
-                <span className="text-[11px] font-bold tracking-[0.2em] text-gray-900 uppercase">Current Openings</span>
-              </div>
+            <h2 className="font-serif text-[24px] md:text-[42px] lg:text-[52px] text-[#1B2C42] mb-2 lg:mb-6 leading-tight">
+              Available job listing
+            </h2>
+            
+            <p className="text-gray-600 text-[13px] md:text-lg leading-relaxed mb-4 lg:mb-10 max-w-md mx-auto lg:mx-0 font-normal opacity-90">
+              Just beginning your career? Explore our top picks curated specifically for your professional growth.
+            </p>
+            
+            <div className="flex flex-col items-center lg:items-start gap-4 lg:gap-8">
+              <button className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-7 md:px-10 py-3 md:py-4 rounded-full text-[11px] md:text-sm font-bold flex items-center gap-2 transition-all shadow-md active:scale-95 whitespace-nowrap">
+                Browse Job opportunities <ArrowRight size={14} className="md:w-[18px] md:h-[18px]" />
+              </button>
               
-              <h2 className="font-serif text-4xl md:text-5xl text-[#1B2C42] mb-6 leading-tight">
-                Available job listing
-              </h2>
-              
-              <p className="text-gray-600 text-lg leading-[150%] mb-10 max-w-md">
-                Just beginning your career or already have many years of experience? 
-                Scroll to explore our top picks curated specifically for your professional growth.
-              </p>
-              
-              <div className="flex flex-col items-start gap-8">
-                <button className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-10 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all shadow-lg active:scale-95">
-                  Browse Job opportunities <ArrowRight size={18} />
-                </button>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-serif text-[#1B2C42]">{activeIndex + 1}<span className="text-gray-300 text-xl"> / {JOBS.length}</span></span>
-                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Viewing Opportunity</span>
+              <div className="flex flex-col items-center lg:items-start">
+                <div className="text-[18px] md:text-[28px] font-serif text-[#1B2C42]">
+                  {activeIndex + 1}<span className="text-gray-300"> / {JOBS.length}</span>
+                </div>
+                <div className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">
+                  VIEWING OPPORTUNITY
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Right Column: Animated Card Stage */}
-            <div className="relative h-full flex items-center justify-center perspective-1000">
-              {JOBS.map((job, index) => {
-                const isActive = index === activeIndex;
-                const isPast = index < activeIndex;
-                const isFuture = index > activeIndex;
+          {/* Cards Display Stage - Adjusted height and scaling for mobile view */}
+          <div className="w-full lg:w-7/12 relative h-[320px] md:h-[480px] lg:h-[550px] flex items-center justify-center perspective-1000">
+            {JOBS.map((job, index) => {
+              const isActive = index === activeIndex;
+              const isPast = index < activeIndex;
 
-                return (
-                  <div 
-                    key={job.id} 
-                    className={`absolute w-full max-w-2xl bg-[#E9ECF5] rounded-[5px] p-8 md:p-12 transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] ${
-                      isActive 
-                        ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
-                        : isPast 
-                          ? 'opacity-0 -translate-y-[120%] scale-95 -rotate-2 pointer-events-none' 
-                          : 'opacity-0 translate-y-[120%] scale-105 rotate-2 pointer-events-none'
-                    }`}
-                  >
-                    <div className="flex flex-col gap-8">
-                      {/* Header Info */}
-                      <div className="flex justify-between items-start">
-                        <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">
-                          {job.role}
-                        </div>
-                        <div className="bg-white/50 backdrop-blur px-4 py-1.5 rounded-full text-[11px] font-bold text-[#1B2C42] uppercase tracking-wider">
-                          {job.duration}
-                        </div>
+              return (
+                <div 
+                  key={job.id} 
+                  className={`absolute w-full max-w-[540px] bg-[#EFF3F9] rounded-[12px] p-4 md:p-10 shadow-sm border border-[#D1D9E4]/40 transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] ${
+                    isActive 
+                      ? 'opacity-100 translate-y-0 scale-100 z-10' 
+                      : isPast 
+                        ? 'opacity-0 -translate-y-[60px] scale-95 pointer-events-none' 
+                        : 'opacity-0 translate-y-[60px] scale-105 pointer-events-none'
+                  }`}
+                >
+                  <div className="flex flex-col gap-3 md:gap-8">
+                    {/* Role & Duration Tag */}
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#1B2C42]/60 text-[9px] md:text-[12px] font-bold tracking-[0.1em] uppercase truncate max-w-[70%]">
+                        {job.role}
                       </div>
-                      
-                      {/* Job Title */}
-                      <div>
-                        <h3 className="font-serif text-3xl md:text-4xl text-[#1B2C42] leading-tight mb-4">
-                          {job.title}
-                        </h3>
-                        <div className="text-gray-600 font-medium flex items-center gap-2">
-                           <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-                           {job.schedule}
-                        </div>
-                      </div>
-                      
-                      {/* Details Row */}
-                      <div className="flex flex-wrap gap-x-12 gap-y-4 py-6 border-y border-gray-300/50">
-                        <div className="flex flex-col">
-                          <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Location</span>
-                          <span className="text-[#1B2C42] font-semibold">{job.location}</span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Posted</span>
-                          <span className="text-[#1B2C42] font-semibold">{job.datePosted}</span>
-                        </div>
-                      </div>
-                      
-                      {/* Salary & Apply */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
-                        <div className="flex flex-col">
-                          <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Weekly Salary</span>
-                          <span className="text-[#1B2C42] font-bold text-3xl">{job.salary}</span>
-                        </div>
-                        
-                        <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-10 py-4 rounded-full text-[13px] font-bold transition-all shadow-md active:scale-95">
-                          Apply Now
-                        </button>
+                      <div className="bg-white px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[8px] md:text-[11px] font-bold text-[#1B2C42] uppercase tracking-wider">
+                        {job.duration}
                       </div>
                     </div>
+                    
+                    {/* Job Title Section */}
+                    <div>
+                      <h3 className="font-serif text-[18px] md:text-[34px] text-[#1B2C42] leading-tight mb-1">
+                        {job.title}
+                      </h3>
+                      <div className="text-gray-500 font-medium flex items-center gap-2 text-[11px] md:text-[14px]">
+                         <div className="w-1.5 h-1.5 rounded-full bg-teal-400"></div>
+                         {job.schedule}
+                      </div>
+                    </div>
+                    
+                    {/* Details Info Grid */}
+                    <div className="flex items-center gap-6 md:gap-12 py-2 md:py-6 border-y border-[#D1D9E4]/60">
+                      <div className="flex flex-col">
+                        <span className="text-[8px] text-gray-400 uppercase font-bold tracking-widest mb-0.5">Location</span>
+                        <span className="text-[#1B2C42] font-semibold text-[11px] md:text-base">{job.location}</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[8px] text-gray-400 uppercase font-bold tracking-widest mb-0.5">Posted</span>
+                        <span className="text-[#1B2C42] font-semibold text-[11px] md:text-base">{job.datePosted}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Price & Primary Action */}
+                    <div className="flex items-center justify-between mt-1">
+                      <div className="flex flex-col">
+                        <span className="text-[8px] text-gray-400 uppercase font-bold tracking-widest">Weekly Salary</span>
+                        <span className="text-[#1B2C42] font-bold text-[18px] md:text-[32px]">{job.salary}</span>
+                      </div>
+                      
+                      <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-5 md:px-10 h-9 md:h-14 rounded-full text-[10px] md:text-[13px] font-bold transition-all shadow-sm active:scale-95 whitespace-nowrap">
+                        Apply Now
+                      </button>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-
+                </div>
+              );
+            })}
           </div>
+
         </div>
       </div>
     </section>

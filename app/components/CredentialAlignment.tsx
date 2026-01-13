@@ -1,7 +1,15 @@
+'use client';
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const CredentialAlignment: React.FC = () => {
+  const router = useRouter();
+
+  const handleContactButtonClick = () => {
+    router.push('/contact');
+  };
+
   return (
     <section className="bg-[#1B2C42] py-12 md:py-16 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
@@ -49,7 +57,10 @@ const CredentialAlignment: React.FC = () => {
                 <span className="text-gray-200 text-xl font-light">
                   Contact us to get started now!
                 </span>
-                <button className="w-14 h-14 bg-[#68cfa3] rounded-full flex items-center justify-center text-white hover:bg-[#5abf94] transition-all shadow-lg active:scale-95 group">
+                <button 
+                  onClick={handleContactButtonClick}
+                  className="w-14 h-14 bg-[#68cfa3] rounded-full flex items-center justify-center text-white hover:bg-[#5abf94] transition-all shadow-lg active:scale-95 group cursor-pointer"
+                >
                   <ArrowRight
                     size={24}
                     className="group-hover:translate-x-1 transition-transform"

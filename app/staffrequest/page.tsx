@@ -1,35 +1,37 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Check, Plus, ChevronDown, X } from 'lucide-react';
+import { ArrowRight, Plus, ChevronDown, Trash2 } from 'lucide-react';
+
+interface PositionRequest {
+  id: string;
+  title: string;
+  type: string;
+}
 
 const page: React.FC = () => {
-  const [selectedPositions, setSelectedPositions] = useState(["Phlebotomists", "Direct Support Professionals"]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [positionRequests, setPositionRequests] = useState<PositionRequest[]>([
+    { id: crypto.randomUUID(), title: "", type: "Contract role" }
+  ]);
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const availablePositions = [
-    "Phlebotomists",
-    "Direct Support Professionals",
-    "Registered Nurses (RN)",
-    "Licensed Practical Nurses (LPN)",
-    "Certified Nurse Aides (CNA)",
-    "Surgical Technologists",
-    "Radiology Technologists",
-    "Physical Therapists",
-    "Medical Assistants"
-  ];
-
-  const handleAddPosition = (pos: string) => {
-    if (!selectedPositions.includes(pos)) {
-      setSelectedPositions([...selectedPositions, pos]);
-    }
-    setIsDropdownOpen(false);
+  const handleAddPosition = () => {
+    setPositionRequests([
+      ...positionRequests,
+      { id: crypto.randomUUID(), title: "", type: "Contract role" }
+    ]);
   };
 
-  const handleRemovePosition = (posToRemove: string) => {
-    setSelectedPositions(selectedPositions.filter(pos => pos !== posToRemove));
+  const handleRemovePosition = (id: string) => {
+    if (positionRequests.length > 1) {
+      setPositionRequests(positionRequests.filter(pos => pos.id !== id));
+    }
+  };
+
+  const handleUpdatePosition = (id: string, field: keyof PositionRequest, value: string) => {
+    setPositionRequests(positionRequests.map(pos => 
+      pos.id === id ? { ...pos, [field]: value } : pos
+    ));
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,26 +45,16 @@ const page: React.FC = () => {
     fileInputRef.current?.click();
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#E3E8DE] pt-40 pb-20 px-6 font-sans">
       <div className="max-w-4xl mx-auto">
         {/* Page Title */}
-        <h1 className="font-serif text-[42px] text-[#1B2C42] text-center mb-12">
+        <h1 className="font-serif text-[42px] text-[#1B2C42] text-center mb-12 leading-tight">
           Submit Staffing Request
         </h1>
 
         {/* Form Container */}
-        <div className="bg-white rounded-md shadow-sm p-10 md:p-16">
+        <div className="bg-white rounded-md shadow-sm p-6 md:p-16">
           <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
             
             {/* Section 1: Company Contact Details */}
@@ -157,92 +149,79 @@ const page: React.FC = () => {
                 REQUEST POSITION DETAILS
               </h2>
 
-              {/* Position Container matching the design image */}
-              <div className="border border-gray-100 rounded-[8px] p-8 space-y-8 bg-white shadow-sm">
-                
-                {/* Job Title Field */}
-                <div className="space-y-4">
-                  <label className="text-[13px] font-bold text-gray-900 block">
-                    Job title of the position(s) you're hiring for<span className="text-red-500">*</span>
-                  </label>
-                  <input 
-                    type="text" 
-                    placeholder="Enter job title/role" 
-                    className="w-full h-12 px-4 border border-gray-100 rounded-[6px] text-sm focus:outline-none focus:border-teal-400 bg-[#FAFAFA] text-gray-900 placeholder-gray-400"
-                  />
-                </div>
+              <div className="space-y-8">
+                {positionRequests.map((pos, index) => (
+                  <div key={pos.id} className="relative border border-gray-100 rounded-[8px] p-6 md:p-8 space-y-8 bg-white shadow-sm transition-all animate-in fade-in slide-in-from-top-2">
+                    
+                    {/* Header with Entry Count & Delete */}
+                    <div className="flex items-center justify-between pb-4 border-b border-gray-50">
+                      <span className="text-[10px] font-bold text-teal-500 tracking-widest uppercase">
+                        POSITION ENTRY {index + 1}
+                      </span>
+                      {positionRequests.length > 1 && (
+                        <button 
+                          type="button"
+                          onClick={() => handleRemovePosition(pos.id)}
+                          className="flex items-center gap-1.5 text-red-400 hover:text-red-600 text-[11px] font-bold transition-colors"
+                        >
+                          <Trash2 size={14} /> REMOVE
+                        </button>
+                      )}
+                    </div>
 
-                {/* Type of Hire Field */}
-                <div className="space-y-4">
-                  <label className="text-[13px] font-bold text-gray-900 block">
-                    Type of Hire<span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <select className="w-full h-12 px-4 appearance-none border border-gray-100 rounded-[6px] text-sm focus:outline-none focus:border-teal-400 text-gray-700 bg-[#FAFAFA] cursor-pointer">
-                      <option>Contract role</option>
-                      <option>Permanent Hire</option>
-                      <option>Project-Based</option>
-                      <option>Bulk Staffing</option>
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                      <ChevronDown size={18} />
+                    {/* Job Title Field */}
+                    <div className="space-y-4">
+                      <label className="text-[13px] font-bold text-gray-900 block">
+                        Job title of the position(s) you're hiring for<span className="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="text" 
+                        value={pos.title}
+                        onChange={(e) => handleUpdatePosition(pos.id, 'title', e.target.value)}
+                        placeholder="Enter job title/role (e.g. Registered Nurse)" 
+                        className="w-full h-12 px-4 border border-gray-100 rounded-[6px] text-sm focus:outline-none focus:border-teal-400 bg-[#FAFAFA] text-gray-900 placeholder-gray-400"
+                      />
+                    </div>
+
+                    {/* Type of Hire Field */}
+                    <div className="space-y-4">
+                      <label className="text-[13px] font-bold text-gray-900 block">
+                        Type of Hire<span className="text-red-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <select 
+                          value={pos.type}
+                          onChange={(e) => handleUpdatePosition(pos.id, 'type', e.target.value)}
+                          className="w-full h-12 px-4 appearance-none border border-gray-100 rounded-[6px] text-sm focus:outline-none focus:border-teal-400 text-gray-700 bg-[#FAFAFA] cursor-pointer"
+                        >
+                          <option value="Contract role">Contract role</option>
+                          <option value="Permanent Hire">Permanent Hire</option>
+                          <option value="Project-Based">Project-Based</option>
+                          <option value="Bulk Staffing">Bulk Staffing</option>
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                          <ChevronDown size={18} />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
 
-              {/* Add New Job Position Selector */}
-              <div className="flex flex-col gap-4 mt-8">
-                <div className="space-y-3">
-                  {selectedPositions.map((pos, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-[13px] text-gray-700">
-                      <button 
-                        type="button"
-                        onClick={() => handleRemovePosition(pos)}
-                        className="p-1 rounded-full hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
-                        title="Remove"
-                      >
-                        <X size={14} />
-                      </button>
-                      <Check size={14} className="text-teal-500" />
-                      <span className="font-medium text-gray-900">{pos}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="relative" ref={dropdownRef}>
-                  <div 
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="relative w-full h-12 pl-11 pr-10 border border-gray-200 rounded text-sm flex items-center bg-white cursor-pointer hover:border-teal-400 transition-all text-gray-400"
-                  >
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                      <Plus size={16} />
-                    </div>
-                    <span>Add new job position</span>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300">
-                      <ChevronDown size={18} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                    </div>
-                  </div>
-
-                  {isDropdownOpen && (
-                    <div className="absolute z-20 top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded shadow-xl max-h-60 overflow-y-auto no-scrollbar">
-                      {availablePositions.map((pos) => (
-                        <div 
-                          key={pos}
-                          onClick={() => handleAddPosition(pos)}
-                          className={`px-6 py-3 text-sm cursor-pointer hover:bg-teal-50 transition-colors flex items-center justify-between ${selectedPositions.includes(pos) ? 'text-teal-600 font-semibold bg-teal-50/30' : 'text-gray-700'}`}
-                        >
-                          {pos}
-                          {selectedPositions.includes(pos) && <Check size={14} />}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+              {/* Add New Job Position Trigger - Now Left Aligned */}
+              <div className="pt-4 flex justify-start">
+                <button 
+                  type="button"
+                  onClick={handleAddPosition}
+                  className="px-8 h-14 border-2 border-dashed border-gray-200 rounded-[8px] flex items-center justify-center gap-3 text-[#1B2C42]/50 hover:text-[#1B2C42] hover:border-teal-400 hover:bg-teal-50/20 transition-all font-bold text-sm"
+                >
+                  <Plus size={20} className="text-teal-500" />
+                  Add new job position
+                </button>
               </div>
 
               {/* Attach Job Description */}
-              <div className="flex flex-col gap-2 mt-8">
+              <div className="flex flex-col gap-2 mt-12">
                 <label className="text-[13px] font-semibold text-gray-900 flex items-center gap-0.5">
                   Attach Job Description <span className="text-red-500">*</span>
                 </label>
@@ -276,7 +255,7 @@ const page: React.FC = () => {
                   Additional Comments <span className="text-red-500">*</span>
                 </label>
                 <textarea 
-                  placeholder="Type your comment here" 
+                  placeholder="Type your comment here (e.g. shift patterns, specific certifications required, etc.)" 
                   className="w-full h-40 p-4 border border-gray-200 rounded text-sm focus:outline-none focus:border-teal-400 bg-white text-gray-900 placeholder-gray-400 resize-none"
                 ></textarea>
               </div>
@@ -288,7 +267,7 @@ const page: React.FC = () => {
                 type="submit"
                 className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-10 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-md active:scale-95"
               >
-                Submit <ArrowRight size={18} />
+                Submit Staffing Request <ArrowRight size={18} />
               </button>
             </div>
           </form>

@@ -40,18 +40,21 @@ const CommitmentSection: React.FC = () => {
                />
             </div>
 
+            {/* Mobile-only overlay - Only visible on screens smaller than lg (1024px) */}
+            <div className="absolute inset-0 z-1 lg:hidden bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+
             {/* Content - Consistent padding across both cards */}
             <div className="relative z-10 p-8 pt-12 pb-12 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-3 rounded-full bg-orange-400"></div>
-                  <span className="text-xs font-bold tracking-widest text-gray-800 uppercase">Advance Your Healthcare Career</span>
+                  <span className="text-xs font-bold tracking-widest text-gray-800 lg:text-gray-800">Advance Your Healthcare Career</span>
                 </div>
                 
-                <h3 className="text-4xl md:text-5xl font-serif text-gray-900 mb-6">For Professionals</h3>
+                <h3 className="text-4xl md:text-5xl font-serif text-gray-900 lg:text-gray-900 mb-6">For Professionals</h3>
                 
-                <p className="text-gray-700 text-lg leading-relaxed max-w-md">
-                  Advance your career on your terms. Access premium shifts and contracts at top facilities. We handle the vetting so you can focus on care.
+                <p className="text-white lg:text-gray-700 text-lg leading-relaxed max-w-md">
+                 Advance your career on your terms. Access premium shifts and contracts at top facilities and organizations.
                 </p>
               </div>
 

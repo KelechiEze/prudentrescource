@@ -1,7 +1,10 @@
+'use client';
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const SpecializedStaffingList: React.FC = () => {
+  const router = useRouter();
   const roles = [
     "Registered Nurses (RN)",
     "Licensed Practical Nurses (LPN)",
@@ -14,8 +17,12 @@ const SpecializedStaffingList: React.FC = () => {
     "And More..."
   ];
 
+  const handleFindOpportunitiesClick = () => {
+    router.push('/submitresume');
+  };
+
   return (
-    <section className="bg-white pt-[104px] pb-[72px]">
+    <section className="bg-white pt-[104px] pb-[72px] mt-[360px]">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
         
         {/* Top Section: Heading, Paragraph and Button */}
@@ -32,7 +39,10 @@ const SpecializedStaffingList: React.FC = () => {
           </div>
           
           <div className="lg:pb-2">
-            <button className="bg-[#1B2C42] hover:bg-[#2a3d58] text-white px-8 py-3 rounded-full text-[15px] font-bold transition-all shadow-md active:scale-95 whitespace-nowrap">
+            <button 
+              onClick={handleFindOpportunitiesClick}
+              className="bg-[#1B2C42] hover:bg-[#2a3d58] text-white px-8 py-3 rounded-full text-[15px] font-bold transition-all shadow-md active:scale-95 whitespace-nowrap cursor-pointer"
+            >
               Find Opportunities
             </button>
           </div>

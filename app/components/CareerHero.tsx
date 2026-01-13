@@ -36,13 +36,13 @@ const CareerHero: React.FC<CareerHeroProps> = ({ onSearchClick }) => {
       <div className="max-w-7xl mx-auto">
         
         {/* Main Title */}
-        <h1 className="font-serif text-4xl md:text-5xl text-cen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ter text-[#1a1a1a] mb-[40px]">
+        <h1 className="font-serif text-4xl md:text-5xl text-center text-[#1a1a1a] mb-[40px]">
           Explore Career Opportunities
         </h1>
 
-        {/* Search Bar */}
+        {/* Search Bar - Fixed mobile height */}
         <div className="max-w-4xl mx-auto mb-16 flex flex-col md:flex-row gap-4">
-          <div className="flex-1 bg-[#E3E8DE] rounded-full h-10 md:h-12 px-6 flex items-center gap-3 transition-colors focus-within:ring-2 focus-within:ring-[#1B2C42]/20">
+          <div className="flex-1 bg-[#E3E8DE] rounded-full h-12 px-6 flex items-center gap-3 transition-colors focus-within:ring-2 focus-within:ring-[#1B2C42]/20">
             <Search className="text-gray-500 w-5 h-5 md:w-6 md:h-6" />
             <input 
               type="text" 
@@ -55,7 +55,7 @@ const CareerHero: React.FC<CareerHeroProps> = ({ onSearchClick }) => {
           </div>
           <button 
             onClick={handleSearch}
-            className="h-10 md:h-12 px-10 bg-[#1B2C42] hover:bg-[#2a4466] text-white text-base md:text-lg rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg"
+            className="h-12 px-10 bg-[#1B2C42] hover:bg-[#2a4466] text-white text-base md:text-lg rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg whitespace-nowrap"
           >
             Search <ArrowRight size={20} />
           </button>

@@ -85,6 +85,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
 
   // Determine which logo to show
   const getLogoImage = () => {
+    // When mobile menu is open, always show white logo
+    if (isMobileMenuOpen) {
+      return '/logoprudent.png';
+    }
+    
     if (isScrolled) {
       return '/logoprudent.png'; // Always show light logo when scrolled
     }
@@ -136,12 +141,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
   };
 
   const handleFindJobClick = () => {
-    handleNavigate('career');
+    router.push('/jobsearch');
     setIsMobileMenuOpen(false);
   };
 
   const handleRequestTalentsClick = () => {
-    handleNavigate('organizations');
+    router.push('/staffrequest');
     setIsMobileMenuOpen(false);
   };
 
@@ -171,13 +176,17 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       )
     );
 
-  const mobileToggleColor = isScrolled 
+  // Mobile toggle color - always white when menu is open
+  const mobileToggleColor = isMobileMenuOpen 
     ? 'text-white' 
-    : (hasDarkNavbar 
-      ? 'text-gray-900' 
-      : (hasLightNavbar 
-        ? 'text-white' 
-        : 'text-gray-900'
+    : (isScrolled 
+      ? 'text-white' 
+      : (hasDarkNavbar 
+        ? 'text-gray-900' 
+        : (hasLightNavbar 
+          ? 'text-white' 
+          : 'text-gray-900'
+        )
       )
     );
 
@@ -190,120 +199,156 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
           ? 'top-0' // When scrolled, stick to top
-          : 'top-7' // When at top, add margin for TopBar
+          : isMobileMenuOpen
+            ? 'top-0' // When mobile menu is open, stick to top
+            : 'top-4 lg:top-7' // When at top, add margin for TopBar (4px on mobile, 28px on desktop)
       } ${
         isScrolled || isMobileMenuOpen 
-          ? 'bg-black/90 backdrop-blur-md py-2' // Dark background when scrolled/menu open
+          ? 'bg-black/95 backdrop-blur-md py-0' // Dark background when scrolled/menu open
           : hasDarkNavbar 
             ? 'bg-white/90 backdrop-blur-md py-2 border-b border-gray-200' // Light background for dark navbar pages
             : 'bg-transparent py-2'
       }`} 
     >
-      {/* UPDATED: Changed max-w-7xl to max-w-[1920px] and px-6 md:px-10 lg:px-20 to match Hero */}
-      <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-16">
-        {/* Logo */}
-        <div className="flex items-center justify-center flex-shrink-0">
-          <a 
-            href="#" 
-            onClick={handleLogoClick} 
-            className={`flex items-center ${logoColorClass}`}
-          >
-            <div className="relative w-24 h-24 flex items-center justify-center">
-              <Image
-                src={logoImage}
-                alt="Prudent Resources Logo"
-                width={96}
-                height={96}
-                className="object-contain w-full h-full transition-opacity duration-300"
-                priority
-              />
+      {/* Mobile Menu Open: Full height container that touches top */}
+      {isMobileMenuOpen ? (
+        <div className="flex flex-col min-h-screen">
+          {/* Header with Logo and Close Button */}
+          <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-16 border-b border-gray-800">
+            {/* Logo */}
+            <div className="flex items-center justify-center flex-shrink-0">
+              <a 
+                href="#" 
+                onClick={handleLogoClick} 
+                className="flex items-center text-white"
+              >
+                <div className="relative w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center">
+                  <Image
+                    src="/logoprudent.png" // Always white logo when mobile menu is open
+                    alt="Prudent Resources Logo"
+                    width={96}
+                    height={96}
+                    className="object-contain w-full h-full transition-opacity duration-300"
+                    priority
+                  />
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
 
-        {/* Desktop Navigation Links - Center aligned with logo */}
-        <div className="hidden lg:flex items-center justify-center flex-grow gap-8">
-          {NAV_LINKS.map((link) => (
-            <a 
-              key={link.label} 
-              href={link.href} 
-              onClick={(e) => handleNavClick(e, link.label, link.href)}
-              className={`text-sm font-medium transition-colors ${linkBaseClass} cursor-pointer`}
-            >
-              {link.label}
-            </a>
-          ))}
-          {/* Contact Us Link */}
-          <a 
-            href="#" 
-            onClick={(e) => handleNavClick(e, 'Contact Us', '/contact')}
-            className={`text-sm font-medium transition-colors ${linkBaseClass} cursor-pointer`}
-          >
-            Contact Us
-          </a>
-        </div>
-
-        {/* Desktop Buttons - Right aligned */}
-        <div className="hidden lg:flex items-center justify-end flex-shrink-0 gap-4">
-          <button 
-            onClick={handleFindJobClick}
-            className={`${primaryButtonClass} px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:opacity-90 transition-colors whitespace-nowrap`}
-          >
-            Find a job <ArrowRight size={14} />
-          </button>
-          
-          <button 
-            onClick={handleRequestTalentsClick}
-            className="bg-teal-400 text-gray-900 px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-teal-500 transition-colors whitespace-nowrap"
-          >
-            Request for talents <ArrowRight size={14} />
-          </button>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button 
-          className={`lg:hidden ${mobileToggleColor} ml-4`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-black/95 text-white p-6 border-t border-gray-800 flex flex-col gap-4 mt-2">
-          {NAV_LINKS.map((link) => (
-            <a 
-              key={link.label} 
-              href={link.href} 
-              className="text-lg font-medium transition-colors hover:text-gray-300 cursor-pointer"
-              onClick={(e) => handleNavClick(e, link.label, link.href)}
-            >
-              {link.label}
-            </a>
-          ))}
-          {/* Mobile Contact Us Link */}
-          <a 
-            href="#" 
-            className="text-lg font-medium transition-colors hover:text-gray-300 cursor-pointer"
-            onClick={(e) => handleNavClick(e, 'Contact Us', '/contact')}
-          >
-            Contact Us
-          </a>
-          <div className="flex flex-col gap-3 mt-4">
+            {/* Close Button - Always white */}
             <button 
-              onClick={handleFindJobClick}
-              className="bg-white text-gray-900 px-5 py-3 rounded-full text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-colors"
+              className="lg:hidden text-white"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              Find a job <ArrowRight size={16} />
-            </button>
-            <button 
-              onClick={handleRequestTalentsClick}
-              className="bg-teal-400 text-gray-900 px-5 py-3 rounded-full text-sm font-bold flex items-center justify-center gap-2 hover:bg-teal-500 transition-colors"
-            >
-              Request for talents <ArrowRight size={16} />
+              <X size={24} />
             </button>
           </div>
+
+          {/* Navigation Links Container - Attached to header */}
+          <div className="flex-1 bg-black/95 px-6 md:px-10 lg:px-20 py-8 flex flex-col">
+            {NAV_LINKS.map((link) => (
+              <a 
+                key={link.label} 
+                href={link.href} 
+                className="text-lg font-medium text-white hover:text-gray-300 cursor-pointer py-4 border-b border-gray-800 transition-colors"
+                onClick={(e) => handleNavClick(e, link.label, link.href)}
+              >
+                {link.label}
+              </a>
+            ))}
+            {/* Mobile Contact Us Link */}
+            <a 
+              href="#" 
+              className="text-lg font-medium text-white hover:text-gray-300 cursor-pointer py-4 border-b border-gray-800 transition-colors"
+              onClick={(e) => handleNavClick(e, 'Contact Us', '/contact')}
+            >
+              Contact Us
+            </a>
+            <div className="flex flex-col gap-4 mt-8 pt-8 border-t border-gray-800">
+              <button 
+                onClick={handleFindJobClick}
+                className="bg-white text-gray-900 px-5 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-colors"
+              >
+                Find a job <ArrowRight size={16} />
+              </button>
+              <button 
+                onClick={handleRequestTalentsClick}
+                className="bg-teal-400 text-gray-900 px-5 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-2 hover:bg-teal-500 transition-colors"
+              >
+                Request for talents <ArrowRight size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* Regular Navbar - Only shown when mobile menu is closed */
+        <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-14 lg:h-16">
+          {/* Logo */}
+          <div className="flex items-center justify-center flex-shrink-0">
+            <a 
+              href="#" 
+              onClick={handleLogoClick} 
+              className={`flex items-center ${logoColorClass}`}
+            >
+              <div className="relative w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center">
+                <Image
+                  src={logoImage}
+                  alt="Prudent Resources Logo"
+                  width={96}
+                  height={96}
+                  className="object-contain w-full h-full transition-opacity duration-300"
+                  priority
+                />
+              </div>
+            </a>
+          </div>
+
+          {/* Desktop Navigation Links - Center aligned with logo */}
+          <div className="hidden lg:flex items-center justify-center flex-grow gap-8">
+            {NAV_LINKS.map((link) => (
+              <a 
+                key={link.label} 
+                href={link.href} 
+                onClick={(e) => handleNavClick(e, link.label, link.href)}
+                className={`text-sm font-medium transition-colors ${linkBaseClass} cursor-pointer`}
+              >
+                {link.label}
+              </a>
+            ))}
+            {/* Contact Us Link */}
+            <a 
+              href="#" 
+              onClick={(e) => handleNavClick(e, 'Contact Us', '/contact')}
+              className={`text-sm font-medium transition-colors ${linkBaseClass} cursor-pointer`}
+            >
+              Contact Us
+            </a>
+          </div>
+
+          {/* Desktop Buttons - Right aligned */}
+          <div className="hidden lg:flex items-center justify-end flex-shrink-0 gap-4">
+            <button 
+              onClick={handleFindJobClick}
+              className={`${primaryButtonClass} px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:opacity-90 transition-colors whitespace-nowrap`}
+            >
+              Find a job <ArrowRight size={14} />
+            </button>
+            
+            <button 
+              onClick={handleRequestTalentsClick}
+              className="bg-teal-400 text-gray-900 px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 hover:bg-teal-500 transition-colors whitespace-nowrap"
+            >
+              Request for talents <ArrowRight size={14} />
+            </button>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className={`lg:hidden ${mobileToggleColor} ml-4`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <Menu size={24} />
+          </button>
         </div>
       )}
     </nav>

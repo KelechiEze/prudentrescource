@@ -58,7 +58,8 @@ const ServiceDetails: React.FC = () => {
         </div>
         
         {/* Floating Card Overlay - Moved more to the right */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 lg:bottom-12 lg:left-[4%] max-w-lg lg:max-w-2xl w-[90%] lg:w-[600px] z-10">
+        {/* On mobile: Card appears directly below main image with reasonable spacing */}
+        <div className="absolute top-[calc(100%+20px)] left-1/2 transform -translate-x-1/2 lg:absolute lg:bottom-12 lg:left-[4%] lg:top-auto lg:transform-none max-w-lg lg:max-w-2xl w-[90%] lg:w-[600px] z-10">
           <div className="bg-[#1B2C42] rounded-[6px] overflow-hidden shadow-2xl flex flex-col lg:flex-row h-auto lg:h-48 p-[13px]">
             
             {/* Image Section - Takes less space */}

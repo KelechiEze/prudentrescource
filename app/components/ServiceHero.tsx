@@ -17,13 +17,13 @@ const ServiceHero: React.FC = () => {
         {/* Heading - Larger font size with manual line breaks */}
         <h1 className="font-serif text-4xl md:text-5xl text-[#1a1a1a] mb-6 leading-[130%] max-w-4xl">
           Uniting Healthcare Organizations<br />
-          with Caring, Highly Skilled Professionals
+          with Highly Skilled Professionals
         </h1>
 
         {/* Description - Manual line break */}
         <p className="text-gray-600 text-base md:text-lg leading-[150%] max-w-2xl">
-          We partner with healthcare organizations to navigate staffing
-          needs proactively, <br /> connecting skilled professionals with rewarding opportunities.
+          We partner with healthcare organizations to navigate staffing needs proactively
+          , <br /> connecting skilled professionals with rewarding opportunities across multiple specialties.
         </p>
 
       </div>

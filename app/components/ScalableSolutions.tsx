@@ -1,8 +1,19 @@
 'use client';
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const ScalableSolutions: React.FC = () => {
+  const router = useRouter();
+
+  const handleFindJobsClick = () => {
+    router.push('/jobsearch');
+  };
+
+  const handleRequestTalentsClick = () => {
+    router.push('/staffrequest');
+  };
+
   return (
     <section className="pt-2 pb-[58px] bg-white">
       {/* Removed max-width constraint and reduced padding for closer edges */}
@@ -49,11 +60,17 @@ const ScalableSolutions: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <button className="bg-[#1B2C42] hover:bg-[#152233] text-white px-8 p-4 rounded-full text-base font-semibold flex items-center justify-center gap-2 transition-all">
+            <button 
+              onClick={handleFindJobsClick}
+              className="bg-[#1B2C42] hover:bg-[#152233] text-white px-8 p-4 rounded-full text-base font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+            >
               Find job opportunities <ArrowRight size={18} />
             </button>
             
-            <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-8 py-4 rounded-full text-base font-semibold flex items-center justify-center gap-2 transition-all">
+            <button 
+              onClick={handleRequestTalentsClick}
+              className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-8 py-4 rounded-full text-base font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+            >
               Request for talents <ArrowRight size={18} />
             </button>
           </div>

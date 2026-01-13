@@ -1,8 +1,19 @@
 'use client';
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const ServicesCTA: React.FC = () => {
+  const router = useRouter();
+
+  const handleBrowseJobsClick = () => {
+    router.push('/career');
+  };
+
+  const handleSubmitStaffingRequestClick = () => {
+    router.push('/staffrequest');
+  };
+
   return (
     <section className="py-[72px] bg-white">
       {/* Removed max-width constraint and adjusted padding for closer edges */}
@@ -19,7 +30,10 @@ const ServicesCTA: React.FC = () => {
               help you grow professionally, and ensure your work is truly rewarded.
             </p>
             
-            <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-sm">
+            <button 
+              onClick={handleBrowseJobsClick}
+              className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer"
+            >
               Browse job opportunities <ArrowRight size={18} />
             </button>
           </div>
@@ -35,7 +49,10 @@ const ServicesCTA: React.FC = () => {
               you can count on—anytime you need them."
             </p>
             
-            <button className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg">
+            <button 
+              onClick={handleSubmitStaffingRequestClick}
+              className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg cursor-pointer"
+            >
               Submit Staffing Request <ArrowRight size={18} />
             </button>
           </div>

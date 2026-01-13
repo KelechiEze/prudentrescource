@@ -1,6 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+'use client';
+import React, { useRef, useState } from 'react';
 import { CheckCircle, Search, ArrowRight } from 'lucide-react';
 import { HERO_VIDEO_URL } from '../../constants';
+import { useRouter } from 'next/navigation';
 
 interface HeroProps {
   onSearch: () => void;
@@ -8,8 +10,30 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onSearch }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
 
-  useEffect(() => {
+  const handleSearch = () => {
+    // Call the original onSearch prop
+    if (onSearch) {
+      onSearch();
+    }
+    
+    // Navigate to jobsearch page with query
+    if (searchQuery.trim()) {
+      router.push(`/jobsearch?q=${encodeURIComponent(searchQuery)}`);
+    } else {
+      router.push('/jobsearch');
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  React.useEffect(() => {
     const playVideo = async () => {
       if (videoRef.current) {
         // Subtle slow-motion effect for premium feel
@@ -49,7 +73,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
         {/* Current value: mt-24. Adjust with mt-8, mt-12, mt-16, mt-20, mt-24, mt-28, mt-32, etc. */}
         <div className="mb-16 mt-24">
           {/* ADJUST HEADING SIZE HERE */}
-          {/* Current sizes: text-4xl md:text-6xl lg:text-[85px] */}
+          {/* Current sizes: text-4xl md:text-6xl lg:text-[75px] */}
           {/* Adjust text size classes: text-3xl, text-4xl, text-5xl, text-6xl, etc. */}
           {/* For custom size: lg:text-[70px], lg:text-[85px], lg:text-[100px], etc. */}
            <h1 className="font-serif text-4xl md:text-6xl lg:text-[75px] leading-[110%] mb-8 text-white font-normal tracking-tight">
@@ -89,33 +113,36 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
             ))}
           </div>
 
-         {/* Search bar and button - Reduced size */}
-<div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-lg">
-  {/* ADJUST SEARCH BAR SIZE HERE */}
-  {/* Current: h-12 px-5 */}
-  {/* Adjust height: h-10, h-12, h-14 */}
-  {/* Adjust horizontal padding: px-4, px-5, px-6 */}
-  <div className="flex-1 w-full bg-white/10 backdrop-blur-2xl rounded-full h-12 px-5 flex items-center gap-3 border border-white/20 transition-all focus-within:bg-white/20 focus-within:border-teal-400/50">
-    <Search className="text-white/60 w-3.5 h-3.5" />
-    <input 
-      type="text" 
-      placeholder="Search your discipline" 
-      className="bg-transparent border-none outline-none text-white placeholder-white/40 w-full h-full text-sm font-light"
-    />
-  </div>
-  
-  {/* ADJUST SEARCH BUTTON SIZE HERE */}
-  {/* Current: h-12 px-8 text-xs */}
-  {/* Adjust height: h-10, h-12, h-14 */}
-  {/* Adjust horizontal padding: px-6, px-8, px-10 */}
-  {/* Adjust text size: text-xs, text-sm */}
-  <button 
-    onClick={onSearch}
-    className="w-full sm:w-auto h-12 px-8 bg-teal-400 hover:bg-teal-500 text-gray-900 text-xs font-bold rounded-full flex items-center justify-center gap-2 transition-all tracking-widest shadow-[0_0_15px_rgba(104,207,163,0.3)] active:scale-95 whitespace-nowrap"
-  >
-    Search <ArrowRight size={14} />
-  </button>
-</div>
+          {/* Search bar and button - Fixed mobile width issue */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-lg">
+            {/* ADJUST SEARCH BAR SIZE HERE */}
+            {/* Current: h-12 px-5 */}
+            {/* Adjust height: h-10, h-12, h-14 */}
+            {/* Adjust horizontal padding: px-4, px-5, px-6 */}
+            <div className="w-full sm:flex-1 bg-white/10 backdrop-blur-2xl rounded-full h-12 px-5 flex items-center gap-3 border border-white/20 transition-all focus-within:bg-white/20 focus-within:border-teal-400/50">
+              <Search className="text-white/60 w-3.5 h-3.5" />
+              <input 
+                type="text" 
+                placeholder="Search your discipline" 
+                className="bg-transparent border-none outline-none text-white placeholder-white/40 w-full h-full text-sm font-light"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+            </div>
+            
+            {/* ADJUST SEARCH BUTTON SIZE HERE */}
+            {/* Current: h-12 px-8 text-xs */}
+            {/* Adjust height: h-10, h-12, h-14 */}
+            {/* Adjust horizontal padding: px-6, px-8, px-10 */}
+            {/* Adjust text size: text-xs, text-sm */}
+            <button 
+              onClick={handleSearch}
+              className="w-full sm:w-auto h-12 px-8 bg-teal-400 hover:bg-teal-500 text-gray-900 text-xs font-bold rounded-full flex items-center justify-center gap-2 transition-all tracking-widest shadow-[0_0_15px_rgba(104,207,163,0.3)] active:scale-95 whitespace-nowrap"
+            >
+              Search <ArrowRight size={14} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
