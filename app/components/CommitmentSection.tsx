@@ -26,11 +26,11 @@ const CommitmentSection: React.FC = () => {
           <span className="text-gray-900"> — matching skilled professionals with the places that need them most.</span>
         </h2>
         
-        {/* Cards Grid - Perfect horizontal alignment */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-2">
+        {/* Cards Grid - Perfect horizontal alignment with mobile spacing */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-2 px-[7px] md:px-0">
           
           {/* Card 1: For Professionals */}
-          <div className="relative group overflow-hidden lg:min-h-[700px] bg-blue-50 rounded-[6px]">
+          <div className="relative group overflow-hidden min-h-[600px] lg:min-h-[700px] bg-blue-50 rounded-[6px]">
             {/* Background Image Layer - Removed opacity */}
             <div className="absolute inset-0 z-0">
                <img 
@@ -70,7 +70,7 @@ const CommitmentSection: React.FC = () => {
           </div>
 
           {/* Card 2: For Organizations */}
-          <div className="relative overflow-hidden lg:min-h-[700px] bg-[#E3E8DE] mt-2 lg:mt-0 rounded-[6px]">
+          <div className="relative overflow-hidden min-h-[600px] lg:min-h-[700px] bg-[#E3E8DE] mt-2 lg:mt-0 rounded-[6px]">
             {/* Content - Same padding structure as Card 1 */}
             <div className="relative z-10 p-8 pt-12 pb-12 h-full flex flex-col justify-between">
               <div>

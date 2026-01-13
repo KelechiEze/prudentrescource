@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Hedvig_Letters_Serif } from "next/font/google";
-import TopBar from "./components/TopBar"; // Add this import
+import TopBar from "./components/TopBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";

@@ -215,19 +215,19 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
         <div className="flex flex-col min-h-screen">
           {/* Header with Logo and Close Button */}
           <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-16 border-b border-gray-800">
-            {/* Logo */}
+            {/* Logo - 140px size for mobile menu */}
             <div className="flex items-center justify-center flex-shrink-0">
               <a 
                 href="#" 
                 onClick={handleLogoClick} 
                 className="flex items-center text-white"
               >
-                <div className="relative w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center">
+                <div className="relative w-28 h-28 lg:w-35 lg:h-35 flex items-center justify-center">
                   <Image
                     src="/logoprudent.png" // Always white logo when mobile menu is open
                     alt="Prudent Resources Logo"
-                    width={96}
-                    height={96}
+                    width={140}
+                    height={140}
                     className="object-contain w-full h-full transition-opacity duration-300"
                     priority
                   />
@@ -283,19 +283,19 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       ) : (
         /* Regular Navbar - Only shown when mobile menu is closed */
         <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-14 lg:h-16">
-          {/* Logo */}
+          {/* Logo - 140px size */}
           <div className="flex items-center justify-center flex-shrink-0">
             <a 
               href="#" 
               onClick={handleLogoClick} 
               className={`flex items-center ${logoColorClass}`}
             >
-              <div className="relative w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center">
+              <div className="relative w-28 h-28 lg:w-35 lg:h-35 flex items-center justify-center -ml-3 -mt-3 lg:-ml-5 lg:-mt-5">
                 <Image
                   src={logoImage}
                   alt="Prudent Resources Logo"
-                  width={96}
-                  height={96}
+                  width={140}
+                  height={140}
                   className="object-contain w-full h-full transition-opacity duration-300"
                   priority
                 />
