@@ -90,11 +90,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
   const getLogoImage = () => {
     // When mobile menu is open, always show white logo
     if (isMobileMenuOpen) {
-      return '/logoprudent.png';
+      return '/yeslogo.png';
     }
     
     if (isScrolled) {
-      return '/logoprudent.png'; // Always show light logo when scrolled
+      return '/yeslogo.png'; // Always show light logo when scrolled
     }
     
     // Show dark logo for specific pages
@@ -103,7 +103,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     }
     
     // Default to light logo for other pages
-    return '/logoprudent.png';
+    return '/yeslogo.png';
   };
 
   const logoImage = getLogoImage();
