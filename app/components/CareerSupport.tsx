@@ -1,11 +1,18 @@
 'use client';
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const CareerSupport: React.FC = () => {
+  const router = useRouter();
+
+  const handleContactClick = () => {
+    router.push('/contact');
+  };
+
   return (
     <section className="bg-white">
-      <div className=" mx-auto px-2">
+      <div className="mx-auto px-2">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           
           {/* Column 1: Image */}
@@ -33,7 +40,10 @@ const CareerSupport: React.FC = () => {
             
             <div>
               <div className="border-t border-gray-200 w-full mb-6"></div>
-              <button className="group flex items-center gap-2 text-[#1B2C42] font-semibold text-lg transition-all hover:text-teal-600">
+              <button 
+                onClick={handleContactClick}
+                className="group flex items-center gap-2 text-[#1B2C42] font-semibold text-lg transition-all hover:text-teal-600 cursor-pointer"
+              >
                 Contact us for career support 
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-2" />
               </button>

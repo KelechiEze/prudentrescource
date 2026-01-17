@@ -73,13 +73,12 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
         {/* Current value: mt-24. Adjust with mt-8, mt-12, mt-16, mt-20, mt-24, mt-28, mt-32, etc. */}
         <div className="mb-16 mt-24">
           {/* ADJUST HEADING SIZE HERE */}
-          {/* Current sizes: text-4xl md:text-6xl lg:text-[75px] */}
-          {/* Adjust text size classes: text-3xl, text-4xl, text-5xl, text-6xl, etc. */}
-          {/* For custom size: lg:text-[70px], lg:text-[85px], lg:text-[100px], etc. */}
-          <h1 className="font-serif text-3xl md:text-5xl lg:text-[60px] leading-[110%] mb-8 text-white font-normal tracking-tight">
-  Connecting Qualified Healthcare  <br className="hidden lg:block" />
-  Professionals with Care Organizations
-</h1>
+          {/* Current sizes: text-3xl md:text-5xl lg:text-[60px] */}
+          {/* Increased line height from leading-[110%] to leading-[1.3] for more space between lines */}
+          <h1 className="font-serif text-3xl md:text-5xl lg:text-[60px] leading-[1.3] mb-8 text-white font-normal tracking-tight">
+            Connecting Qualified Healthcare  <br className="hidden lg:block" />
+            Professionals with Care Organizations
+          </h1>
           
           {/* ADJUST PARAGRAPH SIZE HERE */}
           {/* Current sizes: text-base md:text-xl */}

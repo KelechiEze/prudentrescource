@@ -1,8 +1,45 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const Footer: React.FC = () => {
+  const router = useRouter();
+
+  const handleNavigation = (page: string) => {
+    switch(page) {
+      case 'home':
+        router.push('/');
+        break;
+      case 'professionals':
+        router.push('/career');
+        break;
+      case 'organizations':
+        router.push('/organizations');
+        break;
+      case 'service':
+        router.push('/services');
+        break;
+      case 'contact':
+        router.push('/contact');
+        break;
+      case 'facebook':
+        window.open('https://facebook.com', '_blank');
+        break;
+      case 'twitter':
+        window.open('https://twitter.com', '_blank');
+        break;
+      case 'linkedin':
+        window.open('https://linkedin.com', '_blank');
+        break;
+      case 'instagram':
+        window.open('https://instagram.com', '_blank');
+        break;
+      default:
+        router.push('/');
+    }
+  };
+
   return (
     <footer className="bg-[#E3E8DE] pt-16 pb-8 text-[#1B2C42] font-sans relative">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
@@ -13,13 +50,14 @@ const Footer: React.FC = () => {
           {/* Logo Column - Aligned to top with links */}
           <div className="lg:col-span-4">
             <div className="flex items-start gap-3 h-full">
-              <div className="relative w-28 h-28 lg:w-35 lg:h-35 flex items-start justify-center">
+              <div className="relative w-[132px] h-[132px] flex items-start justify-center -ml-3 -mt-3 cursor-pointer" onClick={() => handleNavigation('home')}>
                 <Image
                   src="/logodark.png"
                   alt="Prudent Resources Logo"
-                  width={140}  
-                  height={140} 
+                  width={132}
+                  height={132}
                   className="object-contain w-full h-full"
+                  priority
                 />
               </div>
             </div>
@@ -27,18 +65,45 @@ const Footer: React.FC = () => {
 
           {/* Links Column - Aligned to top */}
           <div className="lg:col-span-4 flex flex-col justify-start gap-4">
-            {["About", "For Professionals", "For Organizations", "Our Service", "Contact"].map((item) => (
-              <a key={item} href="#" className="text-[#1B2C42] hover:opacity-70 transition-opacity text-[16px]">
-                {item}
+            {[
+              { label: "Home", page: "home" },
+              { label: "For Professionals", page: "professionals" },
+              { label: "For Organizations", page: "organizations" },
+              { label: "Our Service", page: "service" },
+              { label: "Contact", page: "contact" }
+            ].map((item) => (
+              <a 
+                key={item.page} 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation(item.page);
+                }}
+                className="text-[#1B2C42] hover:opacity-70 transition-opacity text-[16px] cursor-pointer"
+              >
+                {item.label}
               </a>
             ))}
           </div>
 
           {/* Social Column - Aligned to top */}
           <div className="lg:col-span-4 flex flex-col justify-start gap-4">
-            {["Facebook", "Twitter", "Linkedin", "Instagram"].map((item) => (
-              <a key={item} href="#" className="text-[#1B2C42] hover:opacity-70 transition-opacity text-[16px]">
-                {item}
+            {[
+              { label: "Facebook", page: "facebook" },
+              { label: "Twitter", page: "twitter" },
+              { label: "Linkedin", page: "linkedin" },
+              { label: "Instagram", page: "instagram" }
+            ].map((item) => (
+              <a 
+                key={item.page} 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation(item.page);
+                }}
+                className="text-[#1B2C42] hover:opacity-70 transition-opacity text-[16px] cursor-pointer"
+              >
+                {item.label}
               </a>
             ))}
           </div>

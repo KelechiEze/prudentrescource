@@ -1,8 +1,15 @@
 'use client';
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const PartnerAdvantage: React.FC = () => {
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push('/staffrequest');
+  };
+
   return (
     <section className="pt-[72px] bg-white">
       {/* Reduced padding for even closer edges */}
@@ -57,7 +64,10 @@ const PartnerAdvantage: React.FC = () => {
                 </div>
 
                 <div>
-                    <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all shadow-sm shadow-teal-900/10">
+                    <button 
+                      onClick={handleButtonClick}
+                      className="bg-[#68cfa3] hover:bg-[#5abf94] text-gray-900 px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all shadow-sm shadow-teal-900/10 cursor-pointer"
+                    >
                         Request Staffing Service <ArrowRight size={18} />
                     </button>
                 </div>

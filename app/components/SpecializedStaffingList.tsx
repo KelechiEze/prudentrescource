@@ -18,7 +18,7 @@ const SpecializedStaffingList: React.FC = () => {
   ];
 
   const handleFindOpportunitiesClick = () => {
-    router.push('/submitresume');
+    router.push('/jobsearch');
   };
 
   return (
@@ -51,7 +51,7 @@ const SpecializedStaffingList: React.FC = () => {
         {/* Bottom Section: List and Wide Image */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* List Column - UPDATED: Reduced gap from gap-6 to gap-4 */}
+          {/* List Column */}
           <div className="lg:col-span-5 flex flex-col gap-4 pt-4">
             {roles.map((role, index) => (
               <div key={index} className="flex items-center gap-4 group">
@@ -63,7 +63,7 @@ const SpecializedStaffingList: React.FC = () => {
             ))}
           </div>
 
-          {/* Wide Image Column (Span 7/12 for that wide look) */}
+          {/* Wide Image Column */}
           <div className="lg:col-span-7 relative">
             <div className="rounded-[9px] overflow-hidden shadow-sm aspect-[16/10] lg:aspect-[1.6/1]">
               <img 

@@ -4,7 +4,7 @@ import React from 'react';
 const ServiceHero: React.FC = () => {
   return (
     <section className="bg-white pt-36 pb-[72px]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-6">
         
         {/* Label */}
         <div className="flex items-center gap-3 mb-6">
@@ -20,10 +20,10 @@ const ServiceHero: React.FC = () => {
           with Highly Skilled Professionals
         </h1>
 
-        {/* Description - Manual line break */}
-        <p className="text-gray-600 text-base md:text-lg leading-[150%] max-w-2xl">
-          We partner with healthcare organizations to navigate staffing needs proactively
-          , <br /> connecting skilled professionals with rewarding opportunities across multiple specialties.
+        {/* Description - Strictly two lines with "connecting" starting the second line */}
+        <p className="text-gray-600 text-base md:text-lg leading-[150%] max-w-3xl">
+          We partner with healthcare organizations to navigate staffing needs proactively,<br />
+          connecting skilled professionals with rewarding opportunities across multiple specialties.
         </p>
 
       </div>

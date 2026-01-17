@@ -26,6 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
     if (pathname.startsWith('/behavioral-health')) return 'behavioral-health';
     if (pathname.startsWith('/addiction')) return 'addiction';
     if (pathname.startsWith('/residential')) return 'residential';
+    if (pathname.startsWith('/job-details')) return 'job-details'; // Added job-details route
     return 'home';
   };
 
@@ -42,7 +43,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       '/jobsearch',
       '/submitresume',
       '/contact',
-      '/login'
+      '/login',
+      '/job-details' // Added job-details route for black nav links
     ];
     
     return darkNavPages.some(page => pathname.startsWith(page));
@@ -75,7 +77,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       '/staffrequest',
       '/jobsearch',
       '/submitresume',
-      '/login'
+      '/login',
+      '/job-details' // Added job-details route for dark logo
     ];
     
     return darkLogoPages.some(page => pathname.startsWith(page));
@@ -201,7 +204,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
           ? 'top-0' // When scrolled, stick to top
           : isMobileMenuOpen
             ? 'top-0' // When mobile menu is open, stick to top
-            : 'top-4 lg:top-12' // INCREASED: More space from top for desktop
+            : 'top-4 lg:top-12' // Space from top for desktop
       } ${
         isScrolled || isMobileMenuOpen 
           ? 'bg-black/95 backdrop-blur-md py-0' // Dark background when scrolled/menu open
@@ -222,7 +225,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
                 onClick={handleLogoClick} 
                 className="flex items-center text-white"
               >
-                <div className="relative w-36 h-36 lg:w-44 lg:h-44 flex items-center justify-center">
+                <div className="relative w-[176px] h-[176px] flex items-center justify-center">
                   <Image
                     src="/logoprudent.png" // Always white logo when mobile menu is open
                     alt="Prudent Resources Logo"
@@ -283,19 +286,24 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage: propCurrentPage, onNavigat
       ) : (
         /* Regular Navbar - Only shown when mobile menu is closed */
         <div className="max-w-[1920px] mx-auto px-6 md:px-10 lg:px-20 flex items-center justify-between h-14 lg:h-16">
-          {/* Logo - Larger size for better visibility */}
+          {/* Logo - Perfect vertical alignment */}
           <div className="flex items-center justify-center flex-shrink-0">
             <a 
               href="#" 
               onClick={handleLogoClick} 
               className={`flex items-center ${logoColorClass}`}
             >
-              <div className="relative w-36 h-36 lg:w-44 lg:h-44 flex items-center justify-center -ml-4 -mt-4 lg:-ml-6 lg:-mt-6">
+              {/* Fixed: Perfect vertical alignment with transform-origin */}
+              <div className={`relative flex items-center justify-center transition-all duration-300 ${
+                isScrolled 
+                  ? 'w-[132px] h-[132px] scale-100 -translate-y-0' // Match footer size exactly (132px = 176px * 0.75)
+                  : 'w-[176px] h-[176px] -ml-2 -mt-2' // Original size
+              }`}>
                 <Image
                   src={logoImage}
                   alt="Prudent Resources Logo"
-                  width={176}
-                  height={176}
+                  width={isScrolled ? 132 : 176}
+                  height={isScrolled ? 132 : 176}
                   className="object-contain w-full h-full transition-opacity duration-300"
                   priority
                 />

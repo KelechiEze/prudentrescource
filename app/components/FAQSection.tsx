@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { HelpCircle, ArrowRight, Plus, Minus } from 'lucide-react';
+import { HelpCircle, ArrowRight, Plus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface FAQItem {
   question: string;
@@ -9,6 +10,7 @@ interface FAQItem {
 
 const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const router = useRouter();
 
   const faqs: FAQItem[] = [
     {
@@ -45,6 +47,10 @@ const FAQSection: React.FC = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const handleContactClick = () => {
+    router.push('/contact');
+  };
+
   return (
     <section className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -74,7 +80,10 @@ const FAQSection: React.FC = () => {
                 <span className="font-sans">Need further support?</span>
               </div>
 
-              <button className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-10 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg w-fit active:scale-95">
+              <button 
+                onClick={handleContactClick}
+                className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-10 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg w-fit active:scale-95 cursor-pointer"
+              >
                 Contact us <ArrowRight size={18} />
               </button>
             </div>
@@ -82,7 +91,7 @@ const FAQSection: React.FC = () => {
 
           {/* Right Column - Accordion */}
           <div className="lg:col-span-7">
-            <div className="bg-[#EFF3F9] rounded-[6px] p-6 md:p-10 lg:p-12 shadow-sm border border-[#E1E7EE]"> {/* Changed to 6px border radius */}
+            <div className="bg-[#EFF3F9] rounded-[6px] p-6 md:p-10 lg:p-12 shadow-sm border border-[#E1E7EE]">
               <div className="flex flex-col gap-2">
                 {faqs.map((faq, index) => {
                   const isOpen = openIndex === index;
@@ -93,7 +102,7 @@ const FAQSection: React.FC = () => {
                     >
                       <button 
                         onClick={() => toggleFAQ(index)}
-                        className="w-full flex items-center justify-between gap-6 py-6 text-left focus:outline-none"
+                        className="w-full flex items-center justify-between gap-6 py-6 text-left focus:outline-none cursor-pointer"
                       >
                         <h3 className={`font-sans font-bold text-lg md:text-[19px] transition-colors duration-300 leading-tight ${isOpen ? 'text-[#1B2C42]' : 'text-[#1B2C42]/80 group-hover:text-[#1B2C42]'}`}>
                           {faq.question}

@@ -1,8 +1,15 @@
 'use client';
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const OrganizationTrust: React.FC = () => {
+  const router = useRouter();
+
+  const handleContactClick = () => {
+    router.push('/contact');
+  };
+
   return (
     <section className="pt-[56px] bg-white">
       <div className="mx-auto px-2">
@@ -36,7 +43,7 @@ const OrganizationTrust: React.FC = () => {
           <div className="bg-[#FFBCA0] rounded-xl p-8 lg:p-10 flex flex-col justify-between min-h-[500px]">
             <div>
               <p className="text-[#1B2C42] text-lg leading-relaxed mb-10 font-medium">
-                We respond quickly — whether you’re filling a same-day shift or planning ahead 
+                We respond quickly — whether you're filling a same-day shift or planning ahead 
                 — ensuring you always stay fully staffed and supported.
               </p>
               
@@ -47,7 +54,10 @@ const OrganizationTrust: React.FC = () => {
             
             <div>
               <div className="border-t border-[#1B2C42]/20 w-full mb-6"></div>
-              <button className="group flex items-center gap-2 text-[#1B2C42] font-semibold text-lg transition-all hover:opacity-80">
+              <button 
+                onClick={handleContactClick}
+                className="group flex items-center gap-2 text-[#1B2C42] font-semibold text-lg transition-all hover:opacity-80 cursor-pointer"
+              >
                 Contact us for staffing support
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-2" />
               </button>

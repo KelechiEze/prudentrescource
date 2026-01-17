@@ -1,8 +1,15 @@
 'use client';
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const OrganizationsHero: React.FC = () => {
+  const router = useRouter();
+
+  const handleRequestTalent = () => {
+    router.push('/staffrequest');
+  };
+
   return (
     <section className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden mt-24 lg:mt-28">
       {/* Background Image */}
@@ -34,9 +41,12 @@ const OrganizationsHero: React.FC = () => {
           to deliver exceptional patient outcomes.
         </p>
 
-        {/* Updated: Single centered button */}
+        {/* Updated: Single centered button with click handler */}
         <div className="flex items-center justify-center">
-          <button className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg">
+          <button 
+            onClick={handleRequestTalent}
+            className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg cursor-pointer"
+          >
             Request For Talents <ArrowRight size={18} />
           </button>
         </div>
