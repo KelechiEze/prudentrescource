@@ -15,7 +15,7 @@ const globalStyles = `
   </style>
 `
 
-const headerHtml = `
+const headerHtml = `x
   <div class="header">
     <h1 style="margin:0; font-size:24px;">Takeover Training Program</h1>
     <p style="margin:5px 0 0 0; opacity:0.9;">Support Center</p>
@@ -46,11 +46,11 @@ export function wrapEmailHtml(bodyHtml) {
     </head>
     <body>
       <div class="container">
-        ${headerHtml}
+      
         <div class="body">
           ${bodyHtml}
         </div>
-        ${footerHtml}
+       
       </div>
     </body>
     </html>

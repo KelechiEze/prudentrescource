@@ -156,6 +156,101 @@ async function convertFileToBuffer(file: File): Promise<Buffer> {
   return Buffer.from(arrayBuffer);
 }
 
+// async function saveStaffingRequest(
+//   formData: StaffingFormData,
+//   jobDescriptionFile: File,
+//   ip: string,
+//   userAgent: string
+// ): Promise<number> {
+//   let connection;
+//   try {
+//     connection = await db.getConnection();
+    
+//     // Start transaction
+//     await connection.beginTransaction();
+    
+//     // Convert file to buffer
+//     const fileBuffer = await convertFileToBuffer(jobDescriptionFile);
+    
+//     // Save staffing request
+//     const requestSql = `
+//       INSERT INTO staffing_requests 
+//       (first_name, last_name, company_name, email, phone, city, state,
+//        job_description_file_name, job_description_file_type, job_description_file_size, job_description_file_content,
+//        comments, ip_address, user_agent, submitted_at, status) 
+//       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'pending')
+//     `;
+    
+//     const [requestResult]: any = await connection.execute(requestSql, [
+//       formData.firstName.trim(),
+//       formData.lastName.trim(),
+//       formData.companyName.trim(),
+//       formData.email.trim().toLowerCase(),
+//       formData.phone.trim(),
+//       formData.city.trim(),
+//       formData.state.trim(),
+//       jobDescriptionFile.name,
+//       jobDescriptionFile.type,
+//       jobDescriptionFile.size,
+//       fileBuffer,
+//       formData.comments?.trim() || null,
+//       ip,
+//       userAgent
+//     ]);
+    
+//     const staffingRequestId = requestResult.insertId;
+    
+//     // Save position requests
+//     const positionSql = `
+//       INSERT INTO position_requests (staffing_request_id, job_title, hire_type, position_order)
+//       VALUES (?, ?, ?, ?)
+//     `;
+    
+//     for (let i = 0; i < formData.positions.length; i++) {
+//       const position = formData.positions[i];
+//       await connection.execute(positionSql, [
+//         staffingRequestId,
+//         position.jobTitle.trim(),
+//         position.hireType,
+//         i + 1
+//       ]);
+//     }
+    
+//     // Log the request
+//     await connection.execute(
+//       `INSERT INTO staffing_request_logs (staffing_request_id, email, action, details, ip_address)
+//        VALUES (?, ?, ?, ?, ?)`,
+//       [staffingRequestId, formData.email, 'submission', 'New staffing request submitted', ip]
+//     );
+    
+//     // Commit transaction
+//     await connection.commit();
+    
+//     return staffingRequestId;
+//   } catch (error) {
+//     // Rollback transaction on error
+//     if (connection) {
+//       await connection.rollback();
+//     }
+//     console.error('Database save error:', error);
+//     throw error;
+//   } finally {
+//     if (connection) connection.release();
+//   }
+// }
+// --- Helper to sanitize and truncate file names ---
+function sanitizeFileName(fileName: string, maxLength = 100) {
+  if (!fileName) return 'unknown';
+  const ext = fileName.includes('.') ? fileName.split('.').pop() : '';
+  let baseName = fileName.replace(/\.[^/.]+$/, '');
+  if (baseName.length > maxLength) {
+    baseName = baseName.slice(0, maxLength);
+  }
+  return ext ? `${baseName}.${ext}` : baseName;
+}
+
+
+// --- Updated saveStaffingRequest ---
 async function saveStaffingRequest(
   formData: StaffingFormData,
   jobDescriptionFile: File,
@@ -165,14 +260,14 @@ async function saveStaffingRequest(
   let connection;
   try {
     connection = await db.getConnection();
-    
-    // Start transaction
     await connection.beginTransaction();
-    
+
+    // Sanitize file name and add timestamp
+    const jobDescFileName = `${Date.now()}-${sanitizeFileName(jobDescriptionFile.name, 100)}`;
+
     // Convert file to buffer
     const fileBuffer = await convertFileToBuffer(jobDescriptionFile);
-    
-    // Save staffing request
+
     const requestSql = `
       INSERT INTO staffing_requests 
       (first_name, last_name, company_name, email, phone, city, state,
@@ -180,7 +275,7 @@ async function saveStaffingRequest(
        comments, ip_address, user_agent, submitted_at, status) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'pending')
     `;
-    
+
     const [requestResult]: any = await connection.execute(requestSql, [
       formData.firstName.trim(),
       formData.lastName.trim(),
@@ -189,7 +284,7 @@ async function saveStaffingRequest(
       formData.phone.trim(),
       formData.city.trim(),
       formData.state.trim(),
-      jobDescriptionFile.name,
+      jobDescFileName,
       jobDescriptionFile.type,
       jobDescriptionFile.size,
       fileBuffer,
@@ -197,15 +292,14 @@ async function saveStaffingRequest(
       ip,
       userAgent
     ]);
-    
+
     const staffingRequestId = requestResult.insertId;
-    
-    // Save position requests
+
+    // Save positions
     const positionSql = `
       INSERT INTO position_requests (staffing_request_id, job_title, hire_type, position_order)
       VALUES (?, ?, ?, ?)
     `;
-    
     for (let i = 0; i < formData.positions.length; i++) {
       const position = formData.positions[i];
       await connection.execute(positionSql, [
@@ -215,29 +309,28 @@ async function saveStaffingRequest(
         i + 1
       ]);
     }
-    
+
     // Log the request
     await connection.execute(
       `INSERT INTO staffing_request_logs (staffing_request_id, email, action, details, ip_address)
        VALUES (?, ?, ?, ?, ?)`,
       [staffingRequestId, formData.email, 'submission', 'New staffing request submitted', ip]
     );
-    
-    // Commit transaction
+
     await connection.commit();
-    
     return staffingRequestId;
   } catch (error) {
-    // Rollback transaction on error
-    if (connection) {
-      await connection.rollback();
-    }
+    if (connection) await connection.rollback();
     console.error('Database save error:', error);
     throw error;
   } finally {
     if (connection) connection.release();
   }
 }
+
+
+
+
 
 function generateClientConfirmationEmail(
   firstName: string,
@@ -582,55 +675,49 @@ export async function GET(request: NextRequest) {
   const action = searchParams.get('action');
 
   // Endpoint to download job description file
-  if (action === 'download-job-description') {
-    const id = searchParams.get('id');
-    if (!id) {
-      return NextResponse.json(
-        { success: false, message: 'Request ID is required' },
-        { status: 400 }
-      );
-    }
-
-    try {
-      let connection;
-      try {
-        connection = await db.getConnection();
-        const [rows]: any = await connection.execute(
-          `SELECT job_description_file_name, job_description_file_type, job_description_file_content 
-           FROM staffing_requests WHERE id = ?`,
-          [id]
-        );
-
-        if (rows.length === 0) {
-          return NextResponse.json(
-            { success: false, message: 'Staffing request not found' },
-            { status: 404 }
-          );
-        }
-
-        const file = rows[0];
-        const fileContent = file.job_description_file_content;
-        
-        // Create response with the file
-        return new NextResponse(fileContent, {
-          status: 200,
-          headers: {
-            'Content-Type': file.job_description_file_type,
-            'Content-Disposition': `attachment; filename="${file.job_description_file_name}"`,
-            'Cache-Control': 'no-cache',
-          },
-        });
-      } finally {
-        if (connection) connection.release();
-      }
-    } catch (error) {
-      console.error('Download error:', error);
-      return NextResponse.json(
-        { success: false, message: 'Failed to download job description' },
-        { status: 500 }
-      );
-    }
+ // --- Updated download in GET ---
+if (action === 'download-job-description') {
+  const id = searchParams.get('id');
+  if (!id) {
+    return NextResponse.json({ success: false, message: 'Request ID is required' }, { status: 400 });
   }
+
+  try {
+    let connection;
+    try {
+      connection = await db.getConnection();
+      const [rows]: any = await connection.execute(
+        `SELECT job_description_file_name, job_description_file_type, job_description_file_content 
+         FROM staffing_requests WHERE id = ?`,
+        [id]
+      );
+
+      if (rows.length === 0) {
+        return NextResponse.json({ success: false, message: 'Staffing request not found' }, { status: 404 });
+      }
+
+      const file = rows[0];
+      const fileContent = file.job_description_file_content;
+
+      // Ensure filename is safe for download
+      const safeFileName = sanitizeFileName(file.job_description_file_name, 100);
+
+      return new NextResponse(fileContent, {
+        status: 200,
+        headers: {
+          'Content-Type': file.job_description_file_type,
+          'Content-Disposition': `attachment; filename="${safeFileName}"`,
+          'Cache-Control': 'no-cache'
+        },
+      });
+    } finally {
+      if (connection) connection.release();
+    }
+  } catch (error) {
+    console.error('Download error:', error);
+    return NextResponse.json({ success: false, message: 'Failed to download job description' }, { status: 500 });
+  }
+}
 
   // Health check endpoint
   if (action === 'health') {
