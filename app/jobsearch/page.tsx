@@ -1,16 +1,20 @@
 'use client';
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { Search, ArrowRight, ChevronDown, X, ArrowLeft } from 'lucide-react';
+import { Search, ArrowRight, ChevronDown, X, ArrowLeft, Loader2 } from 'lucide-react';
 import SubmitCV from '../components/SubmitCV';
 import { useRouter } from 'next/navigation';
 
 interface JobResult {
   id: number;
+  title: string;
+  role: string;
+  location: string;
+  wages: string;
+  date: string;
+  status: 'Active' | 'Deactived' | 'Filled' | 'Closed';
   category: string;
   schedule: string;
   duration: string;
-  title: string;
-  location: string;
   datePosted: string;
   startingPrice: string;
   payRate: string;
@@ -21,269 +25,127 @@ interface JobResult {
   contractLength: string;
   duties: string[];
   requirements: string[];
+  city?: string;
+  state?: string;
+  job_type?: string;
+  duties_text?: string;
+  skills?: string;
+  contract_length?: string;
+  working_days?: string;
+  working_hours?: string;
+  additional_description?: string;
 }
 
-const JOB_RESULTS: JobResult[] = [
-  {
-    id: 1,
-    category: "Nursing",
-    schedule: "Days, 4x10",
-    duration: "26 weeks",
-    title: "Registered Nurse (RN)",
-    location: "Springfield, Illinois",
-    datePosted: "Dec 23, 2025",
-    startingPrice: "$2,850/wk",
-    payRate: "$71/Hour",
-    buttonLabel: "View job details",
-    type: "Contract Role",
-    fullDescription: "We are seeking a dedicated Registered Nurse to provide comprehensive patient care in various healthcare settings. The ideal candidate will assess patient health problems and needs, develop and implement nursing care plans, and maintain medical records. RNs will administer nursing care to ill, injured, convalescent, or disabled patients, and may advise patients on health maintenance and disease prevention.",
-    schedulesAvailable: "Schedules: working 4 days per week, 10 hours per day",
-    contractLength: "This is a temporary contract lasting for 26 Weeks",
-    duties: [
-      "Perform physical exams and health histories",
-      "Administer medications and treatments",
-      "Coordinate patient care in collaboration with a wide array of healthcare professionals",
-      "Direct and supervise care delivered by other healthcare personnel",
-      "Provide health promotion, counseling and education",
-      "Monitor, record and report symptoms or changes in patients' conditions",
-      "Maintain accurate, detailed reports and records"
-    ],
-    requirements: [
-      "Valid RN License in state of practice",
-      "BLS Certification required",
-      "ACLS Certification preferred",
-      "Minimum 1-2 years of nursing experience",
-      "Excellent clinical assessment skills",
-      "Strong communication and interpersonal skills"
-    ]
-  },
-  {
-    id: 2,
-    category: "Nursing",
-    schedule: "Nights, 3x12",
-    duration: "13 weeks",
-    title: "Licensed Practical Nurse (LPN)",
-    location: "Baltimore, Maryland",
-    datePosted: "Dec 20, 2025",
-    startingPrice: "$1,850/wk",
-    payRate: "$46/Hour",
-    buttonLabel: "View job details",
-    type: "Travel Contract",
-    fullDescription: "Join our healthcare team as an LPN providing essential nursing care under the direction of registered nurses and physicians. You will be responsible for monitoring patient health, administering basic care, and providing emotional support to patients and their families. This position offers opportunities in various settings including hospitals, nursing homes, and clinics.",
-    schedulesAvailable: "Nights, 3 shifts per week, 12 hours per shift (7PM - 7AM)",
-    contractLength: "13 Weeks with potential for extension",
-    duties: [
-      "Monitor patients' health by checking vital signs",
-      "Administer basic patient care and treatments",
-      "Help patients with bathing, dressing, and personal hygiene",
-      "Change bandages and insert catheters",
-      "Listen to patients' concerns and report to RNs and doctors",
-      "Keep records on patients' health",
-      "Document care provided and report changes in patient condition"
-    ],
-    requirements: [
-      "Active LPN License in MD or Compact State",
-      "Completion of accredited LPN program",
-      "CPR Certification required",
-      "Experience in long-term care or hospital setting preferred",
-      "Strong clinical and interpersonal skills"
-    ]
-  },
-  {
-    id: 3,
-    category: "Nursing Support",
-    schedule: "Days, 5x8",
-    duration: "26 weeks",
-    title: "Certified Nurse Assistant (CNA)",
-    location: "San Diego, California",
-    datePosted: "Dec 22, 2025",
-    startingPrice: "$1,200/wk",
-    payRate: "$30/Hour",
-    buttonLabel: "View job details",
-    type: "Short-term Contract",
-    fullDescription: "Seeking compassionate CNAs to provide basic patient care under the direction of nursing staff. You will perform duties such as feeding, bathing, dressing, grooming, and moving patients. The ideal candidate is patient, empathetic, and dedicated to providing quality care to those in need.",
-    schedulesAvailable: "Monday - Friday, 8AM - 4PM",
-    contractLength: "26 Weeks initial term",
-    duties: [
-      "Assist patients with activities of daily living",
-      "Take and record vital signs",
-      "Turn and reposition bedridden patients",
-      "Collect specimens for testing",
-      "Provide skin care to prevent breakdown",
-      "Measure and record food and liquid intake",
-      "Clean and sanitize patient areas"
-    ],
-    requirements: [
-      "Valid CNA certification in California",
-      "High school diploma or equivalent",
-      "CPR certification preferred",
-      "Previous experience in healthcare setting",
-      "Compassionate and patient demeanor"
-    ]
-  },
-  {
-    id: 4,
-    category: "Laboratory",
-    schedule: "Days, 4x10",
-    duration: "13 weeks",
-    title: "Phlebotomist",
-    location: "Seattle, Washington",
-    datePosted: "Dec 18, 2025",
-    startingPrice: "$1,500/wk",
-    payRate: "$37/Hour",
-    buttonLabel: "View job details",
-    type: "Long-term Contract",
-    fullDescription: "Seeking skilled Phlebotomists to collect blood samples from patients for laboratory testing. You will be responsible for ensuring proper patient identification, explaining procedures to patients, and properly labeling and storing blood samples. Accuracy and attention to detail are crucial in this role.",
-    schedulesAvailable: "4 days per week, 10 hours per day (Flexible weekdays)",
-    contractLength: "13 Weeks",
-    duties: [
-      "Draw blood from patients using venipuncture and capillary methods",
-      "Verify patient identity and proper labeling of samples",
-      "Explain blood-drawing procedures to patients",
-      "Prepare specimens for transport and testing",
-      "Maintain medical equipment such as needles, test tubes, and blood vials",
-      "Follow infection control and safety procedures",
-      "Keep accurate records of specimens collected"
-    ],
-    requirements: [
-      "Certified Phlebotomy Technician (CPT) certification",
-      "High school diploma or equivalent",
-      "Experience with venipuncture and capillary puncture",
-      "Knowledge of medical terminology",
-      "Excellent interpersonal skills"
-    ]
-  },
-  {
-    id: 5,
-    category: "Nursing Support",
-    schedule: "Days, 5x8",
-    duration: "Ongoing",
-    title: "Certified Medication Assistant (CMA)",
-    location: "Charlottesville, Virginia",
-    datePosted: "Dec 15, 2025",
-    startingPrice: "$1,400/wk",
-    payRate: "$35/Hour",
-    buttonLabel: "View job details",
-    type: "Permanent Placement",
-    fullDescription: "CMA position available in a skilled nursing facility. You will be responsible for administering medications to residents under the supervision of licensed nurses. This role requires attention to detail, accuracy, and compassion when working with elderly or disabled patients.",
-    schedulesAvailable: "Monday - Friday, 7AM - 3PM",
-    contractLength: "Permanent / Full-Time Role",
-    duties: [
-      "Administer medications according to physician orders",
-      "Document medication administration accurately",
-      "Monitor patients for medication reactions",
-      "Assist with medication refills and ordering",
-      "Report medication errors or concerns to supervisor",
-      "Maintain medication storage areas",
-      "Assist with other nursing duties as needed"
-    ],
-    requirements: [
-      "Valid CMA certification in Virginia",
-      "High school diploma or equivalent",
-      "Previous experience in long-term care preferred",
-      "Knowledge of medication administration procedures",
-      "CPR certification"
-    ]
-  },
-  {
-    id: 6,
-    category: "Nursing Support",
-    schedule: "Weekends, 2x12",
-    duration: "12 weeks",
-    title: "Geriatric Nurse Assistant (GNA)",
-    location: "Austin, Texas",
-    datePosted: "Dec 21, 2025",
-    startingPrice: "$1,300/wk",
-    payRate: "$32/Hour",
-    buttonLabel: "View job details",
-    type: "Weekend Contract",
-    fullDescription: "GNA position available in a geriatric care facility. Specializing in care for elderly patients, you will provide assistance with daily living activities while monitoring their health and wellbeing. This role requires patience, empathy, and specialized knowledge of geriatric care.",
-    schedulesAvailable: "Saturday & Sunday, 7AM - 7PM (12-hour shifts)",
-    contractLength: "12 Weeks (Renewable)",
-    duties: [
-      "Provide specialized care for geriatric patients",
-      "Assist with mobility and positioning to prevent pressure ulcers",
-      "Monitor for signs of confusion or cognitive changes",
-      "Assist with feeding and nutrition for elderly patients",
-      "Provide companionship and emotional support",
-      "Document patient condition and report changes",
-      "Implement fall prevention strategies"
-    ],
-    requirements: [
-      "Valid GNA certification in Texas",
-      "Specialized training in geriatric care",
-      "Experience working with elderly population",
-      "Patience and compassion for geriatric patients",
-      "CPR certification"
-    ]
-  },
-  {
-    id: 7,
-    category: "Direct Care Services",
-    schedule: "Days, 4x10",
-    duration: "26 weeks",
-    title: "Direct Support Professional",
-    location: "Denver, Colorado",
-    datePosted: "Jan 5, 2025",
-    startingPrice: "$1,100/wk",
-    payRate: "$27/Hour",
-    buttonLabel: "View job details",
-    type: "Contract Role",
-    fullDescription: "Direct Support Professionals provide essential assistance to individuals with developmental disabilities or mental health challenges. You will help clients develop daily living skills, participate in community activities, and achieve personal goals while ensuring their safety and wellbeing.",
-    schedulesAvailable: "Schedules: working 4 days per week, 10 hours per day",
-    contractLength: "This is a temporary contract lasting for 26 Weeks",
-    duties: [
-      "Assist clients with daily living activities",
-      "Implement individual service plans",
-      "Support community integration and participation",
-      "Document client progress and incidents",
-      "Administer medications as trained and delegated",
-      "Provide transportation to appointments and activities",
-      "Maintain a safe and supportive environment"
-    ],
-    requirements: [
-      "High school diploma or equivalent",
-      "Valid driver's license and clean driving record",
-      "CPR/First Aid certification",
-      "Background check clearance",
-      "Compassionate and patient demeanor",
-      "Ability to handle emergency situations"
-    ]
-  },
-  {
-    id: 8,
-    category: "Nursing Support",
-    schedule: "Nights, 3x12",
-    duration: "13 weeks",
-    title: "Certified Medication Technician (CMT)",
-    location: "Portland, Oregon",
-    datePosted: "Jan 3, 2025",
-    startingPrice: "$1,600/wk",
-    payRate: "$40/Hour",
-    buttonLabel: "View job details",
-    type: "Travel Contract",
-    fullDescription: "Certified Medication Technicians administer medications in various healthcare settings under nurse supervision. This role requires precision, attention to detail, and thorough documentation to ensure patient safety and proper medication administration.",
-    schedulesAvailable: "Nights, 3 shifts per week, 12 hours per shift (7PM - 7AM)",
-    contractLength: "13 Weeks with potential for extension",
-    duties: [
-      "Prepare and administer prescribed medications",
-      "Document medication administration accurately",
-      "Monitor patients for therapeutic effects and side effects",
-      "Maintain medication inventory and storage",
-      "Coordinate with pharmacy for medication orders",
-      "Educate patients about medications",
-      "Follow all medication safety protocols"
-    ],
-    requirements: [
-      "Valid CMT certification in Oregon",
-      "High school diploma or equivalent",
-      "Previous medication administration experience",
-      "Knowledge of medication classifications",
-      "CPR certification",
-      "Excellent documentation skills"
-    ]
-  }
-];
+// Convert database job to frontend format
+const convertDbJobToJobResult = (dbJob: any): JobResult => {
+  // Extract category from role or use default
+  const getCategory = (role: string): string => {
+    const roleLower = role.toLowerCase();
+    if (roleLower.includes('nurse') || roleLower.includes('rn') || roleLower.includes('lpn')) {
+      return 'Nursing';
+    } else if (roleLower.includes('assistant') || roleLower.includes('cna') || roleLower.includes('gna') || roleLower.includes('cma') || roleLower.includes('cmt')) {
+      return 'Nursing Support';
+    } else if (roleLower.includes('phlebotomist') || roleLower.includes('laboratory')) {
+      return 'Laboratory';
+    } else if (roleLower.includes('support professional') || roleLower.includes('direct care')) {
+      return 'Direct Care Services';
+    }
+    return 'Healthcare';
+  };
+
+  // Extract schedule from working days/hours
+  const getSchedule = (workingDays?: string, workingHours?: string): string => {
+    if (workingDays && workingHours) {
+      return `${workingDays}, ${workingHours}`;
+    }
+    return 'Days, 5x8'; // Default schedule
+  };
+
+  // Extract duration from contract length
+  const getDuration = (contractLength?: string): string => {
+    if (contractLength) {
+      return contractLength;
+    }
+    return '26 weeks'; // Default duration
+  };
+
+  // Calculate starting price from wages
+  const getStartingPrice = (wages: string): string => {
+    // Extract hourly rate from wages string
+    const hourlyMatch = wages.match(/\$(\d+)/);
+    if (hourlyMatch) {
+      const hourlyRate = parseFloat(hourlyMatch[1]);
+      const weeklyRate = hourlyRate * 40; // Assuming 40-hour work week
+      return `$${weeklyRate.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}/wk`;
+    }
+    return '$2,000/wk'; // Default if can't parse
+  };
+
+  // Extract pay rate from wages
+  const getPayRate = (wages: string): string => {
+    if (wages.includes('/hour')) {
+      return wages.replace('/hour', '/Hour');
+    }
+    return wages || '$30/Hour';
+  };
+
+  // Parse duties text into array
+  const parseDuties = (duties?: string): string[] => {
+    if (!duties) return [];
+    // Split by common separators
+    const separators = /[•\n\r\t]/;
+    return duties
+      .split(separators)
+      .map(duty => duty.trim())
+      .filter(duty => duty.length > 0)
+      .slice(0, 7); // Limit to 7 duties
+  };
+
+  // Parse skills/requirements into array
+  const parseRequirements = (skills?: string): string[] => {
+    if (!skills) return [];
+    // Split by common separators
+    const separators = /[•\n\r\t]/;
+    return skills
+      .split(separators)
+      .map(skill => skill.trim())
+      .filter(skill => skill.length > 0)
+      .slice(0, 6); // Limit to 6 requirements
+  };
+
+  return {
+    id: dbJob.id,
+    title: dbJob.title || 'Job Title',
+    role: dbJob.role || 'Healthcare Professional',
+    location: dbJob.location || `${dbJob.city || 'City'}, ${dbJob.state || 'State'}`,
+    wages: dbJob.wages || '$30/hour',
+    date: dbJob.date || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    status: dbJob.status || 'Active',
+    category: getCategory(dbJob.role || ''),
+    schedule: getSchedule(dbJob.working_days, dbJob.working_hours),
+    duration: getDuration(dbJob.contract_length),
+    datePosted: dbJob.date || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    startingPrice: getStartingPrice(dbJob.wages || '$30/hour'),
+    payRate: getPayRate(dbJob.wages || '$30/hour'),
+    buttonLabel: 'View job details',
+    type: dbJob.job_type || 'Contract Role',
+    fullDescription: dbJob.additional_description || dbJob.duties_text || 'Join our healthcare team as a dedicated professional providing essential care and support to patients in need. This position offers opportunities for growth and development in a supportive environment.',
+    schedulesAvailable: `Schedules: ${dbJob.working_days || '5 days/week'}, ${dbJob.working_hours || '8 hours/day'}`,
+    contractLength: `This is a ${dbJob.contract_length?.toLowerCase() || '26 week'} contract with potential for extension`,
+    duties: parseDuties(dbJob.duties_text),
+    requirements: parseRequirements(dbJob.skills),
+    // Include all database fields for completeness
+    city: dbJob.city,
+    state: dbJob.state,
+    job_type: dbJob.job_type,
+    duties_text: dbJob.duties_text,
+    skills: dbJob.skills,
+    contract_length: dbJob.contract_length,
+    working_days: dbJob.working_days,
+    working_hours: dbJob.working_hours,
+    additional_description: dbJob.additional_description
+  };
+};
 
 const JobSearchResultsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -292,26 +154,101 @@ const JobSearchResultsPage: React.FC = () => {
   const [selectedType, setSelectedType] = useState("All job types");
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<JobResult | null>(null);
+  const [jobs, setJobs] = useState<JobResult[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // Updated categories based on your list
-  const categories = useMemo(() => [
-    "All job categories",
-    "Nursing",
-    "Nursing Support",
-    "Laboratory",
-    "Direct Care Services"
-  ], []);
+  // Fetch jobs from API
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch('/api/jobs?action=get-all');
+        const data = await response.json();
+        
+        if (data.success && data.data) {
+          // Convert database jobs to frontend format
+          const convertedJobs = data.data.map(convertDbJobToJobResult);
+          setJobs(convertedJobs);
+        } else {
+          setError(data.message || 'Failed to fetch jobs');
+          // Fallback to sample data
+          setJobs(getSampleJobs());
+        }
+      } catch (err) {
+        console.error('Error fetching jobs:', err);
+        setError('Failed to load jobs. Please try again.');
+        // Fallback to sample data
+        setJobs(getSampleJobs());
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const locations = useMemo(() => ["All locations", ...new Set(JOB_RESULTS.map(j => j.location))], []);
-  const types = useMemo(() => ["All job types", ...new Set(JOB_RESULTS.map(j => j.type))], []);
+    fetchJobs();
+  }, []);
+
+  // Sample data fallback
+  const getSampleJobs = (): JobResult[] => {
+    return [
+      {
+        id: 1,
+        category: "Nursing",
+        schedule: "Days, 4x10",
+        duration: "26 weeks",
+        title: "Registered Nurse (RN)",
+        role: "Registered Nurse (RN)",
+        location: "Springfield, Illinois",
+        date: "Dec 23, 2025",
+        datePosted: "Dec 23, 2025",
+        startingPrice: "$2,850/wk",
+        payRate: "$71/Hour",
+        buttonLabel: "View job details",
+        type: "Contract Role",
+        status: "Active",
+        wages: "$71/hour",
+        fullDescription: "We are seeking a dedicated Registered Nurse to provide comprehensive patient care in various healthcare settings.",
+        schedulesAvailable: "Schedules: working 4 days per week, 10 hours per day",
+        contractLength: "This is a temporary contract lasting for 26 Weeks",
+        duties: [
+          "Perform physical exams and health histories",
+          "Administer medications and treatments",
+          "Coordinate patient care in collaboration with a wide array of healthcare professionals"
+        ],
+        requirements: [
+          "Valid RN License in state of practice",
+          "BLS Certification required",
+          "ACLS Certification preferred"
+        ]
+      }
+    ];
+  };
+
+  // Extract unique categories, locations, and types from jobs
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(jobs.map(j => j.category)));
+    return ["All job categories", ...uniqueCategories];
+  }, [jobs]);
+
+  const locations = useMemo(() => {
+    const uniqueLocations = Array.from(new Set(jobs.map(j => j.location)));
+    return ["All locations", ...uniqueLocations];
+  }, [jobs]);
+
+  const types = useMemo(() => {
+    const uniqueTypes = Array.from(new Set(jobs.map(j => j.type)));
+    return ["All job types", ...uniqueTypes];
+  }, [jobs]);
 
   const filteredJobs = useMemo(() => {
-    return JOB_RESULTS.filter(job => {
+    return jobs.filter(job => {
       const matchesSearch = 
         job.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        job.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        job.location.toLowerCase().includes(searchQuery.toLowerCase());
+        job.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.category.toLowerCase().includes(searchQuery.toLowerCase());
       
       const matchesCategory = 
         selectedCategory === "All job categories" || job.category === selectedCategory;
@@ -322,9 +259,12 @@ const JobSearchResultsPage: React.FC = () => {
       const matchesType = 
         selectedType === "All job types" || job.type === selectedType;
 
-      return matchesSearch && matchesCategory && matchesLocation && matchesType;
+      // Only show active jobs
+      const isActive = job.status === 'Active';
+
+      return matchesSearch && matchesCategory && matchesLocation && matchesType && isActive;
     });
-  }, [searchQuery, selectedCategory, selectedLocation, selectedType]);
+  }, [searchQuery, selectedCategory, selectedLocation, selectedType, jobs]);
 
   const clearAll = () => {
     setSearchQuery("");
@@ -360,12 +300,24 @@ const JobSearchResultsPage: React.FC = () => {
       title: job.title,
       location: job.location,
       category: job.category,
-      type: job.type
+      type: job.type,
+      role: job.role
     }));
     
     // Navigate to the submit resume page
     router.push('/submitresume');
   };
+
+  if (loading) {
+    return (
+      <div className="bg-white min-h-screen flex flex-col items-center justify-center pt-32 md:pt-40">
+        <div className="text-center">
+          <Loader2 className="animate-spin mx-auto mb-4 text-[#68cfa3]" size={48} />
+          <div className="text-[#1B2C42] font-serif text-xl">Loading job opportunities...</div>
+        </div>
+      </div>
+    );
+  }
 
   if (selectedJob) {
     return (
@@ -375,7 +327,7 @@ const JobSearchResultsPage: React.FC = () => {
             onClick={() => setSelectedJob(null)}
             className="flex items-center gap-2 px-4 py-2 bg-[#E3E8DE] hover:bg-[#D8DDD3] text-[#1B2C42] rounded-full text-[12px] md:text-[13px] font-bold transition-all mb-8 md:mb-10 w-fit active:scale-95 cursor-pointer"
           >
-            <ArrowLeft size={16} /> Back
+            <ArrowLeft size={16} /> Back to Jobs
           </button>
 
           <h1 className="font-serif text-3xl md:text-5xl lg:text-[56px] text-[#1B2C42] mb-3 leading-tight tracking-tight">
@@ -409,7 +361,7 @@ const JobSearchResultsPage: React.FC = () => {
               <p className="font-normal">{selectedJob.contractLength}</p>
             </div>
 
-            {selectedJob.duties && (
+            {selectedJob.duties && selectedJob.duties.length > 0 && (
               <div className="space-y-4 md:space-y-6">
                 <h2 className="font-bold text-sm md:text-[16px] uppercase tracking-wider text-[#1B2C42]">DUTIES</h2>
                 <ul className="list-disc pl-5 space-y-2 md:space-y-3 font-normal">
@@ -420,7 +372,7 @@ const JobSearchResultsPage: React.FC = () => {
               </div>
             )}
 
-            {selectedJob.requirements && (
+            {selectedJob.requirements && selectedJob.requirements.length > 0 && (
               <div className="space-y-4 md:space-y-6">
                 <h2 className="font-bold text-sm md:text-[16px] uppercase tracking-wider text-[#1B2C42]">CLIENT'S REQUIRED SKILLS & EXPERIENCE</h2>
                 <ul className="list-disc pl-5 space-y-2 md:space-y-3 font-normal">
@@ -449,6 +401,12 @@ const JobSearchResultsPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <div className="max-w-7xl mx-auto px-4 md:px-6 pt-32 md:pt-40 pb-20 md:pb-32 w-full">
+        {error && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+            {error} <button onClick={() => window.location.reload()} className="ml-2 underline">Try Again</button>
+          </div>
+        )}
+        
         <h1 className="font-serif text-3xl md:text-5xl lg:text-[64px] text-center text-[#1a1a1a] mb-8 md:mb-12 leading-tight">
           Explore Career Opportunities
         </h1>
@@ -461,7 +419,7 @@ const JobSearchResultsPage: React.FC = () => {
               type="text" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search job title or location" 
+              placeholder="Search job title, role, or location" 
               className="bg-transparent border-none outline-none text-gray-800 placeholder-gray-500 w-full h-full text-sm md:text-base font-medium"
             />
             {searchQuery && (
@@ -470,7 +428,10 @@ const JobSearchResultsPage: React.FC = () => {
               </button>
             )}
           </div>
-          <button className="h-12 md:h-14 px-8 md:px-10 bg-[#1B2C42] hover:bg-[#152336] text-white text-sm md:text-base font-bold rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg whitespace-nowrap cursor-pointer">
+          <button 
+            onClick={() => {}} // Search is already handled by the input
+            className="h-12 md:h-14 px-8 md:px-10 bg-[#1B2C42] hover:bg-[#152336] text-white text-sm md:text-base font-bold rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg whitespace-nowrap cursor-pointer"
+          >
             Search <ArrowRight size={16} className="md:w-5 md:h-5" />
           </button>
         </div>
