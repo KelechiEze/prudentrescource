@@ -141,6 +141,91 @@ async function convertFileToBuffer(file: File): Promise<Buffer> {
   return Buffer.from(arrayBuffer);
 }
 
+// async function saveResumeSubmission(
+//   formData: ResumeFormData,
+//   resumeFile: File,
+//   certFile: File | null,
+//   ip: string,
+//   userAgent: string
+// ): Promise<number> {
+//   let connection;
+//   try {
+//     connection = await db.getConnection();
+    
+//     // Convert files to buffers for database storage
+//     const [resumeBuffer, certBuffer] = await Promise.all([
+//       convertFileToBuffer(resumeFile),
+//       certFile ? convertFileToBuffer(certFile) : Promise.resolve(null)
+//     ]);
+    
+//     const sql = `
+//       INSERT INTO resume_submissions 
+//       (first_name, last_name, email, phone, city, state, position, has_cpr,
+//        resume_file_name, resume_file_type, resume_file_size, resume_file_content,
+//        cert_file_name, cert_file_type, cert_file_size, cert_file_content,
+//        comments, ip_address, user_agent, submitted_at, status) 
+//       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'pending')
+//     `;
+    
+//     const [result]: any = await connection.execute(sql, [
+//       formData.firstName.trim(),
+//       formData.lastName.trim(),
+//       formData.email.trim().toLowerCase(),
+//       formData.phone.trim(),
+//       formData.city.trim(),
+//       formData.state.trim(),
+//       formData.position.trim(),
+//       formData.hasCpr === 'yes' ? 'yes' : 'no',
+//       resumeFile.name,
+//       resumeFile.type,
+//       resumeFile.size,
+//       resumeBuffer,
+//       certFile?.name || null,
+//       certFile?.type || null,
+//       certFile?.size || null,
+//       certBuffer,
+//       formData.comments?.trim() || null,
+//       ip,
+//       userAgent
+//     ]);
+    
+//     return result.insertId;
+//   } catch (error) {
+//     console.error('Database save error:', error);
+//     throw error;
+//   } finally {
+//     if (connection) connection.release();
+//   }
+// }
+
+
+// Helper to sanitize and truncate file names
+// function sanitizeFileName(fileName: string, maxLength = 100) {
+//   if (!fileName) return 'unknown';
+//   const ext = fileName.includes('.') ? fileName.split('.').pop() : '';
+//   let baseName = fileName.replace(/\.[^/.]+$/, '');
+//   if (baseName.length > maxLength) {
+//     baseName = baseName.slice(0, maxLength);
+//   }
+//   return ext ? `${baseName}.${ext}` : baseName;
+// }
+
+
+// Helper to sanitize and truncate file names
+function sanitizeFileName(fileName: string, maxLength = 100) {
+  if (!fileName) return 'unknown';
+  const ext = fileName.includes('.') ? fileName.split('.').pop() : '';
+  let baseName = fileName.replace(/\.[^/.]+$/, '');
+  if (baseName.length > maxLength) {
+    baseName = baseName.slice(0, maxLength);
+  }
+  return ext ? `${baseName}.${ext}` : baseName;
+}
+
+
+// Updated saveResumeSubmission
+
+
 async function saveResumeSubmission(
   formData: ResumeFormData,
   resumeFile: File,
@@ -151,13 +236,17 @@ async function saveResumeSubmission(
   let connection;
   try {
     connection = await db.getConnection();
-    
+
+    // Sanitize file names and add timestamp prefix
+    const resumeFileName = `${Date.now()}-${sanitizeFileName(resumeFile.name, 100)}`;
+    const certFileName = certFile ? `${Date.now()}-${sanitizeFileName(certFile.name, 100)}` : null;
+
     // Convert files to buffers for database storage
     const [resumeBuffer, certBuffer] = await Promise.all([
       convertFileToBuffer(resumeFile),
       certFile ? convertFileToBuffer(certFile) : Promise.resolve(null)
     ]);
-    
+
     const sql = `
       INSERT INTO resume_submissions 
       (first_name, last_name, email, phone, city, state, position, has_cpr,
@@ -166,7 +255,7 @@ async function saveResumeSubmission(
        comments, ip_address, user_agent, submitted_at, status) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'pending')
     `;
-    
+
     const [result]: any = await connection.execute(sql, [
       formData.firstName.trim(),
       formData.lastName.trim(),
@@ -176,11 +265,11 @@ async function saveResumeSubmission(
       formData.state.trim(),
       formData.position.trim(),
       formData.hasCpr === 'yes' ? 'yes' : 'no',
-      resumeFile.name,
+      resumeFileName,
       resumeFile.type,
       resumeFile.size,
       resumeBuffer,
-      certFile?.name || null,
+      certFileName,
       certFile?.type || null,
       certFile?.size || null,
       certBuffer,
@@ -188,7 +277,7 @@ async function saveResumeSubmission(
       ip,
       userAgent
     ]);
-    
+
     return result.insertId;
   } catch (error) {
     console.error('Database save error:', error);
@@ -197,6 +286,7 @@ async function saveResumeSubmission(
     if (connection) connection.release();
   }
 }
+
 
 function generateUserConfirmationEmail(
   firstName: string,
