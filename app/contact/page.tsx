@@ -30,6 +30,14 @@ const ContactPage: React.FC = () => {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [characterCount, setCharacterCount] = useState(0);
 
+  // Social media links
+  const socialMediaLinks = {
+    facebook: 'https://www.facebook.com/profile.php?id=61573826751257&mibextid=ZbWKwL',
+    twitter: 'https://x.com/Prudentresource',
+    tiktok: 'https://tiktok.com/@prudentresources',
+    instagram: 'https://www.instagram.com/invites/contact/?i=1n1cwi2k4i82g&utm_content=xiztig6'
+  };
+
   // Update character count when message changes
   useEffect(() => {
     setCharacterCount(formData.message.length);
@@ -246,15 +254,38 @@ const ContactPage: React.FC = () => {
             <div className="pt-6 flex flex-col gap-4 text-gray-900 font-medium">
               <span className="text-base md:text-lg">Follow Us:</span>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                {["Facebook", "Twitter / X", "LinkedIn", "Instagram"].map((social) => (
-                  <a 
-                    key={social} 
-                    href="#" 
-                    className="text-sm md:text-lg border-b border-gray-900 pb-0.5 hover:border-[#8b5cf6] hover:text-[#8b5cf6] transition-all duration-300 whitespace-nowrap"
-                  >
-                    {social}
-                  </a>
-                ))}
+                <a 
+                  href={socialMediaLinks.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm md:text-lg border-b border-gray-900 pb-0.5 hover:border-[#8b5cf6] hover:text-[#8b5cf6] transition-all duration-300 whitespace-nowrap"
+                >
+                  Facebook
+                </a>
+                <a 
+                  href={socialMediaLinks.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm md:text-lg border-b border-gray-900 pb-0.5 hover:border-[#8b5cf6] hover:text-[#8b5cf6] transition-all duration-300 whitespace-nowrap"
+                >
+                  Twitter / X
+                </a>
+                <a 
+                  href={socialMediaLinks.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm md:text-lg border-b border-gray-900 pb-0.5 hover:border-[#8b5cf6] hover:text-[#8b5cf6] transition-all duration-300 whitespace-nowrap"
+                >
+                  TikTok
+                </a>
+                <a 
+                  href={socialMediaLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm md:text-lg border-b border-gray-900 pb-0.5 hover:border-[#8b5cf6] hover:text-[#8b5cf6] transition-all duration-300 whitespace-nowrap"
+                >
+                  Instagram
+                </a>
               </div>
             </div>
           </div>

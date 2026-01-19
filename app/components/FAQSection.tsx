@@ -15,15 +15,15 @@ const FAQSection: React.FC = () => {
   const faqs: FAQItem[] = [
     {
       question: "What types of healthcare roles can I find on the platform?",
-      answer: "We connect professionals across diverse fields including Nursing (RN, LPN, CNA), Behavioral Health, Radiology, Phlebotomy, Case Management, and Direct Support. Our network spans hospitals, clinics, residential group homes, and specialized recovery centers."
+      answer: "We specialize in placing professionals in a wide range of roles, including; RNs, Medical Assistants, and more. Whether you're looking for full-time, part-time, or shift-based opportunities, we help you find the right fit."
     },
     {
       question: "Is there a cost to join as a healthcare professional?",
-      answer: "No, joining Prudent Resources is completely free for healthcare professionals. We do not charge registration fees or take referral cuts from your pay. Our goal is to make your career growth as seamless and rewarding as possible."
+      answer: "No, joining Prudent Resources is completely free for healthcare professionals. We do not charge registration fees. Our goal is to make your career growth as seamless and rewarding as possible."
     },
     {
       question: "How are job matches determined?",
-      answer: "Unlike automated marketplaces, we use a curated matching process. Our expert administrators carefully review your credentials, experience, and personal career goals to match you with organizations where you'll truly thrive and make an impact."
+      answer: "Our expert administrators carefully review your credentials, experience, and personal career goals to match you with organizations where you'll truly thrive and make an impact."
     },
     {
       question: "Can I choose between full-time, part-time & contract roles?",
@@ -31,7 +31,7 @@ const FAQSection: React.FC = () => {
     },
     {
       question: "What documents do I need to provide?",
-      answer: "To ensure 100% credential verification, we typically require an updated CV/Resume, valid professional licenses, relevant certifications (such as CPR, ACLS, or specialty-specific trainings), and proof of education."
+      answer: "To ensure 100% credential verification, we typically require an updated CV/Resume, valid professional licenses, Training certifications, and proof of education."
     },
     {
       question: "Is my personal information secure?",
@@ -39,7 +39,7 @@ const FAQSection: React.FC = () => {
     },
     {
       question: "Who can I contact for support?",
-      answer: "Our dedicated team is here to assist you. You can reach out directly via email at info@prudentresources.com or call us at +1 443 985 5388 during business hours. We pride ourselves on being responsive and helpful partners in your career."
+      answer: "Our dedicated team is here to assist you. You can reach out directly via email at info@prudentresources.com"
     }
   ];
 

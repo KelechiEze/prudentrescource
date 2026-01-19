@@ -23,17 +23,17 @@ const Footer: React.FC = () => {
       case 'contact':
         router.push('/contact');
         break;
-      case 'facebook':
-        window.open('https://facebook.com', '_blank');
+      case 'tiktok':
+        window.open('https://tiktok.com/@prudentresources', '_blank');
         break;
       case 'twitter':
-        window.open('https://twitter.com', '_blank');
+        window.open('https://x.com/Prudentresource', '_blank');
         break;
-      case 'linkedin':
-        window.open('https://linkedin.com', '_blank');
+      case 'facebook':
+        window.open('https://www.facebook.com/profile.php?id=61573826751257&mibextid=ZbWKwL', '_blank');
         break;
       case 'instagram':
-        window.open('https://instagram.com', '_blank');
+        window.open('https://www.instagram.com/invites/contact/?i=1n1cwi2k4i82g&utm_content=xiztig6', '_blank');
         break;
       default:
         router.push('/');
@@ -89,9 +89,9 @@ const Footer: React.FC = () => {
           {/* Social Column - Aligned to top */}
           <div className="lg:col-span-4 flex flex-col justify-start gap-4">
             {[
+              { label: "TikTok", page: "tiktok" },
+              { label: "Twitter (X)", page: "twitter" },
               { label: "Facebook", page: "facebook" },
-              { label: "Twitter", page: "twitter" },
-              { label: "Linkedin", page: "linkedin" },
               { label: "Instagram", page: "instagram" }
             ].map((item) => (
               <a 
