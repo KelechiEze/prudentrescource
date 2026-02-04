@@ -76,8 +76,8 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
           {/* Current sizes: text-3xl md:text-5xl lg:text-[60px] */}
           {/* Increased line height from leading-[110%] to leading-[1.3] for more space between lines */}
           <h1 className="font-serif text-3xl md:text-5xl lg:text-[60px] leading-[1.3] mb-8 text-white font-normal tracking-tight">
-            Connecting Qualified Healthcare  <br className="hidden lg:block" />
-            Professionals with Care Organizations
+            The healthcare workforce <br className="hidden lg:block" />
+            is the heartbeat of care
           </h1>
           
           {/* ADJUST PARAGRAPH SIZE HERE */}

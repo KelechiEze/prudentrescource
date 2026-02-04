@@ -40,9 +40,7 @@ const ScalableSolutions: React.FC = () => {
               Dedicated Support for a Seamless Hiring Experience
             </h3>
             <p className="text-gray-700 text-lg leading-relaxed mt-15">
-              From sourcing to onboarding, our team manages every step of the process with 
-              clear communication and ongoing support, reducing your workload and ensuring 
-              a smooth, stress-free hiring journey.
+              In sourcing for qualified professionals, our team manages every step of the process with clear communication and ongoing support, reducing your workload and ensuring a smooth, stress-free journey.
             </p>
           </div>
 

@@ -28,7 +28,7 @@ const SpecializedFields: React.FC<SpecializedFieldsProps> = ({ onNavigate }) => 
             <div className="">
               <h2 className="font-serif text-[42px] md:text-[50px] lg:text-[50px] text-white leading-[130%] max-w-5xl tracking-tight font-normal">
                 Transforming Staffing in <br className="hidden md:block" />
-                Healthcare and Residential Care
+                Healthcare and Home Care
               </h2>
             </div>
 

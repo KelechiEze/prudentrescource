@@ -63,7 +63,7 @@ const CommitmentSection: React.FC = () => {
                   onClick={handleResumeClick}
                   className="bg-[#1f2937] hover:bg-gray-800 text-white px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 transition-all shadow-lg shadow-teal-900/10 w-fit mt-12 cursor-pointer"
                 >
-                  Submit your Resume/CV <ArrowRight size={18} />
+                  Submit your Credentials <ArrowRight size={18} />
                 </button>
               </div>
             </div>
