@@ -35,7 +35,7 @@ const ServiceTeamShowcase: React.FC = () => {
         {/* Bottom Text Content - INCREASED MAX-WIDTH */}
         <div className="mb-8 md:mb-12 pr-12 md:pr-24 lg:pr-48">
           <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-white leading-tight max-w-5xl lg:max-w-6xl drop-shadow-lg"> {/* Increased from max-w-4xl to max-w-5xl lg:max-w-6xl */}
-            You can count on us to deliver cost-effective outcomes<br className="hidden lg:block" />
+            You can count on us to deliver cost-effective outcomes <br className="hidden lg:block" />
             and highly qualified healthcare professionals
           </h2>
         </div>
