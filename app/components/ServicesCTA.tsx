@@ -45,8 +45,8 @@ const ServicesCTA: React.FC = () => {
             </h3>
             
             <p className="text-[#1B2C42]/80 text-lg leading-relaxed mb-10 max-w-md font-medium">
-              "Get the right people for the right roles with staffing solutions 
-              you can count on—anytime you need them."
+              Get the right people for the right roles with staffing solutions 
+              you can count on.
             </p>
             
             <button 
