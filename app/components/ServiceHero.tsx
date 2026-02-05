@@ -10,7 +10,7 @@ const ServiceHero: React.FC = () => {
         <div className="flex items-center gap-3 mb-6">
           <div className="w-3.5 h-3.5 rounded-full bg-[#8b5cf6]"></div>
           <span className="text-sm font-bold tracking-widest text-[#1E1E1E] uppercase">
-            PRUDENT RESOURCES SERVICES
+            HEALTHCARE STAFFING SERVICES
           </span>
         </div>
 
