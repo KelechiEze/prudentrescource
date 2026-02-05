@@ -931,7 +931,7 @@ const StaffingRequestPage: React.FC = () => {
                     {/* Job Title Field */}
                     <div className="space-y-4">
                       <label className="text-[13px] font-bold text-gray-900 block">
-                        Job title of the position(s) you request for<span className="text-red-500">*</span>
+                         Request for<span className="text-red-500">*</span>
                         {validationErrors[`position-${pos.id}-jobTitle`] && (
                           <span className="text-red-500 text-xs flex items-center gap-1 ml-2">
                             <AlertCircle size={12} />
