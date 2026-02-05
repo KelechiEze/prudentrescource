@@ -555,7 +555,7 @@ const ResumeSubmissionPage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Page Title */}
         <h1 className="font-serif text-[42px] md:text-[54px] text-[#1B2C42] text-center mb-12">
-          Submit Resume/CV
+          Submit Credentials
         </h1>
 
         {/* Form Container */}
@@ -785,7 +785,7 @@ const ResumeSubmissionPage: React.FC = () => {
             {/* Resume Upload */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-bold text-gray-800 flex items-center gap-2">
-                Attach Resume<span className="text-red-500">*</span>
+                Upload Resume<span className="text-red-500">*</span>
                 {validationErrors.resume && (
                   <span className="text-red-500 text-xs flex items-center gap-1">
                     <AlertCircle size={12} />
@@ -838,7 +838,7 @@ const ResumeSubmissionPage: React.FC = () => {
             {/* Certifications Upload */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-bold text-gray-800 flex items-center gap-2">
-                Attach Certifications/Trainings
+                Upload Certifications/Trainings
                 {validationErrors.certifications && (
                   <span className="text-red-500 text-xs flex items-center gap-1">
                     <AlertCircle size={12} />
@@ -941,20 +941,7 @@ const ResumeSubmissionPage: React.FC = () => {
                 )}
               </button>
               
-              <div className="mt-4 text-xs text-gray-500 space-y-1">
-                <p>By submitting this form, you agree to:</p>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Receive a confirmation email</li>
-                  <li>Have your resume stored in our secure database</li>
-                  <li>Be contacted by our recruitment team if your profile matches our requirements</li>
-                </ul>
-                <p className="mt-2">
-                  Need help? Email{' '}
-                  <a href="mailto:careers@prudentresources.com" className="text-[#68cfa3] hover:underline">
-                    careers@prudentresources.com
-                  </a>
-                </p>
-              </div>
+             
             </div>
           </form>
 

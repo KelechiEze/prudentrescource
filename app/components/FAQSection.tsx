@@ -89,13 +89,6 @@ const FAQSection: React.FC = () => {
                   </div>
                 </div>
 
-                <button 
-                  onClick={handleEmailClick}
-                  className="text-[#1B2C42] hover:text-[#68cfa3] font-semibold text-lg transition-colors duration-300 flex items-center gap-2 group"
-                >
-                  <span className="border-b-2 border-[#68cfa3] pb-1">info@prudentresources.com</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
               </div>
 
               <button 
@@ -112,12 +105,6 @@ const FAQSection: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="bg-[#EFF3F9] rounded-[6px] p-6 md:p-10 lg:p-12 shadow-sm border border-[#E1E7EE]">
               <div className="mb-8">
-                <h3 className="font-sans font-bold text-2xl text-[#1B2C42] mb-3">
-                  For Healthcare Professionals
-                </h3>
-                <p className="font-sans text-gray-600">
-                  Common questions about joining and finding opportunities through Prudent Resources
-                </p>
               </div>
               
               <div className="flex flex-col gap-2">
@@ -155,7 +142,7 @@ const FAQSection: React.FC = () => {
                 })}
               </div>
 
-              {/* Additional Help Section */}
+              {/* Additional Help Section 
               <div className="mt-12 pt-8 border-t border-[#D1D9E4]">
                 <div className="bg-white rounded-lg p-6 border border-[#E1E7EE]">
                   <h4 className="font-sans font-bold text-lg text-[#1B2C42] mb-3">
@@ -172,7 +159,7 @@ const FAQSection: React.FC = () => {
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
-              </div>
+              </div>*/}
             </div>
           </div>
 

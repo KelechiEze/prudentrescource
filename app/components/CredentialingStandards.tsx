@@ -23,9 +23,9 @@ const CredentialingStandards: React.FC = () => {
               </h2>
 
               <p className="text-lg md:text-xl leading-relaxed text-gray-200">
-                You can trust our Credentialing process. We ensure every candidate meets
-                industry-leading compliance, safety, and verification requirements,
-                maintaining the highest standards of healthcare professionalism.
+                We ensure every candidate meets
+                industry-leading compliance, safety, and verification requirements.
+                
               </p>
             </div>
           </div>

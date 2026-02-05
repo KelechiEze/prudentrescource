@@ -193,7 +193,7 @@ const AvailableJobs: React.FC = () => {
             </h2>
             
             <p className="text-gray-600 text-[13px] md:text-lg leading-relaxed mb-4 lg:mb-10 max-w-md mx-auto lg:mx-0 font-normal opacity-90">
-              Just beginning your career? Explore our top picks curated specifically for your professional growth.
+              Just beginning your career or already have many years of experience? Find your desired career opportunity. Look through our top pick for you.
             </p>
             
             <div className="flex flex-col items-center lg:items-start gap-4 lg:gap-8">

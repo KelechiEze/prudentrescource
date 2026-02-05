@@ -931,7 +931,7 @@ const StaffingRequestPage: React.FC = () => {
                     {/* Job Title Field */}
                     <div className="space-y-4">
                       <label className="text-[13px] font-bold text-gray-900 block">
-                        Job title of the position(s) you're hiring for<span className="text-red-500">*</span>
+                        Job title of the position(s) you request for<span className="text-red-500">*</span>
                         {validationErrors[`position-${pos.id}-jobTitle`] && (
                           <span className="text-red-500 text-xs flex items-center gap-1 ml-2">
                             <AlertCircle size={12} />
@@ -1105,24 +1105,7 @@ const StaffingRequestPage: React.FC = () => {
                 )}
               </button>
               
-              <div className="mt-4 text-xs text-gray-500 space-y-1">
-                <p>By submitting this form, you agree to:</p>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Receive a confirmation email with your request details</li>
-                  <li>Be contacted by our staffing team within 24-48 business hours</li>
-                  <li>Have your job description stored securely for candidate matching</li>
-                </ul>
-                <p className="mt-2">
-                  Need immediate assistance? Email{' '}
-                  <a href="mailto:staffing@prudentresources.com" className="text-[#68cfa3] hover:underline">
-                    staffing@prudentresources.com
-                  </a>{' '}
-                  or call{' '}
-                  <a href="tel:+14439855388" className="text-[#68cfa3] hover:underline">
-                    +1 443 985 5388
-                  </a>
-                </p>
-              </div>
+              
             </div>
           </form>
 

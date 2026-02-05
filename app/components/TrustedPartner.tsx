@@ -43,8 +43,8 @@ const TrustedPartner: React.FC = () => {
              <ul className="space-y-4 md:space-y-6">
                 {[
                   "Enter new specialties or areas of practice",
-                  "Build and shape your career on your terms",
-                  "Work in diverse environments and populations"
+                  "Placement into roles that fit your skills and availability",
+                  "Work in diverse professional environments"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 md:gap-4">
                     <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#1B2C42] shrink-0 mt-0.5" strokeWidth={1.5} />

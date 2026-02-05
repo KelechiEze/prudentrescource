@@ -17,7 +17,7 @@ const SubmitCV: React.FC = () => {
           
           <div className="max-w-3xl">
             <h2 className="font-serif text-3xl md:text-4xl text-white mb-6 leading-tight">
-              Can't find the right role? Submit your CV
+              Can't find the right role? Submit your Resume
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl">
               We can match you with new opportunities, as needed. Share your 

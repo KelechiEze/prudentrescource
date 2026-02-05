@@ -33,9 +33,7 @@ const CareerSupport: React.FC = () => {
                 with opportunities that align with your goals.
               </p>
               
-              <h2 className="font-serif text-3xl md:text-4xl text-[#1B2C42] leading-tight mb-8">
-                Your Career, Supported by Our Team
-              </h2>
+              
             </div>
             
             <div>
@@ -44,7 +42,7 @@ const CareerSupport: React.FC = () => {
                 onClick={handleContactClick}
                 className="group flex items-center gap-2 text-[#1B2C42] font-semibold text-lg transition-all hover:text-teal-600 cursor-pointer"
               >
-                Contact us for career support 
+                Contact us to access opportunities
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-2" />
               </button>
             </div>
