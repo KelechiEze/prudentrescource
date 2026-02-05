@@ -20,7 +20,7 @@ const SubmitCV: React.FC = () => {
               Can't find the right role? Submit your CV
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl">
-              We can match you with new opportunities, even while you're away. Share your 
+              We can match you with new opportunities, as needed. Share your 
               details and we'll let you know when a suitable role becomes available.
             </p>
           </div>
@@ -29,7 +29,7 @@ const SubmitCV: React.FC = () => {
             onClick={handleSubmitClick}
             className="bg-[#68cfa3] hover:bg-[#5abf94] text-[#1B2C42] px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg shadow-teal-900/20 whitespace-nowrap cursor-pointer"
           >
-            Submit your CV <ArrowRight size={18} />
+            Submit your Resume <ArrowRight size={18} />
           </button>
 
         </div>

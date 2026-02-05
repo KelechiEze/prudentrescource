@@ -15,7 +15,7 @@ const FAQSection: React.FC = () => {
   const faqs: FAQItem[] = [
     {
       question: "What types of healthcare roles can I find on the platform?",
-      answer: "We specialize in placing professionals in a wide range of roles, including; RNs, Medical Assistants, and more. Whether you're looking for full-time, part-time, or shift-based opportunities, we help you find the right fit."
+      answer: "We specialize in placing professionals in a wide range of roles, including; RNs, Medical Assistants, and more."
     },
     {
       question: "Is there a cost to join as a healthcare professional?",
@@ -26,12 +26,12 @@ const FAQSection: React.FC = () => {
       answer: "Our expert administrators carefully review your credentials, experience, and personal career goals to match you with organizations where you'll truly thrive and make an impact."
     },
     {
-      question: "Can I choose between full-time, part-time & contract roles?",
+      question: "Can I choose between part-time & contract roles?",
       answer: "Yes, flexibility is a core part of our service. You can choose from a variety of shift patterns including days, nights, and weekends, as well as different engagement types like permanent placements, short-term contracts, or seasonal support."
     },
     {
       question: "What documents do I need to provide?",
-      answer: "To ensure 100% credential verification, we typically require an updated CV/Resume, valid professional licenses, Training certifications, and proof of education."
+      answer: "To ensure 100% credential verification, we typically require an updated Resume, valid professional licenses, Training certifications, and ID licenses."
     },
     {
       question: "Is my personal information secure?",
@@ -49,6 +49,10 @@ const FAQSection: React.FC = () => {
 
   const handleContactClick = () => {
     router.push('/contact');
+  };
+
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:info@prudentresources.com';
   };
 
   return (
@@ -71,20 +75,35 @@ const FAQSection: React.FC = () => {
               </h2>
 
               <p className="font-sans text-gray-600 text-lg leading-relaxed mb-12 max-w-md">
-                Every successful hire begins with confidence. We've answered the key questions 
-                to help healthcare teams and professionals connect with ease and clarity.
+                Everything you need to know about joining Prudent Resources and finding your next healthcare opportunity.
               </p>
 
-              <div className="flex items-center gap-2 text-gray-800 font-semibold mb-6">
-                <HelpCircle className="w-5 h-5 text-[#68cfa3]" />
-                <span className="font-sans">Need further support?</span>
+              <div className="space-y-6 mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#EFF3F9] flex items-center justify-center">
+                    <HelpCircle className="w-5 h-5 text-[#68cfa3]" />
+                  </div>
+                  <div>
+                    <h3 className="font-sans font-semibold text-gray-800">Need further support?</h3>
+                    <p className="font-sans text-gray-600 text-sm">Our team is ready to help</p>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={handleEmailClick}
+                  className="text-[#1B2C42] hover:text-[#68cfa3] font-semibold text-lg transition-colors duration-300 flex items-center gap-2 group"
+                >
+                  <span className="border-b-2 border-[#68cfa3] pb-1">info@prudentresources.com</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
 
               <button 
                 onClick={handleContactClick}
-                className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-10 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg w-fit active:scale-95 cursor-pointer"
+                className="bg-[#1B2C42] hover:bg-[#2a4466] text-white px-10 py-4 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-lg w-fit active:scale-95 cursor-pointer group"
               >
-                Contact us <ArrowRight size={18} />
+                Contact our team 
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
@@ -92,6 +111,15 @@ const FAQSection: React.FC = () => {
           {/* Right Column - Accordion */}
           <div className="lg:col-span-7">
             <div className="bg-[#EFF3F9] rounded-[6px] p-6 md:p-10 lg:p-12 shadow-sm border border-[#E1E7EE]">
+              <div className="mb-8">
+                <h3 className="font-sans font-bold text-2xl text-[#1B2C42] mb-3">
+                  For Healthcare Professionals
+                </h3>
+                <p className="font-sans text-gray-600">
+                  Common questions about joining and finding opportunities through Prudent Resources
+                </p>
+              </div>
+              
               <div className="flex flex-col gap-2">
                 {faqs.map((faq, index) => {
                   const isOpen = openIndex === index;
@@ -125,6 +153,25 @@ const FAQSection: React.FC = () => {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* Additional Help Section */}
+              <div className="mt-12 pt-8 border-t border-[#D1D9E4]">
+                <div className="bg-white rounded-lg p-6 border border-[#E1E7EE]">
+                  <h4 className="font-sans font-bold text-lg text-[#1B2C42] mb-3">
+                    Still have questions?
+                  </h4>
+                  <p className="font-sans text-gray-600 mb-4">
+                    Don't hesitate to reach out. Our team typically responds within 24 hours.
+                  </p>
+                  <button 
+                    onClick={handleEmailClick}
+                    className="inline-flex items-center gap-2 text-[#68cfa3] hover:text-[#5ab894] font-semibold transition-colors"
+                  >
+                    <span>Email us directly</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

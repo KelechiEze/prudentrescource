@@ -26,9 +26,9 @@ const TrustedPartner: React.FC = () => {
           <div className="bg-[#B5D0FF] rounded-xl p-6 md:p-8 lg:p-12 flex flex-col justify-center min-h-[180px] md:min-h-[200px]">
              <ul className="space-y-4 md:space-y-6">
                 {[
-                  "Increase your income",
-                  "Expand your professional experience",
-                  "Create better balance in your life or studies"
+                  "Opportunity to expand skills and experience",
+                  "Access to roles across multiple specialties",
+                  "Flexibility to choose shifts that fit your schedule"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 md:gap-4">
                     <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#1B2C42] shrink-0 mt-0.5" strokeWidth={1.5} />

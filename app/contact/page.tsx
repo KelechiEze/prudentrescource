@@ -198,10 +198,7 @@ const ContactPage: React.FC = () => {
                 Let's get in touch.
               </h1>
               <p className="text-gray-600 text-base md:text-xl leading-relaxed max-w-xl font-light">
-                Have questions or want to learn more about how we can support you? 
-                Give us a call or send us a message. One of our representatives will be in 
-                touch soon. We look forward to connecting and helping you find solutions 
-                tailored to your staffing goals.
+                Have questions or want to learn more about how we can support you? Give us a call or send us a message. One of our representatives will be in touch soon. We look forward to connecting and helping you find solutions tailored to your needs.
               </p>
             </div>
 
@@ -244,7 +241,7 @@ const ContactPage: React.FC = () => {
                     href="tel:+14439855388" 
                     className="text-gray-600 text-sm md:text-lg hover:text-[#8b5cf6] transition-colors duration-300"
                   >
-                    Call for an Appointment: +1 443 985 5388
+                    +1 443 985 5388
                   </a>
                 </div>
               </div>

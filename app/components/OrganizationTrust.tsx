@@ -27,13 +27,13 @@ const OrganizationTrust: React.FC = () => {
             </div>
           </div>
 
-          {/* Heading Column */}
+          {/* Heading Column 
           <div className="lg:w-4/6">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-gray-900 leading-[1.15]">
               Why Healthcare Organizations <br />
               Trust Prudent Resources
             </h2>
-          </div>
+          </div>*/}
         </div>
 
         {/* Content Grid */}
@@ -43,8 +43,7 @@ const OrganizationTrust: React.FC = () => {
           <div className="bg-[#FFBCA0] rounded-xl p-8 lg:p-10 flex flex-col justify-between min-h-[500px]">
             <div>
               <p className="text-[#1B2C42] text-lg leading-relaxed mb-10 font-medium">
-                We respond quickly — whether you're filling a same-day shift or planning ahead 
-                — ensuring you always stay fully staffed and supported.
+                We respond quickly — ensuring you always stay fully staffed and supported.
               </p>
               
               <h3 className="font-serif text-3xl md:text-4xl text-[#1B2C42] leading-tight mb-8">
@@ -80,8 +79,8 @@ const OrganizationTrust: React.FC = () => {
             </h3>
             
             <p className="text-[#1B2C42] text-lg leading-relaxed mb-[92px]">
-              Fill one role or one hundred. Temporary, long-term, temp-to-hire, or urgent call-outs
-              —we adapt to your staffing demands.
+              Temporary, long-term, temp-to-hire,
+              or urgent call-outs—we adapt to your staffing demands.
             </p>
 
             <ul className="space-y-2">

@@ -17,14 +17,14 @@ const CareerControl: React.FC = () => {
               
               <p className="text-gray-700 text-lg leading-relaxed mb-16">
                 Our extensive network of organizations spans a variety of 
-                healthcare settings. Registering with Prudent Resources as a 
+                healthcare settings. Registering with us as a 
                 professional puts you in control of your career—you decide the 
                 type of work, locations, and schedule that fit your life.
               </p>
 
               <div className="space-y-4 mb-16">
                 {[
-                  "Part-time or full-time opportunities",
+                  "Part-time or Contract opportunities",
                   "Days, evenings, or weekends",
                   "Short- or long-term placements"
                 ].map((item, i) => (

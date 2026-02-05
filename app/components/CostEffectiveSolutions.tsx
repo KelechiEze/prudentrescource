@@ -23,7 +23,6 @@ const CostEffectiveSolutions: React.FC = () => {
 
               <ul className="space-y-2 mb-12">
                 {[
-                  "Get the most value out of every penny",
                   "Reduce overtime and emergency staffing expenses",
                   "Elimination staffing costs on advertising & credentialing"
                 ].map((item, i) => (
@@ -56,8 +55,8 @@ const CostEffectiveSolutions: React.FC = () => {
                 Reliable, Vetted Talent
               </h2>
               <p className="text-gray-200 text-lg leading-relaxed max-w-md">
-                Access credentialed professionals who meet strict compliance standards—giving you 
-                confidence in every referral.
+                Access credentialed professionals who meet 
+                compliance standards—giving you confidence in every referral.
               </p>
             </div>
           </div>

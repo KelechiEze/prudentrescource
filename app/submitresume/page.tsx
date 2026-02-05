@@ -785,7 +785,7 @@ const ResumeSubmissionPage: React.FC = () => {
             {/* Resume Upload */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-bold text-gray-800 flex items-center gap-2">
-                Attach Resume/CV<span className="text-red-500">*</span>
+                Attach Resume<span className="text-red-500">*</span>
                 {validationErrors.resume && (
                   <span className="text-red-500 text-xs flex items-center gap-1">
                     <AlertCircle size={12} />
@@ -973,7 +973,7 @@ const ResumeSubmissionPage: React.FC = () => {
           )}
         </div>
 
-        {/* Info Section */}
+        {/* Info Section 
         <div className="mt-12 bg-white rounded-[4px] shadow-sm p-8">
           <h3 className="text-xl font-bold text-[#1B2C42] mb-4">What happens after submission?</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1019,7 +1019,7 @@ const ResumeSubmissionPage: React.FC = () => {
               </a>
             </p>
           </div>
-        </div>
+        </div>*/}
       </div>
 
       <style jsx>{`

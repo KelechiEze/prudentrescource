@@ -1001,7 +1001,7 @@ const StaffingRequestPage: React.FC = () => {
               {/* Attach Job Description */}
               <div className="flex flex-col gap-2 mt-12">
                 <label className="text-[13px] font-semibold text-gray-900 flex items-center gap-0.5">
-                  Attach Job Description <span className="text-red-500">*</span>
+                  Upload Job Description <span className="text-red-500">*</span>
                   {validationErrors.jobDescription && (
                     <span className="text-red-500 text-xs flex items-center gap-1 ml-auto">
                       <AlertCircle size={12} />
@@ -1141,7 +1141,7 @@ const StaffingRequestPage: React.FC = () => {
           )}
         </div>
 
-        {/* Info Section */}
+        {/* Info Section 
         <div className="mt-12 bg-white rounded-md shadow-sm p-8">
           <h3 className="text-xl font-bold text-[#1B2C42] mb-4">Our Staffing Process</h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -1193,7 +1193,7 @@ const StaffingRequestPage: React.FC = () => {
               <li>✓ Ongoing support and replacement guarantee</li>
             </ul>
           </div>
-        </div>
+        </div>*/}
       </div>
     </div>
   );

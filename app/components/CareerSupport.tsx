@@ -29,7 +29,7 @@ const CareerSupport: React.FC = () => {
             <div>
               <p className="text-gray-600 text-lg leading-relaxed mb-10">
                 We work with you to create a professional profile that highlights your experience, 
-                education, training, and career preferences. We then match your skills and interests 
+                education, training, and career preferences. We also match your skills and interests 
                 with opportunities that align with your goals.
               </p>
               

@@ -23,8 +23,8 @@ const StaffingSolutions: React.FC = () => {
         </h2>
         
         <p className="text-gray-700 text-base lg:text-lg leading-relaxed mb-8 lg:mb-12 max-w-xl">
-          Whether you need last-minute coverage or long-term staffing support, 
-          we connect you with reliable professionals across multiple specialties and care settings.
+         We provide reliable healthcare professionals for both urgent coverage needs 
+         and long-term staffing across multiple specialties and care settings.
         </p>
 
         <div className="flex flex-col gap-3 lg:gap-4">

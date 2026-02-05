@@ -45,7 +45,7 @@ const OrganizationProcess: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-xl md:text-2xl font-serif text-white mb-3">
-                    Share Your Staffing Needs with Prudent Resources
+                    Share Your Staffing Needs with Us
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     Tell us the roles you are hiring for, experience levels, schedule, and certifications required.
@@ -64,7 +64,7 @@ const OrganizationProcess: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-xl md:text-2xl font-serif text-white mb-3">
-                    We Match You With Qualified Candidates
+                    Connect You With Qualified Candidates
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     We screen, credential, and curate professionals who align with your team and clinical environment.
@@ -83,7 +83,7 @@ const OrganizationProcess: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-xl md:text-2xl font-serif text-white mb-3">
-                    You Review best match and Select
+                    Professional Review and Selection
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     Approve the professionals that best fit your organizations vision and goals—no risk, no obligation.
@@ -97,7 +97,7 @@ const OrganizationProcess: React.FC = () => {
           {/* Right Column: Heading text (positioned at bottom right) */}
           <div className="w-full lg:w-7/12 flex justify-end items-end">
              <h2 className="text-3xl md:text-4xl lg:text-4xl font-serif text-white leading-tight max-w-2xl drop-shadow-lg">
-               Our process of solving your staffing needs is simplified for you
+               Simplified Healthcare Staffing 
              </h2>
           </div>
 
