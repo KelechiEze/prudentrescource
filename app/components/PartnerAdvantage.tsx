@@ -41,7 +41,7 @@ const PartnerAdvantage: React.FC = () => {
             {/* Left Content Box - Lavender Background */}
             <div className="bg-[#EFEDFA] rounded-[6px] p-8 md:p-12 flex flex-col justify-center">
                 <h3 className="font-serif text-3xl md:text-4xl leading-[140%] mb-6">
-                    <span className="text-[#6B6B6B]">No one-size-fits-all here.</span>{" "}
+                    <span className="text-[#6B6B6B]">No one-size-fits-all.</span>{" "}
                     {/* Changed to black as requested */}
                     <span className="text-black">We build a hiring solution that actually fits your goals and your culture</span>
                 </h3>

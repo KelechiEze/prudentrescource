@@ -20,7 +20,7 @@ const CredentialAlignment: React.FC = () => {
           </h2>
           {/* UPDATED: Changed from text-lg to text-xl to match the other text */}
           <p className="text-white text-xl leading-[150%] font-light opacity-90 max-w-3xl">
-            Before making any matches, we invest time in thoroughly assessing
+            We invest time in thoroughly assessing
             and vetting professionals' skills, credentials, and experience to
             ensure the best possible fit — improving outcomes for both sides.
           </p>
@@ -41,7 +41,7 @@ const CredentialAlignment: React.FC = () => {
           <div className="lg:col-span-4 flex flex-col justify-between py-2">
             <div className="space-y-12">
               <p className="text-white text-xl leading-relaxed font-light opacity-90">
-                We start with a detailed assessment of professionals skills,
+                Detailed assessment of professionals skills,
                 licenses and credentials for good fit.
               </p>
             </div>
