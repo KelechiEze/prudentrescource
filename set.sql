@@ -495,5 +495,3 @@
 
 
 
-CREATE DATABASE IF NOT EXISTS videomart_db;
-USE videomart_db;

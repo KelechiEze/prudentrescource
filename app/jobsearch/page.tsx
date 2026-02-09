@@ -22,18 +22,17 @@ interface JobResult {
   type: string;
   fullDescription: string;
   schedulesAvailable: string;
-  contractLength: string;
   duties: string[];
   requirements: string[];
   city?: string;
   state?: string;
   job_type?: string;
-  duties_text?: string;
+  dutiesText?: string;
   skills?: string;
-  contract_length?: string;
-  working_days?: string;
-  working_hours?: string;
-  additional_description?: string;
+  contractLength?: string;
+  workingDays?: string;
+  workingHours?: string;
+  additionalDescription?: string;
 }
 
 // Convert database job to frontend format
@@ -55,6 +54,7 @@ const convertDbJobToJobResult = (dbJob: any): JobResult => {
 
   // Extract schedule from working days/hours
   const getSchedule = (workingDays?: string, workingHours?: string): string => {
+    console.log('Extracting schedule from:', { workingDays, workingHours });
     if (workingDays && workingHours) {
       return `${workingDays}, ${workingHours}`;
     }
@@ -75,7 +75,7 @@ const convertDbJobToJobResult = (dbJob: any): JobResult => {
     const hourlyMatch = wages.match(/\$(\d+)/);
     if (hourlyMatch) {
       const hourlyRate = parseFloat(hourlyMatch[1]);
-      const weeklyRate = hourlyRate * 40; // Assuming 40-hour work week
+      const weeklyRate = hourlyRate * 36; // Assuming 36-hour work week
       return `$${weeklyRate.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}/wk`;
     }
     return '$2,000/wk'; // Default if can't parse
@@ -122,28 +122,28 @@ const convertDbJobToJobResult = (dbJob: any): JobResult => {
     date: dbJob.date || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
     status: dbJob.status || 'Active',
     category: getCategory(dbJob.role || ''),
-    schedule: getSchedule(dbJob.working_days, dbJob.working_hours),
-    duration: getDuration(dbJob.contract_length),
+    schedule: getSchedule(dbJob.workingDays, dbJob.workingHours),
+    duration: getDuration(dbJob.contractLength),
     datePosted: dbJob.date || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
     startingPrice: getStartingPrice(dbJob.wages || '$30/hour'),
     payRate: getPayRate(dbJob.wages || '$30/hour'),
     buttonLabel: 'View job details',
     type: dbJob.job_type || 'Contract Role',
-    fullDescription: dbJob.additional_description || dbJob.duties_text || 'Join our healthcare team as a dedicated professional providing essential care and support to patients in need. This position offers opportunities for growth and development in a supportive environment.',
-    schedulesAvailable: `Schedules: ${dbJob.working_days || '5 days/week'}, ${dbJob.working_hours || '8 hours/day'}`,
-    contractLength: `This is a ${dbJob.contract_length?.toLowerCase() || '26 week'} contract with potential for extension`,
-    duties: parseDuties(dbJob.duties_text),
+    fullDescription: dbJob.additionalDescription || dbJob.dutiesText || 'Join our healthcare team as a dedicated professional providing essential care and support to patients in need. This position offers opportunities for growth and development in a supportive environment.',
+    schedulesAvailable: `Schedules: ${dbJob.workingDays || '5 days/week'}, ${dbJob.workingHours || '8 hours/day'}`,
+    // contract_Length: `This is a ${dbJob.contractLength?.toLowerCase() || '26 week'} contract with potential for extension`,
+    duties: parseDuties(dbJob.dutiesText),
     requirements: parseRequirements(dbJob.skills),
     // Include all database fields for completeness
     city: dbJob.city,
     state: dbJob.state,
     job_type: dbJob.job_type,
-    duties_text: dbJob.duties_text,
+    dutiesText: dbJob.dutiesText,
     skills: dbJob.skills,
-    contract_length: dbJob.contract_length,
-    working_days: dbJob.working_days,
-    working_hours: dbJob.working_hours,
-    additional_description: dbJob.additional_description
+    contractLength: dbJob.contractLength,
+    workingDays: dbJob.workingDays,
+    workingHours: dbJob.workingHours,
+    additionalDescription: dbJob.additionalDescription
   };
 };
 
@@ -169,9 +169,13 @@ const JobSearchResultsPage: React.FC = () => {
         const data = await response.json();
         
         if (data.success && data.data) {
+          console.log('Raw jobs data from API:', data.data);
           // Convert database jobs to frontend format
           const convertedJobs = data.data.map(convertDbJobToJobResult);
+                    console.log('Converted jobs data:', convertedJobs);
+
           setJobs(convertedJobs);
+          console.log('Converted jobs data:', convertedJobs);
         } else {
           setError(data.message || 'Failed to fetch jobs');
           // Fallback to sample data

@@ -2185,13 +2185,42 @@ const ProfessionalModal: React.FC<ProfessionalModalProps> = ({ professionalId, o
     setFormData(updated);
   };
 
-  const handleStatusChange = (status: Professional['credentials']) => {
-    if (!formData) return;
+  // const handleStatusChange = (status: Professional['credentials']) => {
+  //   if (!formData) return;
     
-    const updated = { ...formData, credentials: status };
-    setFormData(updated);
-    setIsStatusPickerOpen(false);
-  };
+  //   const updated = { ...formData, credentials: status };
+  //   setFormData(updated);
+  //   setIsStatusPickerOpen(false);
+  // };
+
+
+
+const handleStatusChange = (status: Professional['credentials']) => {
+  if (!formData) return;
+  
+  const updated = { ...formData, credentials: status };
+  setFormData(updated);
+  setIsStatusPickerOpen(false);
+  
+  // Save the credential change immediately
+  onUpdate(updated).then(success => {
+    if (success) {
+      // Refresh data from server
+      fetchProfessional(professionalId).then(refreshed => {
+        if (refreshed) {
+          setProfessional(refreshed);
+          setFormData({ ...refreshed });
+          setOriginalData({ ...refreshed });
+        }
+      });
+    } else {
+      // Revert on failure
+      if (originalData) {
+        setFormData({ ...originalData });
+      }
+    }
+  });
+};
 
   const toggleAvailability = () => {
     if (!formData) return;
