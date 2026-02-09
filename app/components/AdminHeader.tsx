@@ -95,7 +95,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ currentPage, onNavigate, onLo
         ))}
       </nav>
 
-      {/* User Profile / Notifications */}
+      {/* User Profile / Notifications 
       <div className="flex items-center gap-4">
         <button className="w-10 h-10 rounded-full bg-[#1B2C42] flex items-center justify-center text-white relative hover:opacity-90 transition-opacity group cursor-pointer">
           <Bell size={20} className="group-hover:rotate-12 transition-transform" />
@@ -108,7 +108,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ currentPage, onNavigate, onLo
             className="w-full h-full object-cover"
           />
         </div>
-      </div>
+      </div>*/}
     </header>
   );
 };
