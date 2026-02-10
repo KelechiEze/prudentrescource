@@ -7,7 +7,14 @@ export async function GET(request: NextRequest) {
     try {
       connection = await db.getConnection();
       
-      // Simple query without reference_number column
+      // First check if status column exists
+      const [columns]: any = await connection.execute(`
+        SHOW COLUMNS FROM staffing_requests LIKE 'status'
+      `);
+      
+      // Add status column to query if it exists
+      const statusSelect = columns.length > 0 ? 'sr.status,' : '';
+      
       const [requests]: any = await connection.execute(`
         SELECT 
           sr.id,
@@ -23,6 +30,7 @@ export async function GET(request: NextRequest) {
           sr.job_description_file_name as jobDescriptionFileName,
           sr.job_description_file_type as jobDescriptionFileType,
           sr.job_description_file_size as jobDescriptionFileSize,
+          ${statusSelect}
           COALESCE(
             JSON_ARRAYAGG(
               JSON_OBJECT(
@@ -39,12 +47,18 @@ export async function GET(request: NextRequest) {
         ORDER BY sr.submitted_at DESC
       `);
 
-      // Parse positions JSON and add default status
-      const parsedRequests = requests.map((req: any) => ({
-        ...req,
-        status: 'pending', // Default status
-        positions: req.positions ? JSON.parse(req.positions) : []
-      }));
+      // Handle positions parsing with type check
+      const parsedRequests = requests.map((req: any) => {
+        const positions = req.positions ? 
+          (typeof req.positions === 'string' ? JSON.parse(req.positions) : req.positions) 
+          : [];
+        
+        return {
+          ...req,
+          status: req.status || 'pending', // Use actual status from DB, fallback to 'pending'
+          positions
+        };
+      });
 
       return NextResponse.json({
         success: true,
@@ -91,15 +105,42 @@ export async function PUT(request: NextRequest) {
     try {
       connection = await db.getConnection();
       
-      // Update status in the frontend state only
-      // Since we don't have status column in DB yet
-      // We'll just return success for now
-      // TODO: Add status column to database when needed
+      // First check if status column exists
+      const [columns]: any = await connection.execute(`
+        SHOW COLUMNS FROM staffing_requests LIKE 'status'
+      `);
+      
+      if (columns.length === 0) {
+        // Add status column if it doesn't exist
+        await connection.execute(`
+          ALTER TABLE staffing_requests 
+          ADD COLUMN status ENUM('pending', 'reviewed', 'published', 'rejected') DEFAULT 'pending'
+        `);
+      }
+      
+      // Update the status in the database
+      const [result]: any = await connection.execute(
+        'UPDATE staffing_requests SET status = ? WHERE id = ?',
+        [status, requestId]
+      );
+      
+      if (result.affectedRows === 0) {
+        return NextResponse.json(
+          { success: false, message: 'Request not found' },
+          { status: 404 }
+        );
+      }
+      
+      // Fetch the updated record
+      const [updatedRows]: any = await connection.execute(
+        'SELECT * FROM staffing_requests WHERE id = ?',
+        [requestId]
+      );
 
       return NextResponse.json({
         success: true,
-        message: 'Status updated in frontend state',
-        note: 'Database update will be available after adding status column'
+        message: 'Status updated successfully',
+        request: updatedRows[0]
       });
 
     } finally {
