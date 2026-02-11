@@ -992,7 +992,7 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ organizationId, o
                 </span>
                 <ExternalLink size={20} className="text-[#1B2C42] cursor-pointer" />
               </div>
-              <div className="flex items-center justify-between pt-6">
+             {/* <div className="flex items-center justify-between pt-6">
                 <span className="text-[18px] font-bold text-[#1B2C42]">Deactivate company</span>
                 <button 
                   onClick={handleStatusToggle}
@@ -1000,7 +1000,7 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ organizationId, o
                 >
                   <div className={`w-[24px] h-[24px] bg-white rounded-full transition-transform ${formData.status === 'Active' ? 'translate-x-0' : 'translate-x-[28px]'}`}></div>
                 </button>
-              </div>
+              </div>*/}
             </div>
             
             {/* Save button - only shows when in edit mode and there are changes */}

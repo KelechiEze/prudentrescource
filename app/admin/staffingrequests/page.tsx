@@ -349,7 +349,7 @@ const RequestModal: React.FC<{ request: StaffingRequest; onClose: () => void; on
               </p>
             </div>
 
-            {/* Publish Button */}
+            {/* Publish Button 
             <div className="pt-4">
               <button 
                 onClick={handlePublish}
@@ -362,7 +362,7 @@ const RequestModal: React.FC<{ request: StaffingRequest; onClose: () => void; on
                   <>Publish for listing <ArrowRight size={20} /></>
                 )}
               </button>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>
