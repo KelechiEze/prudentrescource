@@ -706,7 +706,7 @@ const JobModal: React.FC<JobModalProps> = ({ job, onClose, onUpdate, isSubmittin
                   />
                 </div>
 
-                {/* Professional Role */}
+                {/* Professional Role 
                 <div className="space-y-3">
                   <label className="text-[16px] font-bold text-[#1B2C42]">Professional Role <span className="text-red-500">*</span></label>
                   <input 
@@ -717,7 +717,7 @@ const JobModal: React.FC<JobModalProps> = ({ job, onClose, onUpdate, isSubmittin
                     className="w-full h-[58px] px-6 border border-gray-100 rounded-[12px] text-[16px] focus:outline-none focus:border-[#68cfa3] bg-white text-[#1B2C42]"
                     required
                   />
-                </div>
+                </div>*/}
 
                 {/* City & State */}
                 <div className="grid grid-cols-2 gap-6">
